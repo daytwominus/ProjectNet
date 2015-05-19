@@ -26,7 +26,11 @@ app.configure('production', function(){
 
 require('./routes/index')(app);
 require('./routes/users')(app);
-require('./db/dbconnect');
+require('./models/db');
+
+var logger = require('./models/log');
+logger.log("test");
+logger.getLogs();
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
