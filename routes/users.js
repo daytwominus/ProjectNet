@@ -1,11 +1,9 @@
-/**
- * Created by s on 19.05.2015.
- */
-module.exports = function(app) {
-    app.get('/users/:name', function(req, res){
-        res.render('users/profile', {title: 'User profile'});
-    });
-    app.get('/users/new', function(req, res) {
-        res.render('users', {title: "New User"});
-    });
-};
+var express = require('express');
+var router = express.Router();
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
+module.exports = router;
