@@ -2,7 +2,7 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var LogSchema   = new Schema({
-    time: Date,
+    date: String,
     line: String
 });
 
@@ -12,10 +12,9 @@ var Log = mongoose.model('Log', LogSchema);
 module.exports = {
     log: function(msg){
         console.log("logging message " + msg);
-
-
         var log = new Log();
         log.line = msg;
+        log.date = Date.now();
         log.save(function(err) {
             if (err)
                 console.log('error logging');
