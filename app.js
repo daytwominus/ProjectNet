@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
 
 var routes = require('./routes/index');
 var login = require('./routes/login');
@@ -25,6 +26,8 @@ app.use('/', routes);
 app.use('/index', routes);
 app.use('/login', login);
 app.use('/users', users);
+
+// authentication
 
 
 // catch 404 and forward to error handler
