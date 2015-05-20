@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -8,10 +9,11 @@ router.get('/', function(req, res, next) {
 
 router.post('/',function(){
         console.log("posted");
+        passport.authenticate('local', { successRedirect: '/',
+            failureRedirect: '/login',
+            failureFlash: true })
     }
-    //passport.authenticate('local', { successRedirect: '/',
-    //    failureRedirect: '/login',
-    //    failureFlash: true })
+
 );
 
 module.exports = router;
