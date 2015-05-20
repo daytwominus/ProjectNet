@@ -23,28 +23,45 @@ var UserSchema   = new Schema({
 
 var User = mongoose.model('User', UserSchema);
 
-module.exports = {
-    findUser: function(params, callback){
-        console.log("trying to find user: " + JSON.stringify(params));
-        User.collection.findOne({"id":params.id}, function(err, res){
-            if(err)
-                callback(err);
+var findUserByParams = function(params, callback){
+    console.log("trying to find user: " + JSON.stringify(params));
+    User.collection.findOne({"id":params.id}, function(err, res){
+        if(err) {
+            console.log("error!");
+            callback(err);
+        }
+        else {
+            console.log("found user: " + JSON.stringify(res));
             callback(null, res);
-        })
-    },
+        }
+    })
+}
+
+module.exports = {
+    findUser: findUserByParams,
     addUser: function(params, done){
-        console.log("hey");
+
         var jsonString = '{"some":"json"}';
         console.log("creating user:" + JSON.stringify(params));
-        var user = new User();
-        for(var key in params) {
-            user[key] = params[key];
-        }
+        findUserByParams(params, function(err, res){
+            if(err){}
+            else {
+                if(res == null) {
+                    var user = new User();
+                    for (var key in params) {
+                        user[key] = params[key];
+                    }
 
-        user.save(function(err) {
-            if (err)
-                console.log('error saving user');
-            console.log("user saved: " + JSON.stringify(user));
+                    user.save(function (err) {
+                        if (err)
+                            console.log('error saving user');
+                        console.log("user saved: " + JSON.stringify(user));
+                    });
+                }
+                else
+                    console.log("already exists");
+            }
         });
+
     }
 }
