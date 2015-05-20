@@ -3,6 +3,7 @@ var flash = require('connect-flash')
     , passport = require('passport')
     , util = require('util')
     , LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
 
 var users = require("../models/user");
 
@@ -16,7 +17,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    findById(id, function (err, user) {
+    users.findUserById(id, function (err, user) {
         done(err, user);
     });
 });
@@ -41,6 +42,7 @@ passport.use(new LocalStrategy(
 ));
 
 module.exports = function (app){
+    app.use(session({ secret: 'keyboard cat' }));
     app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());

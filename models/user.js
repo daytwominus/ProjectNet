@@ -25,7 +25,7 @@ var User = mongoose.model('User', UserSchema);
 
 var findUserUniversal = function(params, callback){
     console.log("trying to find user: " + JSON.stringify(params));
-    User.collection.findOne({"id":params.id}, function(err, res){
+    User.collection.findOne(params, function(err, res){
         if(err) {
             console.log("error!");
             callback(err);
@@ -40,13 +40,17 @@ var findUserUniversal = function(params, callback){
 
 
 module.exports = {
-    findUser: findUserUniversal,
+    findUserById: function(id, done){
+        console.log("userById");
+        findUserUniversal({"id": id}, done);
+    },
     findUserByName: function(name, done){
+        console.log("userByName");
         findUserUniversal({"displayName": name}, done);
     },
     addUser: function(params, done){
         console.log("creating user:" + JSON.stringify(params));
-        findUserUniversal(params, function(err, res){
+        findUserUniversal({"displayName": params["displayName"]}, function(err, res){
             if(err){}
             else {
                 if(res == null) {

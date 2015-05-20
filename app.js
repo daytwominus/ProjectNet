@@ -8,11 +8,12 @@ var passport = require('passport');
 var routes = require('./routes/index');
 var login = require('./routes/login');
 var users = require('./routes/users');
+var home = require('./routes/home');
 
 var app = express();
 
 require('./helpers/logging')(app);
-require('./config/login')(app);
+//require('./config/login')(app);
 require('./models/db');
 require('./helpers/authentication')(app);
 
@@ -31,6 +32,7 @@ app.use('/', routes);
 app.use('/index', routes);
 app.use('/login', login);
 app.use('/users', users);
+app.use('/home', home);
 
 // authentication
 
