@@ -28,7 +28,6 @@ app.use('/index', routes);
 app.use('/login', login);
 app.use('/users', users);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -63,6 +62,7 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-var port = process.env.PORT || 3000;
-app.listen(port);
-console.log('Magic happens on port ' + port);
+// running server
+//var port = process.env.PORT || 3000;
+//app.listen(port);
+//console.log('Magic happens on port ' + port);
