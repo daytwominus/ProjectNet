@@ -14,6 +14,7 @@ var app = express();
 require('./helpers/logging')(app);
 require('./config/login')(app);
 require('./models/db');
+require('./helpers/authentication')(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
