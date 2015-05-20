@@ -7,16 +7,18 @@ var users = require("../models/user");
 /* GET home page. */
 router.get('/', function(req, res, next) {
     console.log("login request");
-    users.addUser({displayName : "testName"});
+
     res.render('login', { title: 'Express' });
 });
 
-router.post('/',function(){
-        console.log("posted");
-        passport.authenticate('local', { successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true })
-    }
-);
+router.post('/',
+    passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
+    function(req, res) {
+        res.redirect('/')});
+
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
 
 module.exports = router;
