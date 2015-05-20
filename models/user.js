@@ -21,13 +21,16 @@ var UserSchema   = new Schema({
 
 });
 
-//module.exports = mongoose.model('User', UserSchema);
-
 var User = mongoose.model('User', UserSchema);
 
 module.exports = {
-    findUser: function(params, fn){
-
+    findUser: function(params, callback){
+        console.log("trying to find user: " + JSON.stringify(params));
+        User.collection.findOne({"id":params.id}, function(err, res){
+            if(err)
+                callback(err);
+            callback(null, res);
+        })
     },
     addUser: function(params, done){
         console.log("hey");
