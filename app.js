@@ -13,6 +13,7 @@ var app = express();
 
 require('./helpers/logging')(app);
 require('./config/login')(app);
+require('./models/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

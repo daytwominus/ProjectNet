@@ -21,6 +21,27 @@ var UserSchema   = new Schema({
 
 });
 
-module.exports = mongoose.model('User', UserSchema);
+//module.exports = mongoose.model('User', UserSchema);
 
-//var User = mongoose.model('User', UserSchema);
+var User = mongoose.model('User', UserSchema);
+
+module.exports = {
+    findUser: function(params, fn){
+
+    },
+    addUser: function(params, done){
+        console.log("hey");
+        var jsonString = '{"some":"json"}';
+        console.log("creating user:" + JSON.stringify(params));
+        var user = new User();
+        for(var key in params) {
+            user[key] = params[key];
+        }
+
+        user.save(function(err) {
+            if (err)
+                console.log('error saving user');
+            console.log("user saved: " + JSON.stringify(user));
+        });
+    }
+}

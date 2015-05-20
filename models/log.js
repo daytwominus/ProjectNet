@@ -6,7 +6,7 @@ var LogSchema   = new Schema({
     line: String
 });
 
-module.exports = mongoose.model('Log', LogSchema);
+//module.exports = mongoose.model('Log', LogSchema);
 
 var Log = mongoose.model('Log', LogSchema);
 module.exports = {
