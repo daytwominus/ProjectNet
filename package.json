@@ -16,6 +16,9 @@
     "passport-local": "~1.0.0",
     "passport": "0.2.1",
     "connect-flash": "~0.1.1",
-    "express-session": "~1.11.2"
+    "express-session": "~1.11.2",
+	"passport-facebook": "~2.0.0",
+	"method-override": "~2.3.3"
+	
   }
 }

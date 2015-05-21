@@ -13,9 +13,9 @@ var home = require('./routes/home');
 var app = express();
 
 require('./helpers/logging')(app);
-//require('./config/login')(app);
 require('./models/db');
 require('./helpers/authentication')(app);
+require('./helpers/authentication-fb');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
