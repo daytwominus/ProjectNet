@@ -19,13 +19,11 @@ var FACEBOOK_APP_ID = "995494053803420";
 var FACEBOOK_APP_SECRET = "958b5801c0846f65b49db258217ef438";
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-    users.findUserByIdAndActive(id, function (err, user) {
-        done(err, user);
-    });
+passport.deserializeUser(function(obj, done) {
+    done(null, obj);
 });
 
 // Use the FacebookStrategy within Passport.
@@ -42,19 +40,22 @@ passport.use(new FacebookStrategy({
         // asynchronous verification, for effect...
         process.nextTick(function () {
             console.log("facebook account log in: " +  JSON.stringify(profile));
-            users.findUserById(profile["id"], function (err, user) {
-                if(user == null){
-                    console.log("user hasn't been found. Adding to remember");
-                    profile["isActive"] = 0;
-                    users.addUser(profile, null);
-                }
-            });
 
-            // To keep the example simple, the user's Facebook profile is returned to
-            // represent the logged-in user.  In a typical application, you would want
-            // to associate the Facebook account with a user record in your database,
-            // and return that user instead.
-            return done(null, profile);
+            users.findUserByIdAndActive(profile["id"], function(err, user){
+                if (err) { return done(err); }
+                if(!user) {
+                    users.findUserById(profile["id"], function (err, user) {
+                        if(user == null){
+                            console.log("user hasn't been found. Adding as Inactive to remember");
+                            profile["isActive"] = 0;
+                            users.addUser(profile, null);
+                        }
+                        done(null, null);
+                    });
+                }
+                else
+                    return done(null, profile);
+            });
         });
     }
 ));

@@ -57,7 +57,7 @@ module.exports = {
     },
     addUser: function(params, done){
         console.log("creating user:" + JSON.stringify(params));
-        findUserUniversal({"displayName": params["displayName"]}, function(err, res){
+        findUserUniversal({"displayName": params["displayName"], "id":params["id"]}, function(err, res){
             if(err){}
             else {
                 if(res == null) {
