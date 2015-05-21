@@ -14,7 +14,7 @@ var app = express();
 
 require('./helpers/logging')(app);
 require('./models/db');
-require('./helpers/authentication')(app);
+require('./helpers/authentication-local')(app);
 require('./helpers/authentication-fb');
 
 // view engine setup

@@ -23,7 +23,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    users.findUserById(id, function (err, user) {
+    users.findUserByIdAndActive(id, function (err, user) {
         done(err, user);
     });
 });
@@ -41,6 +41,14 @@ passport.use(new FacebookStrategy({
     function(accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
         process.nextTick(function () {
+            console.log("facebook account log in: " +  JSON.stringify(profile));
+            users.findUserById(profile["id"], function (err, user) {
+                if(user == null){
+                    console.log("user hasn't been found. Adding to remember");
+                    profile["isActive"] = 0;
+                    users.addUser(profile, null);
+                }
+            });
 
             // To keep the example simple, the user's Facebook profile is returned to
             // represent the logged-in user.  In a typical application, you would want

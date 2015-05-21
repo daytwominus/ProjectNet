@@ -17,8 +17,11 @@ var UserSchema   = new Schema({
     }],
     photos: [{
         value: String// The URL of the image.
-    }]
-
+    }],
+    roles: [{
+        value: String// The URL of the image.
+    }],
+    isActive: Number
 });
 
 var User = mongoose.model('User', UserSchema);
@@ -37,12 +40,16 @@ var findUserUniversal = function(params, callback){
     })
 }
 
-
+module.exports.findUserUniversal = findUserUniversal;
 
 module.exports = {
     findUserById: function(id, done){
         console.log("userById");
         findUserUniversal({"id": id}, done);
+    },
+    findUserByIdAndActive: function(id, done){
+        console.log("findUserByIdAndActive");
+        findUserUniversal({"id": id, isActive: 1}, done);
     },
     findUserByName: function(name, done){
         console.log("userByName");
@@ -69,6 +76,5 @@ module.exports = {
                     console.log("already exists");
             }
         });
-
     }
 }
