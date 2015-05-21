@@ -2,13 +2,12 @@
 // https://github.com/aguidrevitch/jquery-file-upload-middleware/tree/master/examples
 var express = require('express'),
     http = require('http'),
-    upload = require('../');
+    upload = require('jquery-file-upload-middleware');
 
 var swig = require('swig');
 
 // configuration
-var resizeConf = require('./config').resizeVersion;
-var dirs = require('./config').directors;
+var dirs = require('../config/config').directors;
 
 module.exports = function (app){
     // set template engine
@@ -19,6 +18,7 @@ module.exports = function (app){
 
     // jquery-file-upload helper
     app.use('/upload/default', function (req, res, next) {
+        console.log('/upload/default');
         upload.fileHandler({
             tmpDir: dirs.temp,
             uploadDir: __dirname + dirs.default,
@@ -30,11 +30,11 @@ module.exports = function (app){
     app.use('/upload/location', upload.fileHandler({
         tmpDir: dirs.temp,
         uploadDir: __dirname + dirs.location,
-        uploadUrl: dirs.location_url,
-        imageVersions: resizeConf.location
+        uploadUrl: dirs.location_url
     }));
 
     app.use('/upload/location/list', function (req, res, next) {
+        console.log('/location/list');
         upload.fileManager({
             uploadDir: function () {
                 return __dirname + dirs.location;

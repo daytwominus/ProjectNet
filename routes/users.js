@@ -2,10 +2,6 @@ var express = require('express');
 var router = express.Router();
 var users = require("../models/user");
 
-
-
-var users = require("../models/user");
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   //users.addUser({"id":"123xy"});

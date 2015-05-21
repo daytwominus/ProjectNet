@@ -5,10 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
-var routes = require('./routes/index');
-var login = require('./routes/login');
-var users = require('./routes/users');
-var home = require('./routes/home');
+
 
 var app = express();
 
@@ -16,6 +13,7 @@ require('./helpers/logging')(app);
 require('./models/db');
 require('./helpers/authentication-local')(app);
 require('./helpers/authentication-fb');
+require('./media/upload')(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,14 +26,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
 
+// routing:
+var routes = require('./routes/index');
 app.use('/', routes);
+
 app.use('/index', routes);
-app.use('/login', login);
-app.use('/users', users);
-app.use('/home', home);
-
-// authentication
-
+app.use('/login', require('./routes/login'));
+app.use('/users', require('./routes/users'));
+app.use('/home', require('./routes/home'));
+app.use('/upload', require('./routes/upload'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
