@@ -4,9 +4,6 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-
-
-
 var app = express();
 
 require('./helpers/logging')(app);
