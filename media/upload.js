@@ -8,8 +8,10 @@ var swig = require('swig');
 
 // configuration
 var dirs = require('../config/config').directors;
+var resizeConf = require('../config/config').resizeVersion;
 
 module.exports = function (app){
+
     // set template engine
     app.engine('html', swig.renderFile);
     swig.setDefaults({
@@ -18,7 +20,6 @@ module.exports = function (app){
 
     // jquery-file-upload helper
     app.use('/upload/default', function (req, res, next) {
-        console.log('/upload/default');
         upload.fileHandler({
             tmpDir: dirs.temp,
             uploadDir: __dirname + dirs.default,
@@ -30,11 +31,11 @@ module.exports = function (app){
     app.use('/upload/location', upload.fileHandler({
         tmpDir: dirs.temp,
         uploadDir: __dirname + dirs.location,
-        uploadUrl: dirs.location_url
+        uploadUrl: dirs.location_url,
+        imageVersions: resizeConf.location
     }));
 
     app.use('/upload/location/list', function (req, res, next) {
-        console.log('/location/list');
         upload.fileManager({
             uploadDir: function () {
                 return __dirname + dirs.location;
@@ -63,5 +64,4 @@ module.exports = function (app){
     upload.on('error', function (e) {
         console.log(e.message);
     });
-
 }

@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
     res.render('upload', { title: 'Upload' });
 });
 
-router.post('/', function (req, res) {
+router.post('/location/input', function (req, res) {
     console.log('\n===============================================\n');
     console.log(req.body);
     res.send(req.body);
