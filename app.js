@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -10,7 +9,7 @@ require('./helpers/logging')(app);
 require('./models/db');
 require('./helpers/authentication-local')(app);
 require('./helpers/authentication-fb');
-require('./media/upload')(app);
+//require('./media/upload');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +25,6 @@ app.use(passport.initialize());
 // routing:
 var routes = require('./routes/index');
 app.use('/', routes);
-
 app.use('/index', routes);
 app.use('/scripts', require('./routes/public'));
 app.use('/login', require('./routes/login'));

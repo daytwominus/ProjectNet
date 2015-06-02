@@ -44,7 +44,6 @@ exports.resizeVersion = {
         }
     }
 };
-
 exports.directors = {
     temp: './tmp',
 
