@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var express = require('express'),
-    http = require('http'),
+var http = require('http'),
     upload = require('jquery-file-upload-middleware');
 
 var swig = require('swig');
@@ -26,12 +25,15 @@ router.use('/default', function (req, res, next) {
     })(req, res, next);
 });
 
-router.use('/location', upload.fileHandler({
-    tmpDir: dirs.temp,
-    uploadDir: __dirname + dirs.location,
-    uploadUrl: dirs.location_url,
-    imageVersions: resizeConf.location
-}));
+router.use('/location', function (req, res, next) {
+    console.log("requesting by location");
+    upload.fileHandler({
+        tmpDir: dirs.temp,
+        uploadDir: __dirname + dirs.location,
+        uploadUrl: dirs.location_url,
+        imageVersions: resizeConf.location
+    })(req, res, next);
+});
 
 router.use('/location/list', function (req, res, next) {
     upload.fileManager({
@@ -42,11 +44,12 @@ router.use('/location/list', function (req, res, next) {
             return dirs.location_url;
         }
     }).getFiles(function (files) {
+        console.log('getting all files');
         res.json(files);
     });
 });
 
-router.post('/', function (req, res) {
+router.post('/location1/input', function (req, res) {
     console.log('\n===============================================\n');
     console.log(req.body);
     res.send(req.body);
