@@ -27,10 +27,11 @@ var routes = require('./routes/index');
 app.use('/', routes);
 app.use('/index', routes);
 app.use('/scripts', require('./routes/public'));
+app.use('/public', require('./routes/public'));
 app.use('/login', require('./routes/login'));
 app.use('/users', require('./routes/users'));
 app.use('/home', require('./routes/home'));
-app.use('/upload', require('./routes/upload'));
+app.use('/upload', require('./routes/upload').getRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
