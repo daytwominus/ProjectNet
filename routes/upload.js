@@ -9,12 +9,8 @@ var router = express.Router()
     , Files = {};
 
 var app = require('../app');
-//var io = require('socket.io')(app);
-
-var swig = require('swig');
 
 var dirs = require('../config/config').directors;
-var resizeConf = require('../config/config').resizeVersion;
 console.log('dirs config:' + JSON.stringify(dirs));
 
 router.get('/', function(req, res, next) {
@@ -32,12 +28,6 @@ module.exports = {
 function configureUpload(server) {
     console.log('configuring socket');
     var io = require('socket.io')(server);
-    //io.on('connection', function (socket) {
-    //    socket.emit('news', {hello: 'world'});
-    //    socket.on('my other event', function (data) {
-    //        console.log(data);
-    //    });
-    //});
 
     io.on('connection', function (socket) {
         socket.on('Start', function (data) { //data contains the variables that we passed through in the html file
