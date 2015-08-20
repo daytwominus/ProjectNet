@@ -25,8 +25,12 @@ passport.use(new LocalStrategy(
             // indicate failure and set a flash message.  Otherwise, return the
             // authenticated `user`.
             users.findUserByName(username, function(err, user) {
+                console.log('user :: ' + JSON.stringify(user));
                 if (err) { return done(err); }
-                if (!user) { return done(null, false, { message: 'Unknown user ' + username }); }
+                if (!user) {
+                    console.log('user ' + username + ' not found');
+
+                    return done(null, false, { message: 'Unknown user ' + username }); }
                 if (user.password != password) { return done(null, false, { message: 'Invalid password' }); }
                 return done(null, user);
             })

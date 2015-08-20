@@ -26,7 +26,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
-require('../routes/upload').configSocket(server);
+//require('../routes/upload').configSocket(server);
 server.on('error', onError);
 server.on('listening', onListening);
 console.log('Listening on port ' + port);
