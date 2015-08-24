@@ -29,7 +29,7 @@ app.use('/index', routes);
 app.use('/login', require('./routes/login'));
 app.use('/users', require('./routes/users'));
 app.use('/home', require('./routes/home'));
-//app.use('/upload', require('./routes/upload'));
+app.use('/upload', require('./routes/upload'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
