@@ -10,7 +10,6 @@ var bs = new BinaryServer({ port: 9000 });
 
 bs.on('connection', function (client) {
     client.on('stream', function (stream, meta) {
-        console.log('UUUUUUUUU');
         switch(meta.event) {
             // list available videos
             case 'list':

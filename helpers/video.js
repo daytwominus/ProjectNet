@@ -6,13 +6,16 @@
 'use strict';
 
 var fs, uploadPath, supportedTypes;
+var utils = require('../helpers/utils.js');
+console.log(utils);
 
 fs             = require('fs');
 uploadPath     = __dirname + '/../videos';
 supportedTypes = [
     'video/mp4',
     'video/webm',
-    'video/ogg'
+    'video/ogg',
+    'video/avi',
 ];
 
 module.exports = {
@@ -71,7 +74,12 @@ function upload(stream, meta) {
         return;
     }
 
-    var file = fs.createWriteStream(uploadPath + '/' + meta.name);
+    var re = /(?:\.([^.]+))?$/;
+
+    var newName = utils.getUniqueNameForFile(meta.name) + '.' + re.exec(meta.name)[1];
+    console.log('uploading file ' + meta.name + '; renaming to ' + newName);
+
+    var file = fs.createWriteStream(uploadPath + '/' + newName);
     stream.pipe(file);
 
     stream.on('data', function (data) {
@@ -82,3 +90,5 @@ function upload(stream, meta) {
         stream.write({ end: true });
     });
 }
+
+
