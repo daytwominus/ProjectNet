@@ -1,6 +1,3 @@
-/**
- * Created by SergeyPanasyuk on 8/25/2015.
- */
 var hostname, client;
 
 hostname = window.location.hostname;

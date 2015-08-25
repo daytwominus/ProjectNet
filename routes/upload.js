@@ -4,9 +4,9 @@
 var express = require('express');
 var router = express.Router()
     , fs = require('fs');
-BinaryServer = require('binaryjs').BinaryServer;
-video        = require('../helpers/video');
-bs = new BinaryServer({ port: 9000 });
+var BinaryServer = require('binaryjs').BinaryServer;
+var video        = require('../helpers/video');
+var bs = new BinaryServer({ port: 9000 });
 
 bs.on('connection', function (client) {
     client.on('stream', function (stream, meta) {

@@ -1,10 +1,14 @@
 /**
- * Created by SergeyPanasyuk on 8/25/2015.
+ * Manages uploading and streaming of video files.
+ *
+ * @module video
  */
+'use strict';
+
 var fs, uploadPath, supportedTypes;
 
-fs                 = require('fs');
-uploadPath         = __dirname + '/../videos';
+fs             = require('fs');
+uploadPath     = __dirname + '/../videos';
 supportedTypes = [
     'video/mp4',
     'video/webm',
@@ -17,19 +21,49 @@ module.exports = {
     upload  : upload
 };
 
+_checkUploadDir();
 
-function list(stream, meta)  {
-    fs.readdir(uploadPath, function (err, files) {
-        stream.write({ files : files });
+function _checkUploadDir(cb) {
+    cb = cb || function () {};
+
+    fs.stat(uploadPath, function (err, stats) {
+        if (
+            (err && err.errno === 34)
+        ) {
+            // if there's no error, it means it's not a directory - remove it
+            if (!err) {
+                fs.unlinkSync(uploadPath);
+            }
+
+            // create directory
+            fs.mkdir(uploadPath, cb);
+            return;
+        }
+
+        cb();
     });
 }
 
+/**
+ */
+function list(stream, meta)  {
+    _checkUploadDir(function () {
+        fs.readdir(uploadPath, function (err, files) {
+            stream.write({ files : files });
+        });
+    });
+}
+
+/**
+ */
 function request(client, meta) {
     var file = fs.createReadStream(uploadPath + '/' + meta.name);
 
     client.send(file);
 }
 
+/**
+ */
 function upload(stream, meta) {
     if (!~supportedTypes.indexOf(meta.type)) {
         stream.write({ err: 'Unsupported type: ' + meta.type });
@@ -41,7 +75,7 @@ function upload(stream, meta) {
     stream.pipe(file);
 
     stream.on('data', function (data) {
-        stream.write({ rx: data.length / meta.size });
+        stream.write({ rx : data.length / meta.size });
     });
 
     stream.on('end', function () {
