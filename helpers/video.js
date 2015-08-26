@@ -7,7 +7,7 @@
 
 var fs, uploadPath, supportedTypes;
 var utils = require('../helpers/utils.js');
-console.log(utils);
+var videos = require("../models/video");
 
 fs             = require('fs');
 uploadPath     = __dirname + '/../videos';
@@ -47,26 +47,30 @@ function _checkUploadDir(cb) {
     });
 }
 
-/**
- */
 function list(stream, meta)  {
     _checkUploadDir(function () {
-        fs.readdir(uploadPath, function (err, files) {
-            stream.write({ files : files });
+        //fs.readdir(uploadPath, function (err, files) {
+        //
+        //    stream.write({ files : files });
+        //});
+
+        videos.listVideos(null, function(err, data){
+            //console.log('>>>' + JSON.stringify(data));
+            var retFiles = [];
+            data.forEach(function(file){
+                retFiles.push(file['originalName']);
+            });
+            stream.write({ files : retFiles });
         });
     });
 }
 
-/**
- */
 function request(client, meta) {
     var file = fs.createReadStream(uploadPath + '/' + meta.name);
 
     client.send(file);
 }
 
-/**
- */
 function upload(stream, meta) {
     if (!~supportedTypes.indexOf(meta.type)) {
         stream.write({ err: 'Unsupported type: ' + meta.type });
@@ -89,6 +93,11 @@ function upload(stream, meta) {
     stream.on('end', function () {
         stream.write({ end: true });
     });
+
+    videos.addVideo({
+        'nameOnDisk' : newName,
+        'originalName' : meta.name,
+        'dateAdded' : new Date().getTime()});
 }
 
 
