@@ -53,8 +53,9 @@ passport.use(new FacebookStrategy({
                         done(null, null);
                     });
                 }
-                else
+                else {
                     return done(null, profile);
+                }
             });
         });
     }

@@ -35,6 +35,7 @@ var findUserUniversal = function(params, callback){
         }
         else {
             console.log("found user: " + JSON.stringify(res));
+            console.log(callback);
             callback(null, res);
         }
     })

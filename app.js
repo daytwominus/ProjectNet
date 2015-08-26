@@ -14,6 +14,7 @@ require('./helpers/authentication-fb');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.locals.pretty = true;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

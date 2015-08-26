@@ -30,11 +30,19 @@ router.get('/facebook',
         // function will not be called.
     });
 
-router.get('/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/login' }),
-    function(req, res) {
-        console.log("facebook login successful");
-        res.redirect('/');
-    });
+
+var options = {
+    successRedirect: '/home',
+    failureRedirect: '/login'
+};
+
+router.get('/facebook/callback', passport.authenticate('facebook', options));
+
+//router.get('/facebook/callback',
+//    passport.authenticate('facebook', { failureRedirect: '/login' }),
+//    function(req, res) {
+//        console.log("facebook login successful");
+//        res.redirect('/home');
+//    });
 
 module.exports = router;
