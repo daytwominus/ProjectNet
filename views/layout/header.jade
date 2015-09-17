@@ -5,12 +5,14 @@ html(lang= "ru")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1")
 
-        link(rel= 'stylesheet', href='/bootstrap/css/bootstrap.min.css')
-        link(rel='stylesheet', href='/css/style.css')
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+        link(href="/material/css/roboto.min.css" rel="stylesheet")
+        link(href="/material/css/material.min.css" rel="stylesheet")
+        link(href="/material/css/ripples.min.css" rel="stylesheet")
         block script
 
     body
-        nav.navbar.navbar-inverse
+        nav.navbar.navbar-default
             div.container
                 ul.nav.navbar-nav.navbar-right
                     if isLoggedIn
