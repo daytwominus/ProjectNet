@@ -1,0 +1,18 @@
+var express = require('express');
+var router = express.Router();
+
+router.get('/profile', function(req, res, next) {
+    res.send(
+        {
+            name : "huname",
+            email: "huemail"
+        }
+    );
+});
+
+router.post('/profile', function(req, res, next) {
+    console.log(req.body);
+    res.send(200);
+});
+
+module.exports = router;

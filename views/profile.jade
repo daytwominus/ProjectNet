@@ -1,0 +1,19 @@
+extends layout/header
+block content
+    div.panel.panel-default(ng-app="profileApp" ng-cloak)
+        div.panel-body(ng-controller='profileController')
+            h1 {{user.name}}
+            h2(ng-if="updateSuccessFlag") success
+            h2(ng-if="updateErrorFlag") error
+            form.form-horizontal
+                fieldset
+                    div.form-group
+                    label.col-lg-2.control-label Name
+                    div.col-lg-10
+                        input#userName.form-control(type="text" placeholder="Name" value="asd" ng-model="user.name")
+                div.form-group
+                    div.col-lg-10.col-lg-offset-2
+                        button.btn.btn-primary(type="submit" ng-click='updateUser()') Submit
+
+block script
+    script(src="/js/profileApp.js")
