@@ -45,4 +45,13 @@ module.exports = function (app){
     app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use(function(req, res, next){
+        if (req.isAuthenticated()) {
+            res.locals.isLoggedIn = true;
+            return next();
+        }
+        res.locals.isLoggedIn = false;
+        return next();
+        //res.redirect('/login');
+    })
 }

@@ -18,7 +18,7 @@ function prepareParams(req, cb){
 
         if('photos' in req.user &&
             req.user['photos'].count != 0)
-            params['avatarURL'] = req.user['photos'][0]['value'];
+            params['avatarURL'] = '';//req.user['photos'][0]['value'];
     }
     else
         displayName = 'Error! No logined user';

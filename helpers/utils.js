@@ -18,7 +18,6 @@ function guid() {
     });
 }
 
-
 module.exports =
 {
     getUniqueNameForFile : getUniqueNameForFile,
