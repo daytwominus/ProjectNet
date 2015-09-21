@@ -1,4 +1,5 @@
 extends layout/header
+
 block content
     div.panel.panel-default(ng-app="profileApp" ng-cloak)
         div.panel-body(ng-controller='profileController')
@@ -10,13 +11,18 @@ block content
                     div.form-group
                     label.col-lg-2.control-label Name
                     div.col-lg-10
-                        input#userName.form-control(type="text" placeholder="DisplayName" value="asd" ng-model="user.displayName")
+                        input#userName.form-control(type="text" placeholder="DisplayName" ng-model="user.displayName")
                     label.col-lg-2.control-label Password
                     div.col-lg-10
-                        input#userName.form-control(type="password" placeholder="Password" value="asd" ng-model="user.password")
+                        input#userPassword.form-control(type="password" placeholder="Password" ng-model="user.password")
+                    label.col-lg-2.control-label Avatar
+                    div.col-lg-10
+                        input.form-control(name="avatar" type="file" nv-file-select uploader="uploader")
                 div.form-group
                     div.col-lg-10.col-lg-offset-2
                         button.btn.btn-primary(type="submit" ng-click='updateUser()') Submit
 
 block script
     script(src="/js/profileApp.js")
+    script(src="/js/angular-file-upload.min.js")
+    script(src="/js/controllers.js")
