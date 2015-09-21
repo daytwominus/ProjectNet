@@ -5,9 +5,11 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     console.log("getting home page");
 
-    prepareParams(req, function(forJade){
-        res.render('home', forJade);
-    });
+    res.render('home');
+    //prepareParams(req, function(forJade){
+    //    res.locals.currentUser = req.user;
+    //    res.render('home', forJade);
+    //});
 });
 
 function prepareParams(req, cb){

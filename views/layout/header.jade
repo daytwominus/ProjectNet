@@ -27,9 +27,13 @@ html(lang= "ru")
                         li
                             a(href="#")
                                 | Contact
-                    li
-                        a(href="/login")
-                            | login
+                        li
+                            a(href="/login/logout")
+                                | Logout
+                    else
+                        li
+                            a(href="/login")
+                                | login
         div.container
             div.row
                 div.col.md-12

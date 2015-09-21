@@ -54,7 +54,7 @@ module.exports = {
     },
     findUserByName: function(name, done){
         console.log("userByName");
-        findUserUniversal({"displayName": name}, done);
+        findUserUniversal({"name": name}, done);
     },
     addUser: function(params, done){
         console.log("creating user:" + JSON.stringify(params));
