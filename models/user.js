@@ -53,8 +53,8 @@ module.exports = {
         findUserUniversal({"id": id, isActive: 1}, done);
     },
     findUserByName: function(name, done){
-        console.log("userByName");
-        findUserUniversal({"name": name}, done);
+        console.log("findUserByName: " + name);
+        findUserUniversal({"displayName": name}, done);
     },
     addUser: function(params, done){
         console.log("creating user:" + JSON.stringify(params));
