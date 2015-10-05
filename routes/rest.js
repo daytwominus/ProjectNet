@@ -17,32 +17,6 @@ router.post('/profile', function(req, res, next) {
     res.send(200);
 });
 
-/*router.post('/uploadAvatar', upload.single('avatar'), function(req, res, next) {
-    console.log(req.files);
-
-    //handler(req, res, next);
-});
-*/
-/*var type = upload.single('avatar');
-
-router.post('/uploadAvatar', type, function (req,res) {
-
-
-    var tmp_path = req.file.path;
-
-
-    var target_path = 'uploads/' + req.file.originalname;
-
-
-    var src = fs.createReadStream(tmp_path);
-    var dest = fs.createWriteStream(target_path);
-    src.pipe(dest);
-    src.on('end', function() { res.render('complete'); });
-    src.on('error', function(err) { res.render('error'); });
-
-});
-*/
-
 var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }])
 router.post('/uploadAvatar', cpUpload, function (req, res, next) {
     console.log('!!!', req.files);

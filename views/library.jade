@@ -1,8 +1,14 @@
 extends layout/header
 block content
-    div.panel.panel-default(ng-app="profileApp" ng-cloak)
+    div.panel.panel-default(ng-app="libraryApp", ng-controller="libraryController", ng-cloak)
+        div(ng-repeat="n in libItems")
+            div.media-left.media-middle
+                img.media-object(ng-src="{{n.previewUrl}}", style="width: 64px; height: 64px;")
+            div.media-body
+                a(ng-href="http://www.gravatar.com/avatar/{{hash}}")
+                    h4.media-heading {{n.name}}
+                | {{n.description}}
 
 block script
-    script(src="/js/profileApp.js")
-    script(src="/js/angular-file-upload.min.js")
+    script(src="/js/libraryApp.js")
     script(src="/js/controllers.js")
