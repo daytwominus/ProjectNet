@@ -1,9 +1,14 @@
 extends layout/header
 
 block content
-    div.user-image
-        img.img-circle(src= "#{avatarURL}")
-    div.jumbotron
-        p= params
-        h1 #{isLoggedIn}
-        h2 #{user}
+    div.panel.panel-default(ng-app="homeApp", ng-controller="homeController", ng-cloak)
+        div.jumbotron
+            if user
+                div.user-image
+                    img.img-circle(src= "#{avatarURL}")
+            p= params
+            h2 #{user.displayName}
+
+block script
+    script(src="/js/homeApp.js")
+    script(src="/js/controllers.js")

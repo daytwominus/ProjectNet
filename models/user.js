@@ -1,5 +1,9 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
+String.prototype.toObjectId = function() {
+    var ObjectId = (require('mongoose').Types.ObjectId);
+    return new ObjectId(this.toString());
+};
 
 // http://mongoosejs.com/docs/schematypes.html
 var UserSchema   = new Schema({
@@ -21,7 +25,8 @@ var UserSchema   = new Schema({
     roles: [{
         value: String// The URL of the image.
     }],
-    isActive: Number
+    isActive: Number,
+    imageUrl: String
 });
 
 var User = mongoose.model('User', UserSchema);
@@ -35,7 +40,6 @@ var findUserUniversal = function(params, callback){
         }
         else {
             console.log("found user: " + JSON.stringify(res));
-            console.log(callback);
             callback(null, res);
         }
     })
@@ -44,6 +48,7 @@ var findUserUniversal = function(params, callback){
 module.exports.findUserUniversal = findUserUniversal;
 
 module.exports = {
+
     findUserById: function(id, done){
         console.log("userById");
         findUserUniversal({"id": id}, done);
@@ -76,6 +81,18 @@ module.exports = {
                 else
                     console.log("already exists");
             }
+        });
+    },
+    updateUser: function(u, cb){
+        console.log("updating user " + JSON.stringify(u));
+        User.collection.findOne({_id: u._id.toObjectId()}, function(err, data){
+            console.log("user: " + JSON.stringify(data));
+
+            User.update({_id: u._id.toObjectId()}, u, function(err, done){
+                console.log(arguments);
+                cb(err, data);
+            });
+
         });
     }
 }

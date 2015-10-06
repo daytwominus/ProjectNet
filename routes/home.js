@@ -5,11 +5,10 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     console.log("getting home page");
 
-    res.render('home');
-    //prepareParams(req, function(forJade){
-    //    res.locals.currentUser = req.user;
-    //    res.render('home', forJade);
-    //});
+    prepareParams(req, function(forJade){
+        res.locals.currentUser = req.user;
+        res.render('home', forJade);
+    });
 });
 
 function prepareParams(req, cb){
@@ -18,9 +17,10 @@ function prepareParams(req, cb){
     if(req.user != null) {
         displayName = req.user['displayName'];
 
+        //console.log()
         if('photos' in req.user &&
             req.user['photos'].count != 0)
-            params['avatarURL'] = '';//req.user['photos'][0]['value'];
+            params['avatarURL'] = req.user['photos'][0]['value'];
     }
     else
         displayName = 'Error! No logined user';
