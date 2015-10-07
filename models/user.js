@@ -26,7 +26,8 @@ var UserSchema   = new Schema({
         value: String// The URL of the image.
     }],
     isActive: Number,
-    imageUrl: String
+    imageUrl: String,
+    tempImage: String
 });
 
 var User = mongoose.model('User', UserSchema);
@@ -86,13 +87,15 @@ module.exports = {
     updateUser: function(u, cb){
         console.log("updating user " + JSON.stringify(u));
         User.collection.findOne({_id: u._id.toObjectId()}, function(err, data){
-            console.log("user: " + JSON.stringify(data));
+            var user = data;
+            for (var key in u) {
+                user[key] = u[key];
+            }
+            delete user["_id"];
+            delete user["id"];
 
-            User.update({_id: u._id.toObjectId()}, u, function(err, done){
-                console.log(arguments);
-                cb(err, data);
-            });
-
+            console.log("updating user " + JSON.stringify(user));
+            User.findOneAndUpdate({"_id": u._id.toObjectId()}, user).exec();
         });
     }
 }

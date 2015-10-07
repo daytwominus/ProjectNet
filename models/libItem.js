@@ -11,19 +11,25 @@ var LibItemSchema   = new Schema({
 
 var LibItem = mongoose.model('libitem', LibItemSchema);
 
-var findLibItemsUniversal = function(params, callback){
-    console.log("trying to find libItems: " + JSON.stringify(params));
-    LibItem.collection.find(params).toArray(function(err, res){
-        if(err) {
-            console.log("error!");
-            callback(err);
-        }
-        else {
-            console.log("found libItems: " + JSON.stringify(res));
-            console.log(callback);
-            callback(null, res);
-        }
-    })
+module.exports = {
+    findLibItemsUniversal : function(params, callback) {
+        console.log("trying to find libItems: " + JSON.stringify(params));
+        var res = LibItem.find(params, function(err, x){
+            console.log(">>" + JSON.stringify(x));
+            callback(err, x);
+        });
+    },
+    addNewLibItem: function (item, callback){
+        console.log("adding new lib item: " + JSON.stringify(item));
+        var x = new LibItem();
+        for (var key in item) {
+            x[key] = item[key];}
+        x.save(function (err) {
+            if (err)
+                console.log('error saving lib item');
+            console.log("lib item saved: " + JSON.stringify(x));
+            callback(err, x);
+        });
+    }
 }
 
-module.exports.findLibItemsUniversal = findLibItemsUniversal;

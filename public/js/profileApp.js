@@ -50,7 +50,15 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
         console.info('onBeforeUploadItem', item);
     };
     uploader.onProgressItem = function(fileItem, progress) {
-        console.info('onProgressItem', fileItem, progress);
+        profileFactory.getProfile()
+            .success(function(response) {
+                console.log("Updated User from DB: " + JSON.stringify(response));
+                $scope.user = response;
+                console.log(response);
+            })
+            .error(function(error){
+                console.log(error);
+            });
     };
     uploader.onProgressAll = function(progress) {
         console.info('onProgressAll', progress);
@@ -81,8 +89,10 @@ profileApp.factory('profileFactory', function($http){
         return $http.get('/rest/profile');
     };
 
-    factory.updateProfile = function(data) {
-        return $http.post('/rest/profile', data);
+    factory.updateProfile = function(user) {
+
+        console.log("submitting user update " + JSON.stringify(user));
+        $http.post('/rest/profile', user);
     };
 
     return factory;

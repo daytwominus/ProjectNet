@@ -1,14 +1,32 @@
 extends layout/header
 block content
-    div.panel.panel-default(ng-app="libraryApp", ng-controller="libraryController", ng-cloak)
+    div.panel.panel-body(ng-app="libraryApp", ng-controller="libraryController", ng-cloak)
         div(ng-repeat="n in libItems")
+            div {{n.previewUrl}}
             div.media-left.media-middle
-                img.media-object(ng-src="{{n.previewUrl}}", style="width: 64px; height: 64px;")
+                div(ng-if="n.previewUrl")
+                    img.media-object(ng-src="{{n.previewUrl}}", style="width: 64px; height: 64px;")
+                div.ng-else
+                    li.glyphicon.glyphicon-book(style="font-size: 40px")
             div.media-body
                 a(ng-href="http://www.gravatar.com/avatar/{{hash}}")
                     h4.media-heading {{n.name}}
                 | {{n.description}}
+        div
+            form.form-horizontal
+                fieldset
+                div.form-group
+                label.col-lg-2.control-label Description
+                div.col-lg-10
+                    input#description.form-control(type="text" placeholder="Description" ng-model="newLibItem.description")
+                label.col-lg-2.control-label Avatar
+                div.col-lg-10
+                    input.form-control(name="libItem" type="file" nv-file-select uploader="uploader")
+            div.form-group
+                div.col-lg-10.col-lg-offset-2
+                    button.btn.btn-primary(type="submit" ng-click='addLibItem()') Add
 
 block script
     script(src="/js/libraryApp.js")
+    script(src="/js/angular-file-upload.min.js")
     script(src="/js/controllers.js")

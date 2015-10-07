@@ -17,7 +17,7 @@ block content
                         input#userPassword.form-control(type="password" placeholder="Password" ng-model="user.password")
                     label.col-lg-2.control-label Avatar
                     div.col-lg-10
-                        input.form-control(name="avatar" type="file" nv-file-select uploader="uploader")
+                        input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="user.imageUrl")
                 div.form-group
                     div.col-lg-10.col-lg-offset-2
                         button.btn.btn-primary(type="submit" ng-click='updateUser()') Submit
