@@ -2,16 +2,16 @@ extends layout/header
 block content
     div.panel.panel-body(ng-app="libraryApp", ng-controller="libraryController", ng-cloak)
         div(ng-repeat="n in libItems")
-            div {{n.previewUrl}}
             div.media-left.media-middle
                 div(ng-if="n.previewUrl")
                     img.media-object(ng-src="{{n.previewUrl}}", style="width: 64px; height: 64px;")
-                div.ng-else
+                div(ng-if="!n.previewUrl")
                     li.glyphicon.glyphicon-book(style="font-size: 40px")
             div.media-body
-                a(ng-href="http://www.gravatar.com/avatar/{{hash}}")
+                a(ng-href="{{n.fileUrl}}")
                     h4.media-heading {{n.name}}
-                | {{n.description}}
+                    | {{n.description}}
+
         div
             form.form-horizontal
                 fieldset
@@ -19,9 +19,12 @@ block content
                 label.col-lg-2.control-label Description
                 div.col-lg-10
                     input#description.form-control(type="text" placeholder="Description" ng-model="newLibItem.description")
-                label.col-lg-2.control-label Avatar
+                label.col-lg-2.control-label Select File
                 div.col-lg-10
-                    input.form-control(name="libItem" type="file" nv-file-select uploader="uploader")
+                    input.file-uploader.form-control(name="libItem" type="file" nv-file-select uploader="uploader")
+                label.col-lg-2.control-label Select Preview
+                div.col-lg-10
+                    input.file-uploader.form-control(name="libItemPreview" type="file" nv-file-select uploader="uploaderForPreview")
             div.form-group
                 div.col-lg-10.col-lg-offset-2
                     button.btn.btn-primary(type="submit" ng-click='addLibItem()') Add

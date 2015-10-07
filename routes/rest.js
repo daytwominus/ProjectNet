@@ -4,6 +4,7 @@ var multer  = require('multer');
 var upload = multer({ dest: '../public/upload/avatars'});
 var fs = require('fs');
 var users = require("../models/user");
+var libItems = require("../models/libItem");
 
 
 router.get('/profile', function(req, res, next) {
@@ -18,9 +19,6 @@ router.post('/profile', function(req, res, next) {
     var tempImageUrl = u["tempImageUrl"];
     if(tempImageUrl)
     {
-        //if(u["photos"] == undefined )
-        //    u["photos"] = [];
-        //u["photos"].push({"value": path});
         u["imageUrl"] = tempImageUrl;
     }
 
@@ -32,15 +30,28 @@ router.post('/profile', function(req, res, next) {
 });
 
 var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
-router.post('/uploadAvatar', cpUpload, function (req, res, next) {
+
+router.post('/avatar', cpUpload, function (req, res, next) {
     console.log('!!!', JSON.stringify(req["files"]));
     console.log('!!!', JSON.stringify(req["user"]));
-    if(!req.user['photos'])
-        req.user['photos'] = [];
     var path = req.files['file'][0]['path'].substring(9);
 
     res.send(path);
 
-})
+});
+
+router.post('/libItemFile', cpUpload, function(req, res, next) {
+    console.log('lib item uploaded: ', JSON.stringify(req["files"]));
+    var path = req.files['file'][0]['path'].substring(9);
+    console.log('lib item path: ' + path);
+    res.send(path);
+});
+
+router.post('/libItemPreview', cpUpload, function(req, res, next) {
+    console.log('lib item preview uploaded: ', JSON.stringify(req["files"]));
+    var path = req.files['file'][0]['path'].substring(9);
+    console.log('lib item preview path: ' + path);
+    res.send(path);
+});
 
 module.exports = router;

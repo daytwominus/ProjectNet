@@ -12,6 +12,8 @@ libraryApp.controller('libraryController', function ($scope, libraryFactory, Fil
             });
     };
 
+    $scope.getLibrary();
+
     $scope.addLibItem = function(){
         libraryFactory.addLibItem($scope.newLibItem)
             .success(function(response) {
@@ -19,7 +21,9 @@ libraryApp.controller('libraryController', function ($scope, libraryFactory, Fil
                     .success(function(response) {
                         console.log(response);
                         $scope.libItems = response;
-                        $scope.newLibItem = {};
+                        jQuery('.file-uploader').val('');
+
+
                     })
                     .error(function(error){
                     });
@@ -30,11 +34,31 @@ libraryApp.controller('libraryController', function ($scope, libraryFactory, Fil
     };
 
     var uploader = $scope.uploader = new FileUploader({
-        url: 'rest/uploadLibItem',
+        url: 'rest/libItemFile',
         autoUpload:true
     });
 
-    $scope.getLibrary();
+
+    // upload for preview
+    uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        console.info('onCompleteItem', fileItem, response, status, headers);
+        $scope.newLibItem.fileUrl = response;
+        uploader.clearQueue();
+    };
+
+    var uploaderForPreview = $scope.uploaderForPreview = new FileUploader({
+        url: 'rest/libItemPreview',
+        autoUpload:true
+    });
+
+    uploaderForPreview.onCompleteItem = function(fileItem, response, status, headers) {
+        console.info('onCompleteItem', fileItem, response, status, headers);
+        $scope.newLibItem.previewUrl = response;
+        uploaderForPreview.clearQueue();
+
+    };
+
+
     //libraryFactory.
 });
 

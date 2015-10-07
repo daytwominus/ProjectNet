@@ -30,7 +30,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
         });
 
     var uploader = $scope.uploader = new FileUploader({
-        url: 'rest/uploadAvatar',
+        url: 'rest/avatar',
         autoUpload:true
     });
 
