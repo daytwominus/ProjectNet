@@ -6,6 +6,14 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
         profileFactory.updateProfile($scope.user)
             .success(function(response) {
                 $scope.updateSuccessFlag = true;
+                profileFactory.getProfile()
+                    .success(function(response) {
+                        $scope.user = response;
+                        console.log(response);
+                    })
+                    .error(function(error){
+                        console.log(error);
+                    });
             })
             .error(function(error){
                 $scope.updateErrorFlag = true;
@@ -42,6 +50,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     };
     uploader.onAfterAddingFile = function(fileItem) {
         console.info('onAfterAddingFile', fileItem);
+
     };
     uploader.onAfterAddingAll = function(addedFileItems) {
         console.info('onAfterAddingAll', addedFileItems);
@@ -50,15 +59,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
         console.info('onBeforeUploadItem', item);
     };
     uploader.onProgressItem = function(fileItem, progress) {
-        profileFactory.getProfile()
-            .success(function(response) {
-                console.log("Updated User from DB: " + JSON.stringify(response));
-                $scope.user = response;
-                console.log(response);
-            })
-            .error(function(error){
-                console.log(error);
-            });
+        console.info('onProgressItem', fileItem, progress);
     };
     uploader.onProgressAll = function(progress) {
         console.info('onProgressAll', progress);
@@ -74,6 +75,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     };
     uploader.onCompleteItem = function(fileItem, response, status, headers) {
         console.info('onCompleteItem', fileItem, response, status, headers);
+        $scope.user.tempImageUrl = response;
     };
     uploader.onCompleteAll = function() {
         console.info('onCompleteAll');
@@ -90,9 +92,8 @@ profileApp.factory('profileFactory', function($http){
     };
 
     factory.updateProfile = function(user) {
-
         console.log("submitting user update " + JSON.stringify(user));
-        $http.post('/rest/profile', user);
+        return $http.post('/rest/profile', user);
     };
 
     return factory;

@@ -7,14 +7,28 @@ var users = require("../models/user");
 
 
 router.get('/profile', function(req, res, next) {
-    res.send(
-        req.user
-    );
+    users.findUserById(req.user["_id"], function(err, u){
+        res.send(u);
+    });
 });
 
 router.post('/profile', function(req, res, next) {
     console.log("!!>>" + JSON.stringify(req.body));
-    res.send(200);
+    var u = req.body;
+    var tempImageUrl = u["tempImageUrl"];
+    if(tempImageUrl)
+    {
+        //if(u["photos"] == undefined )
+        //    u["photos"] = [];
+        //u["photos"].push({"value": path});
+        u["imageUrl"] = tempImageUrl;
+    }
+
+    //console.log(ON.stringify(u));
+    users.updateUser(u, function(err, data){
+        console.log('saved: ', JSON.stringify(data));
+        res.sendStatus(200);
+    });
 });
 
 var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
@@ -24,16 +38,9 @@ router.post('/uploadAvatar', cpUpload, function (req, res, next) {
     if(!req.user['photos'])
         req.user['photos'] = [];
     var path = req.files['file'][0]['path'].substring(9);
-    //req.user['photos'].push({value: path});
-    //req.user['imageUrl'] = path;
-    //res.locals.user = req.user;
-    req.user["tempImage"] = path;
 
-    users.updateUser(req.user, function(err, data){
-        console.log('saved: ', JSON.stringify(data));
-        res.locals.user = data;
-        res.sendStatus(200);
-    });
+    res.send(path);
+
 })
 
 module.exports = router;

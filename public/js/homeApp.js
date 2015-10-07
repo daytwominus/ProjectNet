@@ -11,7 +11,6 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
             });
     };
     $scope.getHome();
-
 });
 
 homeApp.factory('homeFactory', function($http){

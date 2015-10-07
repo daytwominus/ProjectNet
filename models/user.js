@@ -26,8 +26,7 @@ var UserSchema   = new Schema({
         value: String// The URL of the image.
     }],
     isActive: Number,
-    imageUrl: String,
-    tempImage: String
+    imageUrl: String
 });
 
 var User = mongoose.model('User', UserSchema);
@@ -49,10 +48,12 @@ var findUserUniversal = function(params, callback){
 module.exports.findUserUniversal = findUserUniversal;
 
 module.exports = {
-
     findUserById: function(id, done){
-        console.log("userById");
-        findUserUniversal({"id": id}, done);
+        console.log("userById " + id);
+        User.collection.findOne({_id: id.toObjectId()}, function(err, data){
+            console.log("user: " + JSON.stringify(data));
+            done(err, data);
+        });
     },
     findUserByIdAndActive: function(id, done){
         console.log("findUserByIdAndActive");
