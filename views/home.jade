@@ -7,7 +7,7 @@ block content
                 if user
                     div(ng-if="user.imageUrl")
                         div.user-image
-                            img.img-circle(src= "#{user.imageUrl}", style="width: 64px; height: 64px;")
+                            img.img-circle(ng-src="#{user.imageUrl}", style="width: 64px; height: 64px;")
                     p= params
                     h2 #{user.displayName}
 
