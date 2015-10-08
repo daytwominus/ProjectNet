@@ -41,7 +41,7 @@ passport.use(new LocalStrategy(
 ));
 
 module.exports = function (app){
-    app.use(session({ secret: 'keyboard cat' }));
+    app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }))
     app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
