@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var multer  = require('multer');
 var upload = multer({ dest: '../public/upload/avatars'});
+var uploadLib = multer({ dest: '../public/upload/libitems'});
 var fs = require('fs');
 var users = require("../models/user");
 var libItems = require("../models/libItem");
@@ -32,26 +33,37 @@ router.post('/profile', function(req, res, next) {
 var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 
 router.post('/avatar', cpUpload, function (req, res, next) {
-    console.log('!!!', JSON.stringify(req["files"]));
-    console.log('!!!', JSON.stringify(req["user"]));
+    console.log('avatar upladed', JSON.stringify(req["files"]));
+
     var path = req.files['file'][0]['path'].substring(9);
-
-    res.send(path);
-
+    var newPath = path + ".jpg";
+    var base = __dirname + "/../public/";
+    fs.rename(base + path, base + newPath, function (err) {
+        if (err) throw err;
+        console.log('avatar path: ' + newPath);
+        res.send(newPath);
+    });
 });
 
-router.post('/libItemFile', cpUpload, function(req, res, next) {
+var cpUploadLib = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
+router.post('/libItemFile', cpUploadLib, function(req, res, next) {
     console.log('lib item uploaded: ', JSON.stringify(req["files"]));
     var path = req.files['file'][0]['path'].substring(9);
     console.log('lib item path: ' + path);
     res.send(path);
 });
 
-router.post('/libItemPreview', cpUpload, function(req, res, next) {
+router.post('/libItemPreview', cpUploadLib, function(req, res, next) {
     console.log('lib item preview uploaded: ', JSON.stringify(req["files"]));
+
     var path = req.files['file'][0]['path'].substring(9);
-    console.log('lib item preview path: ' + path);
-    res.send(path);
+    var newPath = path + ".jpg";
+    var base = __dirname + "/../public/";
+    fs.rename(base + path, base + newPath, function (err) {
+        if (err) throw err;
+        console.log('lib item preview path: ' + newPath);
+        res.send(newPath);
+    });
 });
 
 module.exports = router;

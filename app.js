@@ -34,6 +34,7 @@ app.use('/upload', require('./routes/upload'));
 app.use('/profile', require('./routes/profile'));
 app.use('/rest', require('./routes/rest'));
 app.use('/library', require('./routes/library'));
+//app.use('/public', require('./routes/public'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
