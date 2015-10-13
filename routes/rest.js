@@ -5,6 +5,7 @@ var upload = multer({ dest: '../public/upload/avatars'});
 var uploadLib = multer({ dest: '../public/upload/libitems'});
 var fs = require('fs');
 var users = require("../models/user");
+var posts = require("../models/post");
 var libItems = require("../models/libItem");
 
 
@@ -15,7 +16,7 @@ router.get('/profile', function(req, res, next) {
 });
 
 router.post('/profile', function(req, res, next) {
-    console.log("!!>>" + JSON.stringify(req.body));
+    console.log("saving profile !!>>" + JSON.stringify(req.body));
     var u = req.body;
     var tempImageUrl = u["tempImageUrl"];
     if(tempImageUrl)
@@ -25,6 +26,18 @@ router.post('/profile', function(req, res, next) {
 
     //console.log(ON.stringify(u));
     users.updateUser(u, function(err, data){
+        console.log('saved: ', JSON.stringify(data));
+        res.sendStatus(200);
+    });
+});
+
+router.post('/post', function(req, res, next) {
+    var p = req.body.data;
+    console.log("submitting post" + p);
+    var x = {};
+    x.data = p;
+
+    posts.addNewPost(x, function(err, data){
         console.log('saved: ', JSON.stringify(data));
         res.sendStatus(200);
     });

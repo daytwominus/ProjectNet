@@ -24,7 +24,8 @@
     "binaryjs" : "0.2.1",
     "angular-file-upload" : "~2.1.4",
     "multer" : "latest",
-	"mongoose" : "4.1.0"
+	"mongoose" : "4.1.0",
+	"ode-ckeditor" : "4.3.2"
 	
   }
 }

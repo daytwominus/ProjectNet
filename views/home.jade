@@ -1,17 +1,29 @@
 extends layout/header
 
 block content
-    if user
-        div.panel.panel-default(ng-app="homeApp", ng-controller="homeController", ng-cloak)
-            div.jumbotron
-                if user
-                    div(ng-if="user.imageUrl")
-                        div.user-image
-                            img.img-circle(ng-src="#{user.imageUrl}", style="width: 64px; height: 64px;")
-                    p=params
-                    h2 #{user.displayName}
+    div(ng-app="homeApp", ng-controller="homeController", ng-cloak)
+        if user
+            div.panel.panel-default()
+                div.jumbotron
+                    if user
+                        div(ng-if="user.imageUrl")
+                            div.user-image
+                                img.img-circle(ng-src="#{user.imageUrl}", style="width: 64px; height: 64px;")
+                        p=params
+                        h2 #{user.displayName}
+        div
+            button.btn.btn-primary(type="Submit" ng-click='addPost()' ) {{addButtonText}}
+            div
+                div(ng-show="isEditing")
+                    div
+                        form
+                            textarea(name="editor1")
+
 
 
 block script
+    script(src="/ckeditor.js")
+    div(ng-if="isEditing")
+        script CKEDITOR.replace( 'editor1' );
     script(src="/js/homeApp.js")
     script(src="/js/controllers.js")

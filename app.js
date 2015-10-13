@@ -3,7 +3,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var ckStaticsPath = require('node-ckeditor');
 var app = express();
+
 
 require('./helpers/logging')(app);
 require('./models/db');
@@ -20,8 +22,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
-
 app.use(passport.initialize());
+app.use(express.static(ckStaticsPath));
 
 // routing:
 var routes = require('./routes/index');
@@ -34,6 +36,7 @@ app.use('/upload', require('./routes/upload'));
 app.use('/profile', require('./routes/profile'));
 app.use('/rest', require('./routes/rest'));
 app.use('/library', require('./routes/library'));
+
 //app.use('/public', require('./routes/public'));
 
 // catch 404 and forward to error handler
