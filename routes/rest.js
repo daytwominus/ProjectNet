@@ -31,17 +31,7 @@ router.post('/profile', function(req, res, next) {
     });
 });
 
-router.post('/post', function(req, res, next) {
-    var p = req.body.data;
-    console.log("submitting post" + p);
-    var x = {};
-    x.data = p;
-
-    posts.addNewPost(x, function(err, data){
-        console.log('saved: ', JSON.stringify(data));
-        res.sendStatus(200);
-    });
-});
+require('./rest/rest-posts')(router);
 
 var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 
@@ -57,6 +47,7 @@ router.post('/avatar', cpUpload, function (req, res, next) {
         res.send(newPath);
     });
 });
+
 
 var cpUploadLib = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 router.post('/libItemFile', cpUploadLib, function(req, res, next) {

@@ -12,7 +12,7 @@ var Post = mongoose.model('post', PostSchema);
 module.exports = {
     findPostsUniversal : function(params, callback) {
         console.log("trying to find posts: " + JSON.stringify(params));
-        var res = post.find(params, function(err, x){
+        var res = Post.find(params, function(err, x){
             console.log("posts: " + JSON.stringify(x));
             callback(err, x);
         });

@@ -1,4 +1,8 @@
-var homeApp = angular.module('homeApp', []);
+var homeApp = angular.module('homeApp', []).filter('to_trusted', ['$sce', function($sce){
+    return function(text) {
+        return $sce.trustAsHtml(text);
+    };
+}]);
 
 homeApp.controller('homeController', function ($scope, homeFactory) {
     $scope.getHome = function(){
@@ -12,14 +16,26 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
             .error(function(error){
             });
     };
+    $scope.getPosts = function(){
+        homeFactory.getPosts()
+            .success(function(response) {
+                console.log(response);
+                $scope.posts = response;
+            })
+            .error(function(error){
+            });
+    };
     $scope.addPost = function(){
         console.log("opening area for adding post");
         function processAddPostButton() {
             $scope.isEditing = !$scope.isEditing;
             if ($scope.isEditing)
                 $scope.addButtonText = "Submit";
-            else
-                $scope.addButtonText = "Add Post" };
+            else             {
+                $scope.addButtonText = "Add Post";
+                $scope.getPosts();
+            }
+        };
         if($scope.isEditing)
             homeFactory.submitPost()
                 .success(function(response) {
@@ -29,9 +45,10 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
                 });
         else
             processAddPostButton();
-
     };
+
     $scope.getHome();
+    $scope.getPosts();
     $scope.isEditing = false;
     $scope.addButtonText = "Add Post";
 });
@@ -48,7 +65,11 @@ homeApp.factory('homeFactory', function($http){
         console.log("saving data: " + data);
         var tosend = {};
         tosend.data = data;
-        return $http.post('/rest/post', tosend);
+        return $http.post('/rest/posts', tosend);
+    };
+
+    factory.getPosts = function() {
+        return $http.get('/rest/posts');
     };
     return factory;
 })

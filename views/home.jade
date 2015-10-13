@@ -18,8 +18,8 @@ block content
                     div
                         form
                             textarea(name="editor1")
-
-
+        div(ng-repeat="p in posts" ng-bind-html="p.data | to_trusted")
+            | {{p.data}}
 
 block script
     script(src="/ckeditor.js")
