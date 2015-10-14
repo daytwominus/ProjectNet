@@ -25,7 +25,7 @@
     "angular-file-upload" : "~2.1.4",
     "multer" : "latest",
 	"mongoose" : "4.1.0",
-	"ode-ckeditor" : "4.3.2"
+	"node-ckeditor" : "4.3.2"
 	
   }
 }
