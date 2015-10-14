@@ -36,6 +36,7 @@ app.use('/upload', require('./routes/upload'));
 app.use('/profile', require('./routes/profile'));
 app.use('/rest', require('./routes/rest'));
 app.use('/library', require('./routes/library'));
+app.use('/glossary', require('./routes/glossary'));
 
 //app.use('/public', require('./routes/public'));
 

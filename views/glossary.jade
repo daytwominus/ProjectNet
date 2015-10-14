@@ -1,28 +1,10 @@
 extends layout/header
-
 block content
-    div(ng-app="homeApp", ng-controller="homeController", ng-cloak)
-        if user
-            div.panel.panel-default()
-                div.jumbotron
-                    if user
-                        div(ng-if="user.imageUrl")
-                            div.user-image
-                                img.img-circle(ng-src="#{user.imageUrl}", style="width: 64px; height: 64px;")
-                        p=params
-                        h2 #{user.displayName}
-        div
-            button.btn.btn-primary(type="Submit" ng-click='addPost()' ) {{addButtonText}}
-            div
-                div(ng-show="isEditing")
-                    div
-                        form
-                            textarea(name="editor1")
-        div(ng-repeat="p in posts")
+    div(ng-app="glossaryApp", ng-controller="glossaryController", ng-cloak)
+        div(ng-repeat="p in glossaryItems")
             button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
                 i.mdi-image-edit
             p(ng-bind-html="p.data | to_trusted")
-
         div.modal.fade(id="complete-dialog" tabindex="-1")
             div.modal-dialog
                 div.modal-content
@@ -37,7 +19,7 @@ block content
                         button.btn.btn-primary(data-dismiss="modal" ng-click='deletePost()') Delete
 block script
     script(src="/ckeditor.js")
-    script CKEDITOR.replace( 'editor1' );
-    script CKEDITOR.replace( 'editor2' );
-    script(src="/js/homeApp.js")
+    script CKEDITOR.replace('editor1');
+    script CKEDITOR.replace('editor2');
+    script(src="/js/glossaryApp.js")
     script(src="/js/controllers.js")

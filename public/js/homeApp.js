@@ -25,17 +25,18 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
             .error(function(error){
             });
     };
+    function processAddPostButton() {
+        $scope.isEditing = !$scope.isEditing;
+        if ($scope.isEditing)
+            $scope.addButtonText = "Submit";
+        else{
+            $scope.addButtonText = "Add Post";
+            $scope.getPosts();
+        }
+    };
     $scope.addPost = function(){
         console.log("opening area for adding post");
-        function processAddPostButton() {
-            $scope.isEditing = !$scope.isEditing;
-            if ($scope.isEditing)
-                $scope.addButtonText = "Submit";
-            else             {
-                $scope.addButtonText = "Add Post";
-                $scope.getPosts();
-            }
-        };
+
         if($scope.isEditing)
             homeFactory.submitPost()
                 .success(function(response) {
@@ -48,17 +49,28 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
     };
     $scope.editPost = function(p){
         console.log('editing post ' + JSON.stringify(p.data));
+        $scope.isEditing = false;
+
         CKEDITOR.instances.editor2.setData(p.data);
         $scope.editingPost = p;
     };
     $scope.savePost = function(){
         homeFactory.savePost($scope.editingPost)
             .success(function(response) {
-
             })
             .error(function(error){
             });
+    };
 
+    $scope.deletePost = function(){
+        $scope.isEditing = false;
+        homeFactory.deletePost($scope.editingPost)
+            .success(function(response) {
+                console.log("post deleted");
+                $scope.getPosts();
+            })
+            .error(function(error){
+            });
     };
 
     $scope.editingPost = {};
@@ -88,6 +100,11 @@ homeApp.factory('homeFactory', function($http){
         console.log("updating post: " + JSON.stringify(p));
 
         return $http.post('/rest/posts', p);
+    };
+
+    factory.deletePost = function(p) {
+        console.log("deleting post: ", p);
+        return $http.delete('/rest/posts/' + p["_id"]);
     };
 
     factory.getPosts = function() {

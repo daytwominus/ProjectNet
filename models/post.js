@@ -38,6 +38,11 @@ module.exports = {
                 callback(err, x);
             });
         }
+    },
+    deletePost: function (p, callback){
+        console.log("deleting post: " + JSON.stringify(p));
+        Post.findOneAndRemove({"_id": p._id.toObjectId()}).exec();
+        callback();
     }
 }
 
