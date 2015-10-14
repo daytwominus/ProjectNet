@@ -9,25 +9,35 @@ var PostSchema   = new Schema({
 
 var Post = mongoose.model('post', PostSchema);
 
+var findUniversal = function(params, callback) {
+    console.log("trying to find posts: " + JSON.stringify(params));
+    var res = Post.find(params, function(err, x){
+        console.log("posts: " + JSON.stringify(x));
+        callback(err, x);
+    });
+};
+
 module.exports = {
-    findPostsUniversal : function(params, callback) {
-        console.log("trying to find posts: " + JSON.stringify(params));
-        var res = Post.find(params, function(err, x){
-            console.log("posts: " + JSON.stringify(x));
-            callback(err, x);
-        });
-    },
-    addNewPost: function (item, callback){
-        console.log("adding new post item: " + JSON.stringify(item));
-        var x = new Post();
-        for (var key in item) {
-            x[key] = item[key];}
-        x.save(function (err) {
-            if (err)
-                console.log('error saving post');
-            console.log("post saved: " + JSON.stringify(x));
-            callback(err, x);
-        });
+    findPostsUniversal : findUniversal,
+    savePost: function (p, callback){
+        console.log("saving post: " + JSON.stringify(p));
+
+        if(p["_id"]){
+            console.log('post with id ' + p._id + " exists; updating.")
+            Post.findOneAndUpdate({"_id": p._id.toObjectId()}, p).exec();
+        }
+        else{
+            console.log('creating new post ' + JSON.stringify(p));
+            var x = new Post();
+            for (var key in p) {
+                x[key] = p[key];}
+            x.save(function (err) {
+                if (err)
+                    console.log('error saving post');
+                console.log("post saved: " + JSON.stringify(x));
+                callback(err, x);
+            });
+        }
     }
 }
 

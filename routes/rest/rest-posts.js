@@ -19,15 +19,12 @@ module.exports = function(router){
     });
 
     router.post('/posts', function(req, res, next) {
-        var p = req.body.data;
+        var p = req.body;
         console.log("submitting post" + p);
-        var x = {};
-        x.data = p;
 
-        posts.addNewPost(x, function(err, data){
+        posts.savePost(p, function(err, data){
             console.log('saved: ', JSON.stringify(data));
             res.sendStatus(200);
         });
     });
-
 };

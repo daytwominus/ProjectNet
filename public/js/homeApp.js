@@ -47,9 +47,21 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
             processAddPostButton();
     };
     $scope.editPost = function(p){
-        console.log('editing post');
-    }
+        console.log('editing post ' + JSON.stringify(p.data));
+        CKEDITOR.instances.editor2.setData(p.data);
+        $scope.editingPost = p;
+    };
+    $scope.savePost = function(){
+        homeFactory.savePost($scope.editingPost)
+            .success(function(response) {
 
+            })
+            .error(function(error){
+            });
+
+    };
+
+    $scope.editingPost = {};
     $scope.getHome();
     $scope.getPosts();
     $scope.isEditing = false;
@@ -65,10 +77,17 @@ homeApp.factory('homeFactory', function($http){
 
     factory.submitPost = function() {
         var data = CKEDITOR.instances.editor1.getData();
-        console.log("saving data: " + data);
+        console.log("submitting post: " + data);
         var tosend = {};
         tosend.data = data;
         return $http.post('/rest/posts', tosend);
+    };
+
+    factory.savePost = function(p) {
+        p.data = CKEDITOR.instances.editor2.getData();
+        console.log("updating post: " + JSON.stringify(p));
+
+        return $http.post('/rest/posts', p);
     };
 
     factory.getPosts = function() {
