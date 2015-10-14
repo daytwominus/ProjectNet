@@ -46,6 +46,9 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
         else
             processAddPostButton();
     };
+    $scope.editPost = function(p){
+        console.log('editing post');
+    }
 
     $scope.getHome();
     $scope.getPosts();

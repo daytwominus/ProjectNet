@@ -18,12 +18,26 @@ block content
                     div
                         form
                             textarea(name="editor1")
-        div(ng-repeat="p in posts" ng-bind-html="p.data | to_trusted")
-            | {{p.data}}
+        div(ng-repeat="p in posts")
+            button.btn.btn-fab.btn-raised.btn-primary(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+                i.mdi-image-edit
+            p(ng-bind-html="p.data | to_trusted")
 
+    div.modal.fade(id="complete-dialog" tabindex="-1")
+        div.modal-dialog
+            div.modal-content
+                div.modal-header
+                    button.close(data-dismiss="modal" aria-hidden="true") x
+                div.modal-body
+                    form
+                        textarea(name="editor2")
+                div.modal-footer
+                    button.btn.btn-primary(data-dismiss="modal") Save
+                    button.btn.btn-primary(data-dismiss="modal") Dismiss
 block script
     script(src="/ckeditor.js")
     div(ng-if="isEditing")
         script CKEDITOR.replace( 'editor1' );
+    //script CKEDITOR.replace( 'editor2' );
     script(src="/js/homeApp.js")
     script(src="/js/controllers.js")
