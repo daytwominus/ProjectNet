@@ -1,8 +1,68 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+header {
+  padding-top: 110px;
+  background: #000;
 }
 
-a {
-  color: #00B7FF;
+header hr {
+  margin: 0;
+  border-top: 3px dashed #fff;
+}
+header .navbar.navbar {
+  margin: 0;
+}
+header .navbar .navbar-nav {
+  float: none;
+  width: 100%;
+  display: table;
+}
+header .navbar .navbar-nav>li {
+  width: 20%;
+  height: 60px;
+  display: table-cell;
+  float: none;
+  text-align: center;
+  vertical-align: middle;
+}
+header .navbar .navbar-nav>li:hover .dropdown-menu {
+  display: block;
+}
+
+header .dropdown-menu {
+  background: #000;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  padding: 0;
+}
+
+header .navbar.navbar .dropdown-menu li > a,
+header .navbar-default.navbar .dropdown-menu li > a {
+  color: #fff;
+  font-weight: normal;
+  font-size: 20px;
+  font-family:'Lantinghei SC','Microsoft Yahei';
+}
+header .navbar.navbar .dropdown-menu li > a:hover,
+header .navbar-default.navbar .dropdown-menu li > a:hover,
+header .navbar.navbar .dropdown-menu li > a:focus,
+header .navbar-default.navbar .dropdown-menu li > a:focus {
+  background: #000;
+  font-weight: bold;
+  color: #fff;
+}
+header .navbar .navbar-nav > li > a {
+  padding: 0;
+  font-size: 20px;
+  font-family:'Lantinghei SC','Microsoft Yahei';
+  text-transform: uppercase;
+}
+header .navbar .navbar-nav a:hover,
+header .navbar .navbar-nav a.active {
+  font-weight: bold;
+}
+.right-nav {
+
+}
+.right-nav a{
+  color:#fff;
 }
