@@ -21,23 +21,23 @@ html(lang= "ru")
                             ul.nav.navbar-nav
                                 if isLoggedIn
                                     li
-                                        a.headerFonts(href="/home")
+                                        a(href="/home")
                                             | Home
                                     li
-                                        a.headerFonts(href="/profile")
+                                        a(href="/profile")
                                             | Profile
                                     li
-                                        a.headerFonts(href="/Library")
+                                        a(href="/Library")
                                             | Library
                                     li
-                                        a.headerFonts(href="#Glossary")
+                                        a(href="#Glossary")
                                             | Glossary
                                     li
-                                        a.headerFonts(href="#Glossary")
+                                        a(href="#Glossary")
                                             | Glossary
                                 else
                                     li.dropdown
-                                        a.headerFonts(href="/home")
+                                        a(href="/home")
                                             | Home
                                         ul.dropdown-menu
                                             li
@@ -47,20 +47,20 @@ html(lang= "ru")
                                                 a(href="/home")
                                                     | Action
                                     li
-                                        a.headerFonts(href="/profile")
+                                        a(href="/profile")
                                             | Profile
                                     li
-                                        a.headerFonts(href="/Library")
+                                        a(href="/Library")
                                             | Library
                                     li
-                                        a.headerFonts(href="#Glossary")
+                                        a(href="#Glossary")
                                             | Glossary
                                     li
-                                        a.headerFonts(href="#Glossary")
+                                        a(href="#Glossary")
                                             | Glossary
                     div.col-xs-3.text-right.right-nav
                         form.pull-left
-                            input(type="text")
+                            input.form-control.col-lg-8(type="text" placeholder="Search")
                         if isLoggedIn
                             a.pull-right(href="/login/logout")
                                 | Logout

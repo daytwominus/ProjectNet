@@ -49,10 +49,11 @@ header .navbar-default.navbar .dropdown-menu li > a:focus {
   background: #000;
   font-weight: bold;
   color: #fff;
+  font-size: 22px;
 }
 header .navbar .navbar-nav > li > a {
   padding: 0;
-  font-size: 20px;
+  font-size: 28px;
   font-family:'Lantinghei SC','Microsoft Yahei';
   text-transform: uppercase;
 }
@@ -65,4 +66,12 @@ header .navbar .navbar-nav a.active {
 }
 .right-nav a{
   color:#fff;
+}
+
+input[type=text].form-control.col-lg-8{
+  margin-top: 10px;
+}
+
+a.pull-right{
+  margin-top: 20px;
 }
