@@ -75,3 +75,31 @@ input[type=text].form-control.col-lg-8{
 a.pull-right{
   margin-top: 20px;
 }
+
+footer {
+  background-color: #66afe9;
+  height: 20px;
+}
+
+p.footerLeft{
+  margin-top: -15px;
+  position: absolute;
+  left: 10px;
+  font-size: 16px;
+  color: #000;
+}
+p.footerRight{
+  margin-top: -15px;
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  color: #000;
+}
+
+div.navbar.navbar-fixed-bottom{
+  background-color: #66afe9;
+}
+footer hr {
+  margin-top: 4px;
+  border-top: 2px dashed #000;
+}
