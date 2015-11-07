@@ -66,12 +66,12 @@ libraryApp.factory('libraryFactory', function($http){
     var factory = {};
 
     factory.getLibrary = function() {
-        return $http.get('/library/items');
+        return $http.get('/rest/items');
     };
 
     factory.addLibItem = function(data) {
-        return $http.post('/library/libItems', data);
+        return $http.post('/rest/libItems', data);
     };
 
     return factory;
-})
+});

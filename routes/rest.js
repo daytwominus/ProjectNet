@@ -32,6 +32,7 @@ router.post('/profile', function(req, res, next) {
 });
 
 require('./rest/rest-posts')(router);
+require('./rest/rest-libItems')(router);
 
 var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 

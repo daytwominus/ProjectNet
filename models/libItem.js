@@ -31,6 +31,11 @@ module.exports = {
             console.log("lib item saved: " + JSON.stringify(x));
             callback(err, x);
         });
+    },
+    deleteLibItem: function (p, callback){
+        console.log("deleting libitem: " + JSON.stringify(p));
+        LibItem.findOneAndRemove({"_id": p._id.toObjectId()}).exec();
+        callback();
     }
 }
 
