@@ -5,8 +5,8 @@ var morgan = require('morgan')
 
 module.exports = function (app) {
     // create a write stream (in append mode)
-    var accessLogStream = fs.createWriteStream(__dirname + '../../logs/access.log', {flags: 'a'});
+    //var accessLogStream = fs.createWriteStream(__dirname + '../../logs/access.log', {flags: 'a'});
 
     // setup the logger
-    app.use(morgan('combined', {stream: accessLogStream}));
+    //app.use(morgan('combined', {stream: accessLogStream}));
 }
