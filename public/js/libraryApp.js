@@ -22,8 +22,6 @@ libraryApp.controller('libraryController', function ($scope, libraryFactory, Fil
                         console.log(response);
                         $scope.libItems = response;
                         jQuery('.file-uploader').val('');
-
-
                     })
                     .error(function(error){
                     });
