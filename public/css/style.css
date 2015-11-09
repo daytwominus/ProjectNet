@@ -96,7 +96,14 @@ p.footerRight{
   color: #000;
 }
 
+div.navbar.navbar-fixed-bottom:hover
+{
+  bottom: 0px;
+}
+
 div.navbar.navbar-fixed-bottom{
+  position: fixed;
+  bottom: -40px;
   background-color: #66afe9;
 }
 footer hr {
