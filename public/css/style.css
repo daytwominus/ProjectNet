@@ -95,6 +95,13 @@ p.footerRight{
   font-size: 16px;
   color: #000;
 }
+a.footerCenter{
+  margin-top: -15px;
+  position: absolute;
+  left: 50%;
+  font-size: 16px;
+  color: #000;
+}
 
 div.navbar.navbar-fixed-bottom:hover
 {
