@@ -45,6 +45,20 @@ var findUserUniversal = function(params, callback){
     })
 }
 
+var findUsesUniversal = function(params, callback){
+    console.log("trying to find user: " + JSON.stringify(params));
+    User.collection.findOne(params, function(err, res){
+        if(err) {
+            console.log("error!");
+            callback(err);
+        }
+        else {
+            console.log("found user: " + JSON.stringify(res));
+            callback(null, res);
+        }
+    })
+}
+
 module.exports.findUserUniversal = findUserUniversal;
 
 module.exports = {

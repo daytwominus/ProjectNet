@@ -1,6 +1,6 @@
 header {
   padding-top: 110px;
-  background: #000;
+  background: #189cc6;
 }
 
 header hr {
@@ -9,6 +9,7 @@ header hr {
 }
 header .navbar.navbar {
   margin: 0;
+  background: #189cc6;
 }
 header .navbar .navbar-nav {
   float: none;
@@ -33,33 +34,62 @@ header .dropdown-menu {
   border-radius: 0;
   text-align: center;
   padding: 0;
+  top: 55px;
 }
+
+header .dropdown-menu:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 7px 8px 7px;
+  border-color: transparent transparent #000 transparent;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  margin-left: -7px;
+}
+
 
 header .navbar.navbar .dropdown-menu li > a,
 header .navbar-default.navbar .dropdown-menu li > a {
   color: #fff;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 18px;
   font-family:'Lantinghei SC','Microsoft Yahei';
 }
 header .navbar.navbar .dropdown-menu li > a:hover,
 header .navbar-default.navbar .dropdown-menu li > a:hover,
 header .navbar.navbar .dropdown-menu li > a:focus,
 header .navbar-default.navbar .dropdown-menu li > a:focus {
-  background: #000;
+  background: #2f3538;
   font-weight: bold;
   color: #fff;
-  font-size: 22px;
+  font-size: 18px;
+  border-radius: 5px;
 }
 header .navbar .navbar-nav > li > a {
-  padding: 0;
-  font-size: 28px;
+  padding: 20px 0;
+  font-size: 18px;
   font-family:'Lantinghei SC','Microsoft Yahei';
-  text-transform: uppercase;
 }
-header .navbar .navbar-nav a:hover,
-header .navbar .navbar-nav a.active {
+header .navbar .navbar-nav > li > a > span {
+  position: relative;
   font-weight: bold;
+}
+header .navbar .navbar-nav li:hover span:after,
+header .navbar .navbar-nav a:hover span:after,
+header .navbar .navbar-nav a.active span:after {
+  content: '';
+  width: 100%;
+  border-bottom: 2px solid #fff;
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+}
+.navbar.navbar .dropdown-menu, .navbar-default.navbar .dropdown-menu {
+  border-radius: 5px;
 }
 .right-nav {
 
