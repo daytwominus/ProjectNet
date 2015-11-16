@@ -1,6 +1,4 @@
-
 var posts = require("../../models/post");
-
 
 module.exports = function(router){
     router.get('/posts', function(req, res, next) {
