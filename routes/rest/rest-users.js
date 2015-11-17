@@ -2,7 +2,7 @@ var users = require("../../models/user");
 
 module.exports = function(router){
     router.get('/users', function(req, res, next) {
-        posts.findPostsUniversal({}, function(err, data){
+        users.findUsersUniversal({}, function(err, data){
             console.log("requesting users");
             if (err)
                 res.send(err);

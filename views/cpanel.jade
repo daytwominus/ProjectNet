@@ -10,6 +10,11 @@ block content
                li
                   a(href="#libsections")
                      | Lib Sections
+      div(ng-repeat="n in users")
+         div.media-body
+            a(ng-href="{{n.fileUrl}}")
+               h4.media-heading {{n.displayName}}
+               | {{n.description}}
 
 block script
    script(src="/js/cpanelApp.js")
