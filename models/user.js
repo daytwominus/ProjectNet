@@ -45,23 +45,16 @@ var findUserUniversal = function(params, callback){
     })
 }
 
-var findUsesUniversal = function(params, callback){
+var findUsersUniversal = function(params, callback){
     console.log("trying to find user: " + JSON.stringify(params));
-    User.collection.findOne(params, function(err, res){
-        if(err) {
-            console.log("error!");
-            callback(err);
-        }
-        else {
-            console.log("found user: " + JSON.stringify(res));
-            callback(null, res);
-        }
-    })
-}
-
-module.exports.findUserUniversal = findUserUniversal;
+    var res = User.find(params, function(err, x){
+        console.log("Users: " + JSON.stringify(x));
+        callback(err, x);
+    });
+};
 
 module.exports = {
+    findUsersUniversal : findUsersUniversal,
     findUserById: function(id, done){
         console.log("userById " + id);
         User.collection.findOne({_id: id.toObjectId()}, function(err, data){
