@@ -1,0 +1,22 @@
+extends layout/header
+
+block content
+	div(ng-app="mediaApp", ng-controller="mediaController", ng-cloak)		
+		div.media(ng-repeat="video in videos" ng-click='videoPopUp(video.url)')
+			div.media-left
+				a
+					img.media-object(ng-src='{{video.previewUrl}}' style="width: 64px; height: 92px;")
+			div.media-body
+				h4.media-heading
+					a
+						{{video.name}}
+		div.modal.fade(id="video-dialog")
+			div.modal-dialog
+				div.modal-content
+					div.modal-header
+						button.close(data-dismiss="modal" aria-hidden="true") x
+					div.modal-body(ng-bind-html="currentVideo | to_trusted")
+					div.modal-footer
+						button.btn.btn-primary(data-dismiss="modal" ng-click="modalClose()") Close
+block script
+	script(src="/js/mediaApp.js")
