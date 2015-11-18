@@ -12,9 +12,31 @@ block content
                      | Lib Sections
       div(ng-repeat="n in users")
          div.media-body
-            a(ng-href="{{n.fileUrl}}")
+            div.panel.panel-default(style="padding: 10px;")
                h4.media-heading {{n.displayName}}
                | {{n.description}}
+               div.user-image
+                  img.img-circle(ng-src="{{n.imageUrl}}", style="width: 64px; height: 64px;")
+               div(align="right")
+                  button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)')
+                     i.mdi-image-edit
+      div.form-group
+         div.col-lg-10.col-lg-offset-2
+            button.btn.btn-primary(type="submit" ng-click='addLibItem()') +New user
+
+      div.modal.fade(id="complete-dialog" tabindex="-1")
+         div.modal-dialog
+            div.modal-content
+               div.modal-header
+                  button.close(data-dismiss="modal" aria-hidden="true") x
+               div.modal-body
+                  form
+                     button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Reset password
+                     include ./users/profileEditor.jade
+               div.modal-footer
+                  button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Save
+                  button.btn.btn-primary(data-dismiss="modal") Cancel
+                  button.btn.btn-primary(data-dismiss="modal" ng-click='deletePost()') Delete
 
 block script
    script(src="/js/cpanelApp.js")

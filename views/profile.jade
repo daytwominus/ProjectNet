@@ -1,26 +1,7 @@
 extends layout/header
 
 block content
-    div.panel.panel-default(ng-app="profileApp" ng-cloak)
-        div.panel-body(ng-controller='profileController')
-            h1 {{user.displayName}}
-            h2(ng-if="updateSuccessFlag") success
-            h2(ng-if="updateErrorFlag") error
-            form.form-horizontal
-                fieldset
-                    div.form-group
-                    label.col-lg-2.control-label Name
-                    div.col-lg-10
-                        input#userName.form-control(type="text" placeholder="DisplayName" ng-model="user.displayName")
-                    label.col-lg-2.control-label Password
-                    div.col-lg-10
-                        input#userPassword.form-control(type="password" placeholder="Password" ng-model="user.password")
-                    label.col-lg-2.control-label Avatar
-                    div.col-lg-10
-                        input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="user.imageUrl")
-                div.form-group
-                    div.col-lg-10.col-lg-offset-2
-                        button.btn.btn-primary(type="submit" ng-click='updateUser()') Submit
+    include ./users/profileEditor.jade
 
 block script
     script(src="/js/profileApp.js")
