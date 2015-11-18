@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer  = require('multer');
-var upload = multer({ dest: '../public/upload/avatars'});
+//var upload = multer({ dest: '../public/upload/avatars'});
 var uploadLib = multer({ dest: '../public/upload/libitems'});
 var fs = require('fs');
 var users = require("../models/user");
@@ -35,41 +35,41 @@ require('./rest/rest-posts')(router);
 require('./rest/rest-libitems')(router);
 require('./rest/rest-users')(router);
 
-var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
-
-router.post('/avatar', cpUpload, function (req, res, next) {
-    console.log('avatar upladed', JSON.stringify(req["files"]));
-
-    var path = req.files['file'][0]['path'].substring(9);
-    var newPath = path + ".jpg";
-    var base = __dirname + "/../public/";
-    fs.rename(base + path, base + newPath, function (err) {
-        if (err) throw err;
-        console.log('avatar path: ' + newPath);
-        res.send(newPath);
-    });
-});
-
-
-var cpUploadLib = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
-router.post('/libItemFile', cpUploadLib, function(req, res, next) {
-    console.log('lib item uploaded: ', JSON.stringify(req["files"]));
-    var path = req.files['file'][0]['path'].substring(9);
-    console.log('lib item path: ' + path);
-    res.send(path);
-});
-
-router.post('/libItemPreview', cpUploadLib, function(req, res, next) {
-    console.log('lib item preview uploaded: ', JSON.stringify(req["files"]));
-
-    var path = req.files['file'][0]['path'].substring(9);
-    var newPath = path + ".jpg";
-    var base = __dirname + "/../public/";
-    fs.rename(base + path, base + newPath, function (err) {
-        if (err) throw err;
-        console.log('lib item preview path: ' + newPath);
-        res.send(newPath);
-    });
-});
+//var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
+//
+//router.post('/avatar', cpUpload, function (req, res, next) {
+//    console.log('avatar upladed', JSON.stringify(req["files"]));
+//
+//    var path = req.files['file'][0]['path'].substring(9);
+//    var newPath = path + ".jpg";
+//    var base = __dirname + "/../public/";
+//    fs.rename(base + path, base + newPath, function (err) {
+//        if (err) throw err;
+//        console.log('avatar path: ' + newPath);
+//        res.send(newPath);
+//    });
+//});
+//
+//
+//var cpUploadLib = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
+//router.post('/libItemFile', cpUploadLib, function(req, res, next) {
+//    console.log('lib item uploaded: ', JSON.stringify(req["files"]));
+//    var path = req.files['file'][0]['path'].substring(9);
+//    console.log('lib item path: ' + path);
+//    res.send(path);
+//});
+//
+//router.post('/libItemPreview', cpUploadLib, function(req, res, next) {
+//    console.log('lib item preview uploaded: ', JSON.stringify(req["files"]));
+//
+//    var path = req.files['file'][0]['path'].substring(9);
+//    var newPath = path + ".jpg";
+//    var base = __dirname + "/../public/";
+//    fs.rename(base + path, base + newPath, function (err) {
+//        if (err) throw err;
+//        console.log('lib item preview path: ' + newPath);
+//        res.send(newPath);
+//    });
+//});
 
 module.exports = router;
