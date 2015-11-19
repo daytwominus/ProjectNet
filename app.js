@@ -6,11 +6,11 @@ var passport = require('passport');
 var ckStaticsPath = require('node-ckeditor');
 var app = express();
 
-
 require('./helpers/logging')(app);
 require('./models/db');
 require('./helpers/authentication-local')(app);
 require('./helpers/authentication-fb');
+require('./upload-s3');
 //require('./media/upload');
 
 // view engine setup
@@ -33,7 +33,6 @@ app.use('/login', require('./routes/login'));
 app.use('/users', require('./routes/users'));
 app.use('/home', require('./routes/home'));
 app.use('/cpanel', require('./routes/cpanel'));
-app.use('/upload', require('./routes/upload'));
 app.use('/profile', require('./routes/profile'));
 app.use('/rest', require('./routes/rest'));
 app.use('/library', require('./routes/library'));

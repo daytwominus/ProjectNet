@@ -1,6 +1,6 @@
 header {
   padding-top: 110px;
-  background: #189cc6;
+  background: #424242;
 }
 
 header hr {
@@ -9,7 +9,7 @@ header hr {
 }
 header .navbar.navbar {
   margin: 0;
-  background: #189cc6;
+  background: #424242;
 }
 header .navbar .navbar-nav {
   float: none;

@@ -6,26 +6,26 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "angular-file-upload": "~2.1.4",
+    "binaryjs": "0.2.1",
     "body-parser": "~1.12.0",
+    "bootstrap": "~3.3.5",
+    "connect-flash": "~0.1.1",
     "cookie-parser": "~1.3.4",
     "debug": "~2.1.1",
     "express": "~4.12.2",
-    "jade": "~1.9.2",
-    "morgan": "~1.5.1",
-    "serve-favicon": "~2.2.0",
-    "passport-local": "~1.0.0",
-    "passport": "0.2.1",
-    "connect-flash": "~0.1.1",
     "express-session": "~1.11.2",
-    "passport-facebook": "~2.0.0",
-    "method-override": "~2.3.3",
+    "jade": "~1.9.2",
     "jquery-file-upload-middleware": "~0.1.7",
-    "bootstrap" : "~3.3.5",
-    "binaryjs" : "0.2.1",
-    "angular-file-upload" : "~2.1.4",
-    "multer" : "latest",
-	"mongoose" : "4.1.0",
-	"node-ckeditor" : "4.3.2"
-	
+    "method-override": "~2.3.3",
+    "mongoose": "4.1.0",
+    "morgan": "~1.5.1",
+    "multer": "latest",
+    "node-ckeditor": "4.3.2",
+    "passport": "0.2.1",
+    "passport-facebook": "~2.0.0",
+    "passport-local": "~1.0.0",
+    "s3-uploader": "^1.1.0",
+    "serve-favicon": "~2.2.0"
   }
 }
