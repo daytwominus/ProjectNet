@@ -1,6 +1,7 @@
 div.panel.panel-default(ng-app="profileApp" ng-cloak)
    div.panel-body(ng-controller='profileController')
       h1 {{user.displayName}}
+      h1 {{user}}
       h2(ng-if="updateSuccessFlag") success
       h2(ng-if="updateErrorFlag") error
       form.form-horizontal
@@ -16,6 +17,10 @@ div.panel.panel-default(ng-app="profileApp" ng-cloak)
             div.col-lg-10
                input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="user.imageUrl")
          include ../upload/uploadImage.jade
+         div.user-image
+            if user
+               div(ng-if="user.imageUrl")
+                  img.img-circle(ng-src="#{user.imageUrl}", style="width: 64px; height: 64px;")
          div.form-group
             div.col-lg-10.col-lg-offset-2
                button.btn.btn-primary(type="submit" ng-click='updateUser()') Submit

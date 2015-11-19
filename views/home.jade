@@ -7,8 +7,7 @@ block content
                 div.jumbotron
                     if user
                         div(ng-if="user.imageUrl")
-                            div.user-image
-                                img.img-circle(ng-src="#{user.imageUrl}", style="width: 64px; height: 64px;")
+                            include users/avatarImage
                         p=params
                         h2 #{user.displayName}
         div

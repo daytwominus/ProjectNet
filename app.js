@@ -10,8 +10,6 @@ require('./helpers/logging')(app);
 require('./models/db');
 require('./helpers/authentication-local')(app);
 require('./helpers/authentication-fb');
-require('./upload-s3');
-//require('./media/upload');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

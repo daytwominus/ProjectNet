@@ -23,7 +23,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     profileFactory.getProfile()
         .success(function(response) {
             $scope.user = response;
-            console.log(response);
+            console.log('user=', response);
         })
         .error(function(error){
             console.log(error);
@@ -75,6 +75,8 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     };
     uploader.onCompleteItem = function(fileItem, response, status, headers) {
         console.info('onCompleteItem', fileItem, response, status, headers);
+        console.log(response);
+        $scope.user.imageUrl = response;
         $scope.user.tempImageUrl = response;
     };
     uploader.onCompleteAll = function() {
