@@ -15,6 +15,7 @@ div.panel.panel-default(ng-app="profileApp" ng-cloak)
             label.col-lg-2.control-label Avatar
             div.col-lg-10
                input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="user.imageUrl")
+         include ../upload/uploadImage.jade
          div.form-group
             div.col-lg-10.col-lg-offset-2
                button.btn.btn-primary(type="submit" ng-click='updateUser()') Submit
