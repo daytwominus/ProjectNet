@@ -24,6 +24,12 @@ router.get('/profile', function(req, res, next) {
     });
 });
 
+router.get('/profile/:id', function(req, res, next) {
+    console.log('getting profile for id ' + req.params['id']);
+
+    res.send(200);
+});
+
 router.post('/profile', function(req, res, next) {
     console.log("saving profile !!>>" + JSON.stringify(req.body));
     var u = req.body;

@@ -1,7 +1,6 @@
 var profileApp = angular.module('profileApp', ['angularFileUpload']);
 
 profileApp.controller('profileController', function ($scope, profileFactory, FileUploader) {
-
     $scope.updateUser = function(){
         profileFactory.updateProfile($scope.user)
             .success(function(response) {
@@ -90,6 +89,7 @@ profileApp.factory('profileFactory', function($http){
     var factory = {};
 
     factory.getProfile = function() {
+        console.log('getting profile');
         return $http.get('/rest/profile');
     };
 

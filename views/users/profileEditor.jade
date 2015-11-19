@@ -1,15 +1,14 @@
 div.panel.panel-default(ng-app="profileApp" ng-cloak)
    div.panel-body(ng-controller='profileController')
-      h1 {{user.displayName}}
-      h1 {{user}}
       h2(ng-if="updateSuccessFlag") success
       h2(ng-if="updateErrorFlag") error
+      h3 {{user.name}}
       form.form-horizontal
          fieldset
             div.form-group
-            label.col-lg-2.control-label Name
+            label.col-lg-2.control-label Dispay Name
             div.col-lg-10
-               input#userName.form-control(type="text" placeholder="DisplayName" ng-model="user.displayName")
+               input#userName.form-control(typ1e="text" placeholder="DisplayName" ng-model="user.displayName")
             label.col-lg-2.control-label Password
             div.col-lg-10
                input#userPassword.form-control(type="password" placeholder="Password" ng-model="user.password")
