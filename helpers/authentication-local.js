@@ -24,7 +24,7 @@ passport.use(new LocalStrategy(
             // username, or the password is not correct, set the user to `false` to
             // indicate failure and set a flash message.  Otherwise, return the
             // authenticated `user`.
-            users.findUserByName(username, function(err, user) {
+            users.findUserByLoginOrEmail(username, function(err, user) {
                 console.log('user : ' + JSON.stringify(user));
                 if (err) { return done(err); }
                 if (!user) {

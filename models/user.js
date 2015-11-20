@@ -62,8 +62,8 @@ module.exports = {
         console.log("findUserByIdAndActive");
         findUserUniversal({"id": id, isActive: 1}, done);
     },
-    findUserByName: function(name, done){
-        console.log("findUserByName: " + name);
+    findUserByLoginOrEmail: function(name, done){
+        console.log("findUserByLoginOrEmail: " + name);
         findUserUniversal({"displayName": name}, done);
     },
     addUser: function(params, done){
