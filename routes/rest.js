@@ -46,7 +46,7 @@ var upload = multer({
 //router.post('/avatar', upload.array('photos', 3), function (req, res, next) {
 router.post('/avatar', upload.single('file'), function (req, res, next) {
     console.log('avatar uploded');
-    console.log(req);
+    //console.log(req);
     res.send('https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key);
 
     //var path = req.files['file'][0]['path'].substring(9);
