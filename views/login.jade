@@ -1,3 +1,13 @@
 extends layout/header
 block content
-    include login.html
+    div.panel-body
+        form.form-signin(action="/login", method="post")
+            fieldset
+                div.form-group
+                label.col-lg-2.control-label Login
+                div.col-lg-10
+                    input.form-control(type="text" name="username" id="inputEmail" placeholder="Email address" required autofocus)
+                label.col-lg-2.control-label Password
+                div.col-lg-10
+                    input.form-control(type="password" name="password" id="inputPassword" placeholder="Password" required)
+                button.btn.btn-primary.btn-raised(type="submit" name="Login") Sign in
