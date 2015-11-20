@@ -29,7 +29,6 @@ module.exports = function(router){
 
         //console.log(ON.stringify(u));
         users.updateUser(u, function(err, data){
-            console.log('saved: ', JSON.stringify(data));
             res.sendStatus(200);
         });
     });
