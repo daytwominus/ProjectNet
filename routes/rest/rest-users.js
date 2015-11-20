@@ -1,5 +1,4 @@
 var users = require("../../models/user");
-var users = require("../../models/user");
 
 module.exports = function(router){
     router.get('/users', function(req, res, next) {
@@ -12,14 +11,14 @@ module.exports = function(router){
             }
         });
     });
-    router.get('/user/:id', function(req, res, next) {
+    router.get('/users/:id', function(req, res, next) {
         console.log('getting user for id ' + req.params['id']);
-        users.findUserById(req.params['id'], function(data, err){
+        users.findUserById(req.params['id'], function(err, data){
             res.send(data);
         });
     });
 
-    router.post('/profile', function(req, res, next) {
+    router.post('/users', function(req, res, next) {
         console.log("saving profile !!>>" + JSON.stringify(req.body));
         var u = req.body;
         var tempImageUrl = u["tempImageUrl"];

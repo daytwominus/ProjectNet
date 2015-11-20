@@ -12,16 +12,16 @@ var libItems = require("../models/libItem");
 //!!!var secretAccessKey = process.env.AWS_SECRET_KEY || "+xxxxxx+B+xxxxxxx";
 // http://stackoverflow.com/questions/17930204/simple-file-upload-to-s3-using-aws-sdk-and-node-express
 
-router.get('/profile', function(req, res, next) {
-    console.log('getting profile for user ' + req['user']);
-    if(req['user'] == null || req.user["_id"] == null)
-        res.send({message:'bad request'});
-    return;
-    users.findUserById(req.user["_id"], function(err, u){
-
-        res.send(u);
-    });
-});
+//router.get('/profile', function(req, res, next) {
+//    console.log('getting profile for user ' + req['user']);
+//    if(req['user'] == null || req.user["_id"] == null)
+//        res.send({message:'bad request'});
+//    return;
+//    users.findUserById(req.user["_id"], function(err, u){
+//
+//        res.send(u);
+//    });
+//});
 
 require('./rest/rest-posts')(router);
 require('./rest/rest-libitems')(router);

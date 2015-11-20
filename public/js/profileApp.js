@@ -21,6 +21,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
 
     profileFactory.getProfile()
         .success(function(response) {
+            console.log('user retreived: ', response);
             $scope.user = response;
             console.log('user=', response);
         })
@@ -73,8 +74,8 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
         console.info('onCancelItem', fileItem, response, status, headers);
     };
     uploader.onCompleteItem = function(fileItem, response, status, headers) {
-        console.info('onCompleteItem', fileItem, response, status, headers);
-        console.log(response);
+        //console.info('onCompleteItem', fileItem, response, status, headers);
+        console.log('uploaded url:', response);
         $scope.user.imageUrl = response;
         $scope.user.tempImageUrl = response;
     };
@@ -90,12 +91,12 @@ profileApp.factory('profileFactory', function($http){
 
     factory.getProfile = function() {
         console.log('getting profile');
-        return $http.get('/rest/profile');
+        return $http.get('/rest/users/564efd93182a4ebeee82c754');
     };
 
     factory.updateProfile = function(user) {
-        console.log("submitting user update " + JSON.stringify(user));
-        return $http.post('/rest/profile', user);
+        console.log("submitting user update ", user);
+        return $http.post('/rest/users', user);
     };
 
     return factory;

@@ -18,7 +18,7 @@
     "jade": "~1.9.2",
     "jquery-file-upload-middleware": "~0.1.7",
     "method-override": "~2.3.3",
-    "mongoose": "4.1.0",
+    "mongoose": "^4.2.6",
     "morgan": "~1.5.1",
     "multer": "latest",
     "multer-s3": "^1.4.0",
