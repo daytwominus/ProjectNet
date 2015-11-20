@@ -5,7 +5,6 @@ var s3 = require('multer-s3');
 //var upload = multer({ dest: '../public/upload/avatars'});
 //var uploadLib = multer({ dest: '../public/upload/libitems'});
 var fs = require('fs');
-var users = require("../models/user");
 var posts = require("../models/post");
 var libItems = require("../models/libItem");
 
@@ -21,28 +20,6 @@ router.get('/profile', function(req, res, next) {
     users.findUserById(req.user["_id"], function(err, u){
 
         res.send(u);
-    });
-});
-
-router.get('/profile/:id', function(req, res, next) {
-    console.log('getting profile for id ' + req.params['id']);
-
-    res.send(200);
-});
-
-router.post('/profile', function(req, res, next) {
-    console.log("saving profile !!>>" + JSON.stringify(req.body));
-    var u = req.body;
-    var tempImageUrl = u["tempImageUrl"];
-    if(tempImageUrl)
-    {
-        u["imageUrl"] = tempImageUrl;
-    }
-
-    //console.log(ON.stringify(u));
-    users.updateUser(u, function(err, data){
-        console.log('saved: ', JSON.stringify(data));
-        res.sendStatus(200);
     });
 });
 
