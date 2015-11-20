@@ -5,7 +5,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
         profileFactory.updateProfile($scope.user)
             .success(function(response) {
                 $scope.updateSuccessFlag = true;
-                profileFactory.getProfile()
+                profileFactory.getProfile($scope.user)
                     .success(function(response) {
                         $scope.user = response;
                         console.log(response);
@@ -19,7 +19,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
             });
     };
 
-    profileFactory.getProfile()
+    profileFactory.getProfile($scope.user)
         .success(function(response) {
             console.log('user retreived: ', response);
             $scope.user = response;
@@ -89,9 +89,15 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
 profileApp.factory('profileFactory', function($http){
     var factory = {};
 
-    factory.getProfile = function() {
-        console.log('getting profile');
-        return $http.get('/rest/users/564efd93182a4ebeee82c754');
+    factory.getProfile = function(u) {
+        console.log('getting profile. user now: ', u);
+        if(!u)
+            return $http.get('/rest/users/564efd93182a4ebeee82c754');
+        else {
+            var r = '/rest/users/' + u['_id'];
+            console.log('now, try receive profile for' + r);
+            return $http.get(r);
+        }
     };
 
     factory.updateProfile = function(user) {

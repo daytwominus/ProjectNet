@@ -47,7 +47,7 @@ module.exports = function (app){
     app.use(passport.session());
     app.use(function(req, res, next){
         if (req.isAuthenticated()) {
-            console.log('isAuthenticated!', JSON.stringify(req.user));
+            //console.log('isAuthenticated!', JSON.stringify(req.user));
             res.locals.user = req.user;
             res.locals.isLoggedIn = true;
             return next();
