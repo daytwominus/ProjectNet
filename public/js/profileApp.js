@@ -19,8 +19,11 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
             });
     };
 
+    $scope.uploadInProgress = false;
+
     profileFactory.getProfile()
         .success(function(response) {
+            $scope.uploadInProgress = false;
             console.log('user retreived: ', response);
             $scope.user = response;
             console.log('user=', response);
@@ -30,7 +33,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
         });
 
     var uploader = $scope.uploader = new FileUploader({
-        url: 'rest/avatar',
+        url: 'rest/upload',
         autoUpload:true
     });
 
@@ -57,6 +60,8 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     };
     uploader.onBeforeUploadItem = function(item) {
         console.info('onBeforeUploadItem', item);
+        $scope.uploadInProgress = true;
+
     };
     uploader.onProgressItem = function(fileItem, progress) {
         console.info('onProgressItem', fileItem, progress);
@@ -81,6 +86,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     };
     uploader.onCompleteAll = function() {
         console.info('onCompleteAll');
+        $scope.uploadInProgress = false;
     };
 
     console.info('uploader', uploader);
@@ -90,13 +96,7 @@ profileApp.factory('profileFactory', function($http){
     var factory = {};
 
     factory.getProfile = function() {
-        //if(!u)
-       //     return $http.get('/rest/users/564efd93182a4ebeee82c754');
-      //  else {
-       //     var r = '/rest/users/' + u['_id'];
-        //    console.log('now, try receive profile for' + r);
-            return $http.get('/rest/user/');
-       // }
+        return $http.get('/rest/user/');
     };
 
     factory.updateProfile = function(user) {

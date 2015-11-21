@@ -12,6 +12,7 @@ libraryApp.controller('libraryController', function ($scope, libraryFactory, Fil
             });
     };
 
+    $scope.uploadInProgress = false;
     $scope.getLibrary();
 
     $scope.addLibItem = function(){
@@ -32,20 +33,21 @@ libraryApp.controller('libraryController', function ($scope, libraryFactory, Fil
     };
 
     var uploader = $scope.uploader = new FileUploader({
-        url: 'rest/libItemFile',
+        url: 'rest/upload',
         autoUpload:true
     });
 
-
-    // upload for preview
     uploader.onCompleteItem = function(fileItem, response, status, headers) {
         console.info('onCompleteItem', fileItem, response, status, headers);
         $scope.newLibItem.fileUrl = response;
         uploader.clearQueue();
     };
+    uploader.onBeforeUploadItem = function(item) {
+        $scope.uploadInProgress = true;
+    };
 
     var uploaderForPreview = $scope.uploaderForPreview = new FileUploader({
-        url: 'rest/libItemPreview',
+        url: 'rest/upload   ',
         autoUpload:true
     });
 
@@ -53,10 +55,9 @@ libraryApp.controller('libraryController', function ($scope, libraryFactory, Fil
         console.info('onCompleteItem', fileItem, response, status, headers);
         $scope.newLibItem.previewUrl = response;
         uploaderForPreview.clearQueue();
+        $scope.uploadInProgress = false;
 
     };
-
-
     //libraryFactory.
 });
 

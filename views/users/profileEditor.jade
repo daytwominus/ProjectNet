@@ -22,4 +22,4 @@ div.panel.panel-default(ng-app="profileApp" ng-cloak)
             img.img-circle(ng-src="{{user.imageUrl}}", style="width: 64px; height: 64px;")
          div.form-group
             div.col-lg-10.col-lg-offset-2
-               button.btn.btn-primary(type="submit" ng-click='updateUser()') Submit
+               button.btn.btn-primary(type="submit" ng-click='updateUser()' ng-disabled="{{uploadInProgress}}") Submit
