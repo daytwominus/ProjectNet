@@ -18,6 +18,7 @@ module.exports = function(router){
         users.findUserById(req.params['id'], function(err, data){
             res.send(data);
         });
+
     });
 
     router.get('/user', function(req, res, next) {

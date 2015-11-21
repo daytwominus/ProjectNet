@@ -5,7 +5,12 @@
 var mongoose = require('mongoose');
 
 // Build the connection string
+
 var dbURI = 'mongodb://localhost/ConnectionTest';
+var mongoFromEnv = process.env.PROD_MONGODB;
+console.log('db uri from environment', mongoFromEnv);
+if(mongoFromEnv)
+    dbURI = mongoFromEnv;
 
 // Create the database connection
 mongoose.connect(dbURI);
