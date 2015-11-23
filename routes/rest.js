@@ -20,8 +20,8 @@ var upload = multer({
     storage: s3({
         dirname: 'public/uploads',
         bucket: 'digitalurbanstudiesbucket',
-        secretAccessKey: 'POwa5yHO970gZIjkbeKe65OrDeVhSvoHzAwFEMYq',
-        accessKeyId: 'AKIAITRHA6VICVYBTEXQ',
+        secretAccessKey: '',
+        accessKeyId: '',
         region: 'us-east-1',
         filename: function (req, file, cb) {
             cb(null, Date.now()+file.originalname);
