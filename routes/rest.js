@@ -16,12 +16,17 @@ require('./rest/rest-users')(router);
 //var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 //var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 
+
+var bucketSecret = process.env.S3_BUCKET_SECRET;
+var bucketAccessKey = process.env.S3_ACCESS_KEY;
+console.log('s3 data: ', bucketSecret, bucketAccessKey);
+
 var upload = multer({
     storage: s3({
         dirname: 'public/uploads',
         bucket: 'digitalurbanstudiesbucket',
-        secretAccessKey: '',
-        accessKeyId: '',
+        secretAccessKey: bucketSecret,
+        accessKeyId: bucketAccessKey,
         region: 'us-east-1',
         filename: function (req, file, cb) {
             cb(null, Date.now()+file.originalname);
