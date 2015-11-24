@@ -4,6 +4,7 @@ header {
   background-image: url("../images/h.jpg");
   background-position : center;
   background-repeat: no-repeat;
+  z-index: 2;
 }
 
 header hr {
@@ -13,7 +14,7 @@ header hr {
 header .navbar.navbar {
   margin: 0;
   background: #242424;
-
+  z-index: 1;
 }
 header .navbar .navbar-nav {
   float: none;
