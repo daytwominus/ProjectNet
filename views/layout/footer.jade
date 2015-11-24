@@ -3,9 +3,9 @@ script( src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
 link(href="/css/style.css" rel="stylesheet")
 script( src="/material/js/ripples.min.js")
 script( src="/material/js/material.min.js")
-script( src="/js/behaviour.js")
 
-div.navbar.navbar-fixed-bottom(id="footerItem")
+
+div.navbar.navbar-fixed-bottom.footerItem(id="footerItem")
     footer.footer
         hr
         p.footerLeft copyrights
@@ -14,7 +14,7 @@ div.navbar.navbar-fixed-bottom(id="footerItem")
             | cpanel
 
 script
-
     $(document).ready(function(){$.material.init();});
+script( src="/js/behaviour.js")
 
 block script
