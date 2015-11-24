@@ -1,6 +1,9 @@
 header {
   padding-top: 110px;
-  background: #424242;
+  background: #242424;
+  background-image: url("../images/h.jpg");
+  background-position : center;
+  background-repeat: no-repeat;
 }
 
 header hr {
@@ -9,7 +12,8 @@ header hr {
 }
 header .navbar.navbar {
   margin: 0;
-  background: #424242;
+  background: #242424;
+
 }
 header .navbar .navbar-nav {
   float: none;
