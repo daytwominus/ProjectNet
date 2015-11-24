@@ -11,10 +11,15 @@ var Post = mongoose.model('post', PostSchema);
 
 var findUniversal = function(params, callback) {
     console.log("trying to find posts: " + JSON.stringify(params));
-    var res = Post.find(params, function(err, x){
+    //params["sort"] = {_id:-1};
+    Post.find(params).sort('-_id').exec(function(err, x){
         console.log("posts: " + JSON.stringify(x));
         callback(err, x);
     });
+    //Post.find(params, function(err, x){
+    //    console.log("posts: " + JSON.stringify(x));
+    //    callback(err, x);
+    //});
 };
 
 module.exports = {
