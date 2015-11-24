@@ -16,7 +16,6 @@ require('./rest/rest-users')(router);
 //var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 //var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 
-
 var bucketSecret = process.env.S3_BUCKET_SECRET;
 var bucketAccessKey = process.env.S3_ACCESS_KEY;
 console.log('s3 data: ', bucketSecret, bucketAccessKey);
@@ -39,7 +38,18 @@ router.post('/upload', upload.single('file'), function(req, res, next) {
     console.log('item uploaded ', path);
     res.send(path);
 });
-//
+
+router.post('/uploadForEditor', upload.single('upload'), function(req, res, next) {
+    var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
+    console.log('item uploaded ', path);
+
+    res.send({
+        uploaded : 1,
+        fileName : req.file.key,
+        url : path
+    });
+});
+
 //router.post('/libItemPreview', cpUploadLib, function(req, res, next) {
 //    console.log('lib item preview uploaded: ', JSON.stringify(req["files"]));
 //

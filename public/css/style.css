@@ -5,7 +5,7 @@ header {
 
 header hr {
   margin: 0;
-  border-top: 3px dashed #fff;
+  border-top: 0px dashed #fff;
 }
 header .navbar.navbar {
   margin: 0;
@@ -107,7 +107,7 @@ a.pull-right{
 }
 
 footer {
-  background-color: #66afe9;
+  background-color: #606468;
   height: 20px;
 }
 
@@ -141,10 +141,11 @@ div.navbar.navbar-fixed-bottom:hover
 div.navbar.navbar-fixed-bottom{
   position: fixed;
   bottom: -40px;
-  background-color: #66afe9;
+  background-color: #606468;
 }
 footer hr {
   margin-top: 4px;
+  border-top: 0px dashed #fff;
 }
 
 div.navbar.navbar-fixed-bottom{
