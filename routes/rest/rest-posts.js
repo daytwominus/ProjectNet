@@ -2,15 +2,13 @@ var posts = require("../../models/post");
 
 module.exports = function(router){
     router.get('/posts', function(req, res, next) {
-        posts.findPostsUniversal({}, function(err, data){
-            console.log("requesting posts");
+        var params = req.query;
+
+        posts.findPostsUniversal(params, function(err, data){
+            console.log("requesting posts. params: ", params);
             if (err)
                 res.send(err);
             else {
-                for (var i = 0; i < data.length; i++) {
-                    //if(data.previewUrl)
-                    //    data.previewUrl = "/public/images/defaultLibItem"
-                }
                 res.json(data);
             }
         });

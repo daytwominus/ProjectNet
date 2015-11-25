@@ -1,6 +1,6 @@
 extends layout/header
 block content
-    div(ng-app="postsApp", ng-controller="postsController", ng-cloak)
+    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('course')")
         if user
             div.panel.panel-default()
                 div.jumbotron
@@ -10,7 +10,7 @@ block content
                         p=params
                         h2 #{user.displayName}
         div
-            button.btn.btn-primary(type="Submit" ng-click='addPost()' ) {{addButtonText}}
+            button.btn.btn-primary(type="Submit" ng-click="addPost()" ) {{addButtonText}}
             div
                 div(ng-show="isEditing")
                     div
@@ -24,7 +24,7 @@ block content
             div.modal-dialog
                 div.modal-content
                     div.modal-header
-                        button.close(data-dismiss="modal" aria-hidden="true") x
+                        button.close(data-dismiss="modal" aria-hidden="true") X
                     div.modal-body
                         form
                             textarea(name="editor2")

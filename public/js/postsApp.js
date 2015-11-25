@@ -5,6 +5,13 @@ var postsApp = angular.module('postsApp', []).filter('to_trusted', ['$sce', func
 }]);
 
 postsApp.controller('postsController', function ($scope, postsFactory) {
+    $scope.init = function(postType)
+    {
+        console.log('initializing postsController with type ', postType);
+        $scope.postType = postType;
+        $scope.getPosts($scope.postType);
+    };
+
     $scope.getposts = function(){
         if(!$scope.user)
             return;
@@ -17,7 +24,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
             });
     };
     $scope.getPosts = function(){
-        postsFactory.getPosts()
+        postsFactory.getPosts($scope.postType)
             .success(function(response) {
                 console.log(response);
                 $scope.posts = response;
@@ -31,14 +38,13 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
             $scope.addButtonText = "Submit";
         else{
             $scope.addButtonText = "Add Post";
-            $scope.getPosts();
+            $scope.getPosts($scope.postType);
         }
     };
     $scope.addPost = function(){
-        console.log("opening area for adding post");
-
+        console.log("opening area for adding post of type ", $scope.postType);
         if($scope.isEditing)
-            postsFactory.submitPost()
+            postsFactory.submitPost($scope.postType)
                 .success(function(response) {
                     processAddPostButton();
                 })
@@ -67,15 +73,13 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
         postsFactory.deletePost($scope.editingPost)
             .success(function(response) {
                 console.log("post deleted");
-                $scope.getPosts();
+                $scope.getPosts($scope.postType);
             })
             .error(function(error){
             });
     };
 
     $scope.editingPost = {};
-    $scope.getposts();
-    $scope.getPosts();
     $scope.isEditing = false;
     $scope.addButtonText = "Add Post";
 
@@ -110,11 +114,12 @@ postsApp.factory('postsFactory', function($http){
         return $http.get('/rest/profile');
     };
 
-    factory.submitPost = function() {
+    factory.submitPost = function(t) {
         var data = CKEDITOR.instances.editor1.getData();
         console.log("submitting post: " + data);
         var tosend = {};
         tosend.data = data;
+        tosend.categories = [t];//
         return $http.post('/rest/posts', tosend);
     };
 
@@ -130,8 +135,16 @@ postsApp.factory('postsFactory', function($http){
         return $http.delete('/rest/posts/' + p["_id"]);
     };
 
-    factory.getPosts = function() {
-        return $http.get('/rest/posts');
+    factory.getPosts = function(t) {
+        //return
+        //$http({
+        //    url:  '/rest/posts',
+        //    method: "GET",
+        //    params: {"categories":[t]}
+        //});
+        return $http.get('/rest/posts', {
+            params: {"categories":[t]}
+         });
     };
     return factory;
 })

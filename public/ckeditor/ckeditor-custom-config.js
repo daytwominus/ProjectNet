@@ -14,26 +14,6 @@ CKEDITOR.editorConfig = function( config ) {
     config.skin = 'moono-dark';
     // %REMOVE_END%
 
-    // Define changes to default configuration here.
-    // For complete reference see:
-    // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
-    // The toolbar groups arrangement, optimized for a single toolbar row.
-    //config.toolbarGroups = [
-    //    { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
-    //    { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
-    //    { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-    //    { name: 'forms' },
-    //    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-    //    { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-    //    { name: 'links' },
-    //    { name: 'insert' },
-    //    { name: 'styles' },
-    //    { name: 'colors' },
-    //    { name: 'tools' },
-    //    { name: 'others' }
-    //];
-
     config.toolbarGroups = [
         { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
         { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
@@ -50,16 +30,11 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'colors', groups: [ 'colors' ] }
     ];
 
-    // The default plugins included in the basic setup define some buttons that
-    // are not needed in a basic editor. They are removed here.
-    //config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
-    //config.removeButtons = 'Cut,Copy,Paste,Undo,Underline,Strike,Subscript,Superscript';
 
-    // Dialog windows are also simplified.
-    //config.removeDialogTabs = 'link:advanced';
-
-    config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed';
+    config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach';
     config.uploadUrl = '/rest/uploadForEditor';
+    config.filebrowserUploadUrl = '/rest/uploadForEditor';
+
     //config.extraPlugins = 'image2';
     //config.extraPlugins = 'youtube';
    /// config.extraPlugins = 'uploadwidget';
