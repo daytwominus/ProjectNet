@@ -40,7 +40,6 @@ router.post('/upload', upload.single('file'), function(req, res, next) {
 });
 
 router.post('/uploadForEditor', upload.single('upload'), function(req, res, next) {
-
     console.log('uploading item: ');
     console.log('uploading item ', req.file.key);
     var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;

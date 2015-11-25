@@ -30,12 +30,21 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'colors', groups: [ 'colors' ] }
     ];
 
-    config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach';
+    config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach,filebrowser,popup';
     config.uploadUrl = '/rest/uploadForEditor';
-    //config.filebrowserUploadUrl = '/rest/uploadForEditor';
-    //config.filebrowserUploadUrl = '/rest/uploadAndReturnHtml';
+    //config.filebrowserUploadUrl = '/rest/uploadForEditor';dev
+    config.filebrowserUploadUrl = '/rest/uploadAndReturnHtml';
 };
 
+CKEDITOR.on( 'dialogDefinition', function( ev ) {
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
+    console.log("dialogName ", dialogName);
+    if ( dialogName == 'image2') {
+        dialogDefinition.removeContents('Upload');
+        dialogDefinition.removeContents('upload');
+    }
+});
 
 //CKEDITOR.on('dialogDefinition', function(ev) {
 //    var dialogName = ev.data.name;
