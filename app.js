@@ -3,7 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
-var ckStaticsPath = require('node-ckeditor');
+//var ckStaticsPath = require('node-ckeditor');
 var app = express();
 
 require('./helpers/logging')(app);
@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/public/ckeditor')));
 app.use(passport.initialize());
-app.use(express.static(ckStaticsPath));
+//app.use(express.static(ckStaticsPath));
 
 // routing:
 var routes = require('./routes/index');

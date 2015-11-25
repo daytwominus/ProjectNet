@@ -22,7 +22,6 @@
     "morgan": "~1.5.1",
     "multer": "latest",
     "multer-s3": "^1.4.0",
-    "node-ckeditor": "4.3.2",
     "passport": "0.2.1",
     "passport-facebook": "~2.0.0",
     "passport-local": "~1.0.0",
