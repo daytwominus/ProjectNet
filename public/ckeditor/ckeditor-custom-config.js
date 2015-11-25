@@ -31,10 +31,34 @@ CKEDITOR.editorConfig = function( config ) {
     ];
 
     config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach';
-    //config.uploadUrl = '/rest/uploadForEditor';
+    config.uploadUrl = '/rest/uploadForEditor';
     //config.filebrowserUploadUrl = '/rest/uploadForEditor';
-
-    //config.extraPlugins = 'image2';
-    //config.extraPlugins = 'youtube';
-   /// config.extraPlugins = 'uploadwidget';
+    //config.filebrowserUploadUrl = '/rest/uploadAndReturnHtml';
 };
+
+
+//CKEDITOR.on('dialogDefinition', function(ev) {
+//    var dialogName = ev.data.name;
+//    var dialogDefinition = ev.data.definition;
+//    console.log("dialogName ", dialogName);
+//    if (dialogName == 'image2') {
+//        dialogDefinition.onLoad = function() {
+//            var dialog = CKEDITOR.dialog.getCurrent();
+//
+//            var uploadTab = dialogDefinition.getContents('Upload');
+//                        var uploadButton = uploadTab.get('uploadButton');
+//            console.log('uploadButton', uploadButton);
+//
+//            uploadButton['onClick'] = function(evt){
+//                console.log('HERE click');
+//                console.log('fire in the hole', evt);
+//            }
+//
+//            uploadButton['filebrowser']['onSelect'] = function(fileUrl, errorMessage) {
+//                console.log('working');
+//            }
+//        };
+//
+//    }
+//
+//});

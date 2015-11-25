@@ -41,6 +41,7 @@ router.post('/upload', upload.single('file'), function(req, res, next) {
 
 router.post('/uploadForEditor', upload.single('upload'), function(req, res, next) {
 
+    console.log('uploading item: ');
     console.log('uploading item ', req.file.key);
     var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
     console.log('item uploaded ', path);
@@ -52,17 +53,26 @@ router.post('/uploadForEditor', upload.single('upload'), function(req, res, next
     });
 });
 
-//router.post('/libItemPreview', cpUploadLib, function(req, res, next) {
-//    console.log('lib item preview uploaded: ', JSON.stringify(req["files"]));
-//
-//    var path = req.files['file'][0]['path'].substring(9);
-//    var newPath = path + ".jpg";
-//    var base = __dirname + "/../public/";
-//    fs.rename(base + path, base + newPath, function (err) {
-//        if (err) throw err;
-//        console.log('lib item preview path: ' + newPath);
-//        res.send(newPath);
-//    });
-//});
+router.post('/uploadAndReturnHtml', upload.single('upload'), function(req, res, next) {
+
+    console.log('uploading item: ');
+    console.log('uploading item ', req.file.key);
+    var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
+    console.log('item uploaded ', path);
+
+    html = "";
+    html += "<script type='text/javascript'>";
+    html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
+    html += "    var url     = \"" + path + "\";";
+    html += "    var message = \"Uploaded file successfully\";";
+    html += "";
+    html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
+    html += "</script>";
+
+    res.send(html);
+
+    //res.send(html);
+});
+
 
 module.exports = router;
