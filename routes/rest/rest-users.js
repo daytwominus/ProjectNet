@@ -22,7 +22,7 @@ module.exports = function(router){
     });
 
     router.get('/user', function(req, res, next) {
-        console.log('getting user for id ', req.user);
+        console.log('getting user for id ', JSON.stringify(req.user));
         users.findUserById(req.user._id, function(err, data){
             res.send(data);
         });

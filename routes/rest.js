@@ -4,6 +4,7 @@ var multer  = require('multer');
 var s3 = require('multer-s3');
 var posts = require("../models/post");
 var libItems = require("../models/libItem");
+var permissions = require("../helpers/user-permissions");
 
 //!!!var accessKeyId =  process.env.AWS_ACCESS_KEY || "xxxxxx";
 //!!!var secretAccessKey = process.env.AWS_SECRET_KEY || "+xxxxxx+B+xxxxxxx";
@@ -73,5 +74,12 @@ router.post('/uploadAndReturnHtml', upload.single('upload'), function(req, res, 
     //res.send(html);
 });
 
+router.get('/permissions', function(req, res, next) {
+    console.log('getting permissions for user ', JSON.stringify(req.user));
+    var ret = permissions.getPermissions(req.user);
+    console.log('permissions : ', JSON.stringify(ret));
+
+    res.send(ret);
+});
 
 module.exports = router;

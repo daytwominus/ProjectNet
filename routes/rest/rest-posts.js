@@ -2,6 +2,7 @@ var posts = require("../../models/post");
 
 module.exports = function(router){
     router.get('/posts', function(req, res, next) {
+        console.log('current user ', req.user)
         var params = req.query;
 
         posts.findPostsUniversal(params, function(err, data){
@@ -15,6 +16,7 @@ module.exports = function(router){
     });
 
     router.post('/posts', function(req, res, next) {
+        console.log('current user ', req.user);
         var p = req.body;
         console.log("submitting post", p);
 
