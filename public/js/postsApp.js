@@ -10,19 +10,19 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
         console.log('initializing postsController with type ', postType);
         $scope.postType = postType;
         $scope.getPosts($scope.postType);
+        $scope.getPermissions();
     };
 
-    $scope.getposts = function(){
-        if(!$scope.user)
-            return;
-        postsFactory.getProfile()
+    $scope.getPermissions = function(){
+        postsFactory.getPermissions()
             .success(function(response) {
-                console.log(response);
-                $scope.user = response;
+                console.log('permissions: ', response);
+                $scope.permissions = response;
             })
             .error(function(error){
             });
     };
+
     $scope.getPosts = function(){
         postsFactory.getPosts($scope.postType)
             .success(function(response) {
@@ -116,6 +116,10 @@ postsApp.factory('postsFactory', function($http){
         return $http.get('/rest/posts', {
             params: {"categories":[t]}
          });
+    };
+
+    factory.getPermissions = function(t) {
+        return $http.get('/rest/permissions');
     };
     return factory;
 })
