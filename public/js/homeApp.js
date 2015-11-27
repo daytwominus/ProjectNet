@@ -4,20 +4,27 @@ var homeApp = angular.module('homeApp', []).filter('to_trusted', ['$sce', functi
     };
 }]);
 
-homeApp.controller('homeController', function ($scope, homeFactory) {
-    $scope.getHome = function(){
-        if(!$scope.user)
-            return;
-        homeFactory.getProfile()
+homeApp.controller('homeController', function ($scope, postsFactory) {
+    $scope.init = function(postType)
+    {
+        console.log('initializing homeController with type ', postType);
+        $scope.postType = postType;
+        $scope.getPosts($scope.postType);
+        $scope.getPermissions();
+    };
+
+    $scope.getPermissions = function(){
+        postsFactory.getPermissions()
             .success(function(response) {
-                console.log(response);
-                $scope.user = response;
+                console.log('permissions: ', response);
+                $scope.permissions = response;
             })
             .error(function(error){
             });
     };
+
     $scope.getPosts = function(){
-        homeFactory.getPosts()
+        postsFactory.getPosts($scope.postType)
             .success(function(response) {
                 console.log(response);
                 $scope.posts = response;
@@ -31,14 +38,13 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
             $scope.addButtonText = "Submit";
         else{
             $scope.addButtonText = "Add Post";
-            $scope.getPosts();
+            $scope.getPosts($scope.postType);
         }
     };
     $scope.addPost = function(){
-        console.log("opening area for adding post");
-
+        console.log("opening area for adding post of type ", $scope.postType);
         if($scope.isEditing)
-            homeFactory.submitPost()
+            postsFactory.submitPost($scope.postType)
                 .success(function(response) {
                     processAddPostButton();
                 })
@@ -55,7 +61,7 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
         $scope.editingPost = p;
     };
     $scope.savePost = function(){
-        homeFactory.savePost($scope.editingPost)
+        postsFactory.savePost($scope.editingPost)
             .success(function(response) {
             })
             .error(function(error){
@@ -64,57 +70,33 @@ homeApp.controller('homeController', function ($scope, homeFactory) {
 
     $scope.deletePost = function(){
         $scope.isEditing = false;
-        homeFactory.deletePost($scope.editingPost)
+        postsFactory.deletePost($scope.editingPost)
             .success(function(response) {
                 console.log("post deleted");
-                $scope.getPosts();
+                $scope.getPosts($scope.postType);
             })
             .error(function(error){
             });
     };
 
     $scope.editingPost = {};
-    $scope.getHome();
-    $scope.getPosts();
     $scope.isEditing = false;
     $scope.addButtonText = "Add Post";
-
-    $scope.editorOptions = {
-        language: 'en',
-        'skin': 'moono',
-        'extraPlugins': "imagebrowser,mediaembed",
-        imageBrowser_listUrl: '/api/v1/ckeditor/gallery',
-        filebrowserBrowseUrl: '/api/v1/ckeditor/files',
-        filebrowserImageUploadUrl: '/api/v1/ckeditor/images',
-        filebrowserUploadUrl: '/api/v1/ckeditor/files',
-        toolbarLocation: 'bottom',
-        toolbar: 'full',
-        toolbar_full: [
-            { name: 'basicstyles',
-                items: [ 'Bold', 'Italic', 'Strike', 'Underline' ] },
-            { name: 'paragraph', items: [ 'BulletedList', 'NumberedList', 'Blockquote' ] },
-            { name: 'editing', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
-            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-            { name: 'tools', items: [ 'SpellChecker', 'Maximize' ] },
-            { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-            { name: 'styles', items: [ 'Format', 'FontSize', 'TextColor', 'PasteText', 'PasteFromWord', 'RemoveFormat' ] },
-            { name: 'insert', items: [ 'Image', 'Table', 'SpecialChar', 'MediaEmbed' ] },'/',
-        ]
-    };
 });
 
-homeApp.factory('homeFactory', function($http){
+homeApp.factory('postsFactory', function($http){
     var factory = {};
 
     factory.getProfile = function() {
         return $http.get('/rest/profile');
     };
 
-    factory.submitPost = function() {
+    factory.submitPost = function(t) {
         var data = CKEDITOR.instances.editor1.getData();
         console.log("submitting post: " + data);
         var tosend = {};
         tosend.data = data;
+        tosend.categories = [t];//
         return $http.post('/rest/posts', tosend);
     };
 
@@ -130,8 +112,14 @@ homeApp.factory('homeFactory', function($http){
         return $http.delete('/rest/posts/' + p["_id"]);
     };
 
-    factory.getPosts = function() {
-        return $http.get('/rest/posts');
+    factory.getPosts = function(t) {
+        return $http.get('/rest/posts', {
+            params: {"categories":[t]}
+        });
+    };
+
+    factory.getPermissions = function(t) {
+        return $http.get('/rest/permissions');
     };
     return factory;
 })
