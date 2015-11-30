@@ -31,6 +31,31 @@ usersApp.controller('usersController', function ($scope, usersFactory) {
         $scope.editingUser = u;
     };
 
+    $scope.switchActivation = function(){
+        var isActive = $scope.editingUser["isActive"];
+        if(!isActive){
+            isActive = 1;
+        }
+        else{
+            if(isActive == 1){
+                isActive = 0;
+            }
+            else{
+                isActive = 1;
+            }
+        }
+        console.log('setting isActive to ' + isActive);
+
+        $scope.editingUser["isActive"] = isActive;
+
+        usersFactory.updateUser($scope.editingUser)
+            .success(function(response) {
+            })
+            .error(function(error){
+            });
+        $scope.getUsers();
+    };
+
     $scope.deleteUser = function(){
         var txt;
         var r = confirm("Do you really want to delete user " + $scope.editingUser.displayName + "?");
@@ -46,8 +71,6 @@ usersApp.controller('usersController', function ($scope, usersFactory) {
         } else {
 
         }
-
-
     };
 
     $scope.saveOrUpdateUser = function(u){

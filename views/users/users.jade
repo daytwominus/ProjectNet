@@ -19,16 +19,16 @@ block content
            div.modal-dialog
                div.modal-content
                    div.modal-header
-                       | {{dialogLabel}}
                    div.modal-body
                        form
                            include profileBody.jade
+                           | {{!editingUser.isActive || editingUser.isActive && editingUser.isActive == 1}}
                    div.modal-footer
                        button.btn.btn-primary(data-dismiss="modal" ng-click='saveOrUpdateUser()') Save
                        button.btn.btn-primary(data-dismiss="modal") Cancel
                        button.btn.btn-primary(data-dismiss="modal" ng-click='deleteUser()') Delete
-                       button.btn.btn-primary(ng-if= "user.isActive" data-dismiss="modal" ng-click='activateUser()') Delete
-
+                       button.btn.btn-primary(ng-if="editingUser.isActive && editingUser.isActive == 1" data-dismiss="modal" ng-click='switchActivation()') Deactivate
+                       button.btn.btn-primary(ng-if="!editingUser.isActive || editingUser.isActive && editingUser.isActive == 0" data-dismiss="modal" ng-click='switchActivation()') Activate
 block script
    script(src="/js/usersApp.js")
    script(src="/js/controllers.js")
