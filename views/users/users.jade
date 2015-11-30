@@ -9,11 +9,25 @@ block content
                div.user-image
                   img.img-circle(ng-src="{{n.imageUrl}}", style="width: 64px; height: 64px;")
                div(align="right")
-                  button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)')
+                  button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editUser(n)')
                      i.mdi-image-edit
       div.form-group
          div.col-lg-10.col-lg-offset-2
             button.btn.btn-primary(type="submit" ng-click='addUser()') +New user
+
+        div.modal.fade(id="complete-dialog" tabindex="-1")
+           div.modal-dialog
+               div.modal-content
+                   div.modal-header
+                   div.modal-body
+                       form
+                           button.btn.btn-primary(data-dismiss="modal" ng-click='saveUser()') Reset password
+                           include profileBody.jade
+                   div.modal-footer
+                       button.btn.btn-primary(data-dismiss="modal" ng-click='saveUser()') Save
+                       button.btn.btn-primary(data-dismiss="modal") Cancel
+                       button.btn.btn-primary(data-dismiss="modal" ng-click='deleteUser()') Delete
+
 block script
    script(src="/js/usersApp.js")
    script(src="/js/controllers.js")

@@ -2,24 +2,4 @@ div.panel.panel-default(ng-app="profileApp" ng-cloak)
    div.panel-body(ng-controller='profileController')
       h2(ng-if="updateSuccessFlag") success
       h2(ng-if="updateErrorFlag") error
-      form.form-horizontal
-         fieldset
-            div.form-group
-            //label.col-lg-2.control-label Login
-            //div.col-lg-10
-            //    label.control-label {{user.name}}
-            label.col-lg-2.control-label Dispay Name
-            div.col-lg-10
-               input#userName.form-control(typ1e="text" placeholder="DisplayName" ng-model="user.displayName")
-            label.col-lg-2.control-label Password
-            div.col-lg-10
-               input#userPassword.form-control(type="password" placeholder="Password" ng-model="user.password")
-            label.col-lg-2.control-label Avatar
-            div.col-lg-10
-               input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="user.imageUrl")
-         include ../upload/uploadImage.jade
-         div.user-image
-            img.img-circle(ng-src="{{user.imageUrl}}", style="width: 64px; height: 64px;")
-         div.form-group
-            div.col-lg-10.col-lg-offset-2
-               button.btn.btn-primary(type="submit" ng-click='updateUser()' ng-disabled="{{uploadInProgress}}") Submit
+      include profileBody
