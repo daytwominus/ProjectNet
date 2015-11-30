@@ -19,6 +19,7 @@ var UserSchema   = new Schema({
         value: String// The URL of the image.
     }],
     isActive: Number,
+    isDeleted: Number,
     imageUrl: String
 });
 
@@ -41,8 +42,27 @@ var findUserUniversal = function(params, callback){
 var findUsersUniversal = function(params, callback){
     console.log("trying to find user: " + JSON.stringify(params));
     var res = User.find(params, function(err, x){
-        console.log("Users: " + JSON.stringify(x));
-        callback(err, x);
+        var ret = [];
+        for (i = 0; i < x.length; i++) {
+            u = x[i];
+            if(!u["isDeleted"] || u["isDeleted"] == 0)
+                ret.push(u);
+        }
+
+        console.log("Users: " + JSON.stringify(ret));
+        callback(err, ret);
+    });
+};
+
+updateUserRoutine  = function(u, cb){
+    console.log("updating user ", u, 'id=' + u['_id']);
+    var id = u['_id'];
+    delete u["_id"];
+    delete u["roles"];
+
+    User.findByIdAndUpdate(id, { $set: u}, function (err, tank) {
+        console.log(err, tank);
+        cb(err, tank);
     });
 };
 
@@ -94,29 +114,14 @@ module.exports = {
             }
         });
     },
-    //updateUser: function(u, cb){
-    //    console.log("updating user ", u);
-    //    User.collection.findOne({_id: u._id.toObjectId()}, function(err, data){
-    //        var user = data;
-    //        for (var key in u) {
-    //            user[key] = u[key];
-    //        }
-    //        delete user["_id"];
-    //        delete user["id"];
-    //
-    //        console.log("updating user ", user);
-    //        User.findOneAndUpdate({"_id": u._id.toObjectId()}, user).exec();
-    //    });
-    //}
-    updateUser: function(u, cb){
-        console.log("updating user ", u, 'id=' + u['_id']);
-        var id = u['_id'];
-        delete u["_id"];
-        delete u["roles"];
 
-        User.findByIdAndUpdate(id, { $set: u}, function (err, tank) {
-            console.log(err, tank);
-            cb(err, tank);
-        });
+    updateUser: updateUserRoutine,
+
+    deleteUser: function(id, cb){
+        console.log("deleting user ", id);
+        var u = {
+            "_id" : id,
+            "isDeleted" : 1};
+        updateUserRoutine(u, function(){});
     }
 }

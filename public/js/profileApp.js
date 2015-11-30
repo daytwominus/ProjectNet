@@ -19,6 +19,8 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
             });
     };
 
+    $scope.editingUser = $scope.user;
+
     console.log("!!!!!");
     $scope.uploadInProgress = false;
 

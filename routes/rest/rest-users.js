@@ -13,12 +13,19 @@ module.exports = function(router){
             }
         });
     });
+
     router.get('/users/:id', function(req, res, next) {
         console.log('getting user for id ' + req.params['id']);
         users.findUserById(req.params['id'], function(err, data){
             res.send(data);
         });
+    });
 
+    router.delete('/users/:id', function(req, res, next) {
+        console.log('deleting user with id ' + req.params['id']);
+        users.deleteUser(req.params['id'], function(err, data){
+            res.send(data);
+        });
     });
 
     router.get('/user', function(req, res, next) {
@@ -29,7 +36,7 @@ module.exports = function(router){
     });
 
     router.post('/users', function(req, res, next) {
-        console.log("saving profile !!>>" + JSON.stringify(req.body));
+        console.log("creating user !!>>" + JSON.stringify(req.body));
         var u = req.body;
         var tempImageUrl = u["tempImageUrl"];
         if(tempImageUrl)
@@ -37,7 +44,20 @@ module.exports = function(router){
             u["imageUrl"] = tempImageUrl;
         }
 
-        //console.log(ON.stringify(u));
+        users.addUser(u, function(err, data){
+            res.sendStatus(200);
+        });
+    });
+
+    router.put('/users/:id', function(req, res, next) {
+        console.log("updating user" + JSON.stringify(req.body));
+        var u = req.body;
+        var tempImageUrl = u["tempImageUrl"];
+        if(tempImageUrl)
+        {
+            u["imageUrl"] = tempImageUrl;
+        }
+
         users.updateUser(u, function(err, data){
             res.sendStatus(200);
         });

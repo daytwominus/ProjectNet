@@ -24,7 +24,7 @@ block content
             div.modal-dialog
                 div.modal-content
                     div.modal-header
-                        button.close(data-dismiss="modal" aria-hidden="true") X
+                        button.close(data-dismiss="modal" aria-hidden="true")
                     div.modal-body
                         form
                             textarea(name="editor2")
@@ -34,7 +34,6 @@ block content
                         button.btn.btn-primary(data-dismiss="modal" ng-click='deletePost()') Delete
 block script
     script(src="/ckeditor.js")
-    //script CKEDITOR.replace('editor1', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
     script CKEDITOR.replace('editor1', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
     script CKEDITOR.replace('editor2', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
     script(src="/js/postsApp.js")
