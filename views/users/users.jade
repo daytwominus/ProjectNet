@@ -1,0 +1,20 @@
+extends ../layout/header
+block content
+   div(ng-app="usersApp", ng-controller="usersController", ng-cloak)
+      div(ng-repeat="n in users")
+         div.media-body
+            div.panel.panel-default(style="padding: 10px;")
+               h4.media-heading {{n.displayName}}
+               | {{n.description}}
+               div.user-image
+                  img.img-circle(ng-src="{{n.imageUrl}}", style="width: 64px; height: 64px;")
+               div(align="right")
+                  button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)')
+                     i.mdi-image-edit
+      div.form-group
+         div.col-lg-10.col-lg-offset-2
+            button.btn.btn-primary(type="submit" ng-click='addUser()') +New user
+block script
+   script(src="/js/usersApp.js")
+   script(src="/js/controllers.js")
+   script(src="/js/angular-file-upload.min.js")

@@ -19,6 +19,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
             });
     };
 
+    console.log("!!!!!");
     $scope.uploadInProgress = false;
 
     profileFactory.getProfile()

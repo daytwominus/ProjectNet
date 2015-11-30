@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 var users = require("../models/user");
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
-  //users.addUser({"id":"123xy"});
-  //res.send('respond with a resource');
+  console.log("getting users page");
+  res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.header("Pragma", "no-cache");
+  res.header("Expires", 0);
+  res.render('users/users');
 
 });
 
