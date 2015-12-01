@@ -1,7 +1,6 @@
 extends layout/header
-
 block content
-    div(ng-app="homeApp", ng-controller="homeController", ng-cloak)
+    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('home')")
         if user
             div.panel.panel-default()
                 div.jumbotron
@@ -10,23 +9,22 @@ block content
                             include users/avatarImage
                         p=params
                         h2 #{user.displayName}
-        div
-            button.btn.btn-primary(type="Submit" ng-click='addPost()' ) {{addButtonText}}
+        div(ng-show="permissions && permissions.canEditCourses")
+            button.btn.btn-primary(type="Submit" ng-click="addPost()" ) {{addButtonText}}
             div
                 div(ng-show="isEditing")
                     div
                         form
                             textarea(name="editor1")
         div.panel.panel-body(ng-repeat="p in posts")
-            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
                 i.mdi-image-edit
             p(ng-bind-html="p.data | to_trusted")
-
         div.modal.fade(id="complete-dialog" tabindex="-1")
             div.modal-dialog
                 div.modal-content
                     div.modal-header
-                        button.close(data-dismiss="modal" aria-hidden="true") x
+                        button.close(data-dismiss="modal" aria-hidden="true")
                     div.modal-body
                         form
                             textarea(name="editor2")
@@ -36,7 +34,8 @@ block content
                         button.btn.btn-primary(data-dismiss="modal" ng-click='deletePost()') Delete
 block script
     script(src="/ckeditor.js")
-    script CKEDITOR.replace( 'editor1', { customConfig: 'ckeditor/ckeditor-custom-config.js'});
-    script CKEDITOR.replace( 'editor2', { customConfig: 'ckeditor/ckeditor-custom-config.js' });
-    script(src="/js/homeApp.js")
+    script CKEDITOR.replace('editor1', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
+    script CKEDITOR.replace('editor2', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
+    script(src="/js/postsApp.js")
     script(src="/js/controllers.js")
+                     
