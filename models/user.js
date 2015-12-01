@@ -15,9 +15,7 @@ var UserSchema   = new Schema({
     photos: [{
         value: String// The URL of the image.
     }],
-    roles: [{
-        value: String// The URL of the image.
-    }],
+    roles: [],
     isActive: Number,
     isDeleted: Number,
     imageUrl: String
@@ -54,11 +52,10 @@ var findUsersUniversal = function(params, callback){
     });
 };
 
-updateUserRoutine  = function(u, cb){
+var updateUserRoutine = function(u, cb){
     console.log("updating user ", u, 'id=' + u['_id']);
     var id = u['_id'];
     delete u["_id"];
-    delete u["roles"];
 
     User.findByIdAndUpdate(id, { $set: u}, function (err, tank) {
         console.log(err, tank);

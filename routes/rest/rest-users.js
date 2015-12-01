@@ -1,7 +1,6 @@
 var users = require("../../models/user");
 //var passport = require('passport');
 
-
 module.exports = function(router){
     router.get('/users', function(req, res, next) {
         users.findUsersUniversal({}, function(err, data){

@@ -4,11 +4,19 @@ var usersApp = angular.module('usersApp', ['angularFileUpload']).filter('to_trus
     };
 }]);
 
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
 usersApp.controller('usersController', function ($scope, usersFactory, FileUploader) {
     $scope.getUsers = function() {
         usersFactory.getUsers()
             .success(function (response) {
-                console.log(response);
                 $scope.users = response;
                 $scope.newUser = {};
             })
@@ -46,9 +54,8 @@ usersApp.controller('usersController', function ($scope, usersFactory, FileUploa
         $scope.uploadInProgress = false;
     };
 
-
     $scope.addUser = function(){
-        $scope.editingUser = {};
+        $scope.editingUser = {isAdmin:false};
         console.log("opening area for adding user");
         $scope.isEditing = false;
         $scope.dialogLabel = "NEW USER";
@@ -56,6 +63,13 @@ usersApp.controller('usersController', function ($scope, usersFactory, FileUploa
 
     $scope.editUser = function(u){
         $scope.dialogLabel = "EDITING USER";
+
+        console.log('>', u.roles);
+        console.log('>', contains(u.roles, "admin"));
+        if(contains(u.roles, "admin"))
+            u.isAdmin = true;
+        else
+            u.isAdmin = false;
         console.log("opening area for editing user", u);
         $scope.isEditing = true;
         $scope.editingUser = u;
@@ -126,6 +140,10 @@ usersApp.factory('usersFactory', function($http){
     };
 
     factory.updateUser = function(u) {
+        if(u.isAdmin && !contains(u.roles, "admin"))
+            u.roles.push("admin");
+        if(!u.isAdmin && contains(u.roles, "admin"))
+            u.roles.delete("admin");
         console.log("updating user: " + JSON.stringify(u));
 
         return $http.put('/rest/users/' + u._id, u);
