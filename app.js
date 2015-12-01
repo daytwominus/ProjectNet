@@ -39,6 +39,7 @@ app.use('/glossary', require('./routes/glossary'));
 app.use('/media', require('./routes/media'));
 app.use('/courses', require('./routes/courses'));
 app.use('/users', require('./routes/users'));
+app.use('/signup', require('./routes/signup'));
 //app.use('/public', require('./routes/public'));
 
 // catch 404 and forward to error handler
