@@ -1,7 +1,7 @@
 extends ../layout/header
 block content
     div.panel-body(ng-app="signupApp", ng-controller="signupController", ng-cloak)
-        form.form-signin(action="/rest/users", method="post")
+        form.form-signin(method="post")
             fieldset
                 div.form-group
                 label.col-lg-2.control-label Email

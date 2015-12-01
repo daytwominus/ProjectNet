@@ -111,6 +111,7 @@ module.exports = {
                 }
                 else
                     console.log("already exists");
+                done(err, null);
             }
         });
     },
