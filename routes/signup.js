@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
     console.log("signup request");
-    res.render('users/signup');
+    res.render('./users/signup');
 });
 
 router.post('/',
