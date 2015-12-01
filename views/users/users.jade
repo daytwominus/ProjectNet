@@ -21,8 +21,21 @@ block content
                    div.modal-header
                    div.modal-body
                        form
-                           include profileBody.jade
-                           | {{!editingUser.isActive || editingUser.isActive && editingUser.isActive == 1}}
+                           form.form-horizontal
+                                fieldset
+                                    div.form-group
+                                    label.col-lg-2.control-label Name
+                                    div.col-lg-10
+                                        input#userName.form-control(typ1e="text" placeholder="DisplayName" ng-model="editingUser.displayName")
+                                    label.col-lg-2.control-label Password
+                                    div.col-lg-10
+                                        input#userPassword.form-control(type="password" placeholder="Password" ng-model="editingUser.password")
+                                    label.col-lg-2.control-label Avatar
+                                    div.col-lg-10
+                                        input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="editingUser.imageUrl")
+                                div.panel.panel-default(ng-app="profileApp" ng-cloak)
+                                div.user-image
+                                    img.img-circle(ng-src="{{editingUser.imageUrl}}", style="width: 64px; height: 64px;")
                    div.modal-footer
                        button.btn.btn-primary(data-dismiss="modal" ng-click='saveOrUpdateUser()') Save
                        button.btn.btn-primary(data-dismiss="modal") Cancel

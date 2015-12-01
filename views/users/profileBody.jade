@@ -1,9 +1,6 @@
 form.form-horizontal
     fieldset
         div.form-group
-        //label.col-lg-2.control-label Login
-        //div.col-lg-10
-        //    label.control-label {{editingUser.name}}
         label.col-lg-2.control-label Name
         div.col-lg-10
             input#userName.form-control(typ1e="text" placeholder="DisplayName" ng-model="editingUser.displayName")
@@ -13,6 +10,8 @@ form.form-horizontal
         label.col-lg-2.control-label Avatar
         div.col-lg-10
             input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="editingUser.imageUrl")
-    include ../upload/uploadImage.jade
+    div.panel.panel-default(ng-app="profileApp" ng-cloak)
+        label.col-lg-2.control-label Select Image
+        include ./s3upload
     div.user-image
         img.img-circle(ng-src="{{editingUser.imageUrl}}", style="width: 64px; height: 64px;")

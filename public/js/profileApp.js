@@ -41,7 +41,6 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     });
 
     // FILTERS
-
     uploader.filters.push({
         name: 'customFilter',
         fn: function(item /*{jpg|jpeg|png}*/, options) {

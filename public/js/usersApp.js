@@ -1,10 +1,10 @@
-var usersApp = angular.module('usersApp', []).filter('to_trusted', ['$sce', function($sce){
+var usersApp = angular.module('usersApp', ['angularFileUpload']).filter('to_trusted', ['$sce', function($sce){
     return function(text) {
         return $sce.trustAsHtml(text);
     };
 }]);
 
-usersApp.controller('usersController', function ($scope, usersFactory) {
+usersApp.controller('usersController', function ($scope, usersFactory, FileUploader) {
     $scope.getUsers = function() {
         usersFactory.getUsers()
             .success(function (response) {
@@ -15,7 +15,37 @@ usersApp.controller('usersController', function ($scope, usersFactory) {
             .error(function (error) {
             });
     };
+
     $scope.getUsers();
+    $scope.uploadInProgress = false;
+    var uploader = $scope.uploader = new FileUploader({
+        url: 'rest/upload',
+        autoUpload:true
+    });
+
+    // FILTERS
+    uploader.filters.push({
+        name: 'customFilter',
+        fn: function(item /*{jpg|jpeg|png}*/, options) {
+            return this.queue.length < 10;
+        }
+    });
+    uploader.onBeforeUploadItem = function(item) {
+        console.info('onBeforeUploadItem', item);
+        $scope.uploadInProgress = true;
+
+    };
+    uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        //console.info('onCompleteItem', fileItem, response, status, headers);
+        console.log('uploaded url:', response);
+        $scope.editingUser.imageUrl = response;
+        $scope.editingUser.tempImageUrl = response;
+    };
+    uploader.onCompleteAll = function() {
+        console.info('onCompleteAll');
+        $scope.uploadInProgress = false;
+    };
+
 
     $scope.addUser = function(){
         $scope.editingUser = {};
