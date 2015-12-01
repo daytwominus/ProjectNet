@@ -1,6 +1,6 @@
 extends ../layout/header
 block content
-    div.panel-body
+    div.panel-body(ng-app="signupApp", ng-controller="signupController", ng-cloak)
         form.form-signin(action="/rest/users", method="post")
             fieldset
                 div.form-group
