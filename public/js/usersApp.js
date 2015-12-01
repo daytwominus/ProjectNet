@@ -110,6 +110,7 @@ usersApp.controller('usersController', function ($scope, usersFactory, FileUploa
 
         action($scope.editingUser)
             .success(function(response) {
+                $scope.getUsers();
             })
             .error(function(error){
             });

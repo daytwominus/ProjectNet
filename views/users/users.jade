@@ -33,6 +33,9 @@ block content
                                     label.col-lg-2.control-label Avatar
                                     div.col-lg-10
                                         input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="editingUser.imageUrl")
+                                    label.col-lg-2.control-label Email
+                                    div.col-lg-10
+                                        input#userEmail.form-control(type="email" placeholder="Email" ng-model="editingUser.email")
                                 div.panel.panel-default(ng-app="profileApp" ng-cloak)
                                 div.user-image
                                     img.img-circle(ng-src="{{editingUser.imageUrl}}", style="width: 64px; height: 64px;")
