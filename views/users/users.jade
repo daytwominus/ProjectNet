@@ -36,9 +36,12 @@ block content
                                     label.col-lg-2.control-label Email
                                     div.col-lg-10
                                         input#userEmail.form-control(type="email" placeholder="Email" ng-model="editingUser.email")
-                                    label.col-lg-2.control-label Administrator
                                     div.col-lg-10
-                                        input.checkbox-material(type="checkbox", ng-model="editingUser.isAdmin").form-control
+                                        div.checkbox
+                                            label
+                                                input(type="checkbox" ng-model="editingUser.isAdmin")
+                                                span.checkbox-material
+                                                |    Administrator
                                 div.panel.panel-default(ng-app="profileApp" ng-cloak)
                                 div.user-image
                                     img.img-circle(ng-src="{{editingUser.imageUrl}}", style="width: 64px; height: 64px;")

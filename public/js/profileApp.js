@@ -20,10 +20,7 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     };
 
     $scope.editingUser = $scope.user;
-
-    console.log("!!!!!");
     $scope.uploadInProgress = false;
-
     profileFactory.getProfile()
         .success(function(response) {
             $scope.uploadInProgress = false;

@@ -6,10 +6,6 @@ var posts = require("../models/post");
 var libItems = require("../models/libItem");
 var permissions = require("../helpers/user-permissions");
 
-//!!!var accessKeyId =  process.env.AWS_ACCESS_KEY || "xxxxxx";
-//!!!var secretAccessKey = process.env.AWS_SECRET_KEY || "+xxxxxx+B+xxxxxxx";
-// http://stackoverflow.com/questions/17930204/simple-file-upload-to-s3-using-aws-sdk-and-node-express
-
 require('./rest/rest-posts')(router);
 require('./rest/rest-libitems')(router);
 require('./rest/rest-users')(router);
