@@ -15,12 +15,8 @@ var Post = mongoose.model('post', PostSchema);
 
 var findUniversal = function(params, callback) {
     console.log("trying to find posts: " + JSON.stringify(params));
-    //params["isDeleted"] = false;
-    //Post.find(params).sort('-_id').exec(function(err, x){
-    //    console.log("posts: " + JSON.stringify(x));
-    //    callback(err, x);
-    //}
-    Post.find().or.sort('-_id').exec(function(err, x){
+
+    Post.find(params).or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}}).sort('-_id').exec(function(err, x){
         console.log("posts: " + JSON.stringify(x));
         callback(err, x);
     }
