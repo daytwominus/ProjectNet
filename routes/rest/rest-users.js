@@ -29,6 +29,10 @@ module.exports = function(router){
 
     router.get('/user', function(req, res, next) {
         console.log('getting user for id ', JSON.stringify(req.user));
+        if(!req.user) {
+            res.sendStatus(204);
+            return;
+        }
         users.findUserById(req.user._id, function(err, data){
             res.send(data);
         });

@@ -72,6 +72,7 @@ router.post('/uploadAndReturnHtml', upload.single('upload'), function(req, res, 
 
 router.get('/permissions', function(req, res, next) {
     console.log('getting permissions for user ', JSON.stringify(req.user));
+
     var ret = permissions.getPermissions(req.user);
     console.log('permissions : ', JSON.stringify(ret));
 
