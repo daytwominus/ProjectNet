@@ -15,6 +15,18 @@ module.exports = function(router){
         });
     });
 
+    router.get('/homeposts', function(req, res, next) {
+        var params = {showOnMain:true};
+        posts.findPostsUniversal(params, function(err, data){
+            console.log("requesting posts. params: ", params);
+            if (err)
+                res.send(err);
+            else {
+                res.json(data);
+            }
+        });
+    });
+
     router.post('/posts', function(req, res, next) {
         console.log('current user ', req.user);
         var p = req.body;

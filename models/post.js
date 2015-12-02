@@ -19,8 +19,7 @@ var findUniversal = function(params, callback) {
     Post.find(params).or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}}).sort('-_id').exec(function(err, x){
         console.log("posts: " + JSON.stringify(x));
         callback(err, x);
-    }
-    );
+    });
 };
 
 var savePostRoutine = function (p, callback){

@@ -9,7 +9,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
     {
         console.log('initializing postsController with type ', postType);
         $scope.postType = postType;
-        $scope.getPosts($scope.postType);
+        $scope.getPosts();
         $scope.getPermissions();
     };
 
@@ -124,9 +124,13 @@ postsApp.factory('postsFactory', function($http){
     };
 
     factory.getPosts = function(t) {
-        return $http.get('/rest/posts', {
-            params: {"categories":[t]}
-         });
+        var p = {};
+        if(t === "home")
+            p = { params: {showOnMain:true} };
+        else
+            p = { params: {"categories":[t]} };
+
+        return $http.get('/rest/posts', p);
     };
 
     factory.getPermissions = function(t) {
