@@ -13,7 +13,7 @@ header hr {
 }
 header .navbar.navbar {
   margin: 0;
-  background: #242424;
+  background: transparent;
   z-index: 1;
 }
 header .navbar .navbar-nav {
@@ -155,4 +155,10 @@ footer hr {
 
 div.navbar.navbar-fixed-bottom{
 
+}
+
+div.user-image{
+  position:fixed;
+  top: 10px;
+  right: 20px;
 }

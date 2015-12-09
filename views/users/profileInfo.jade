@@ -1,0 +1,10 @@
+div.user-image(ng-app="usersApp", ng-controller="usersController", ng-cloak)
+    div(ng-if="user")
+        img.img-circle(ng-src="{{user.imageUrl}}", style="width: 64px; height: 64px;")
+        div(align="center")
+            p.text-primary(align="center") {{user.displayName}}
+            a.text-muted(align="center" href="/login/logout") exit
+block script
+    script(src="/js/usersApp.js")
+    script(src="/js/controllers.js")
+    script(src="/js/angular-file-upload.min.js")

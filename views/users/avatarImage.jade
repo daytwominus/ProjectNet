@@ -1,2 +1,7 @@
-div.user-image
-   img.img-circle(ng-src="#{user.imageUrl}", style="width: 64px; height: 64px;")
+div.user-image(ng-app="usersApp", ng-controller="usersController", ng-cloak)
+   img.img-circle(ng-src="{{user.imageUrl}}", style="width: 64px; height: 64px;")
+   p.text-primary {{user.displayName}}
+block script
+   script(src="/js/usersApp.js")
+   script(src="/js/controllers.js")
+   script(src="/js/angular-file-upload.min.js")

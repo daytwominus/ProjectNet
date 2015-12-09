@@ -37,7 +37,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
         if ($scope.isEditing)
             $scope.addButtonText = "Submit";
         else{
-            $scope.addButtonText = "Add Post";
+            $scope.addButtonText = "Add";
             $scope.getPosts($scope.postType);
         }
     };
@@ -90,7 +90,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
 
     $scope.editingPost = {};
     $scope.isEditing = false;
-    $scope.addButtonText = "Add Post";
+    $scope.addButtonText = "Add";
 });
 
 postsApp.factory('postsFactory', function($http){

@@ -37,11 +37,11 @@ block content
                                     div.col-lg-10
                                         input#userEmail.form-control(type="email" placeholder="Email" ng-model="editingUser.email")
                                     div.col-lg-10
-                                        div.checkbox
-                                            label
-                                                input(type="checkbox" ng-model="editingUser.isAdmin")
-                                                span.checkbox-material
-                                                |    Administrator
+                                        div.togglebutton
+                                           label
+                                               input(type="checkbox" ng-model="editingUser.isAdmin")
+                                               span.checkbox-material
+                                               | Administrator
                                 div.panel.panel-default(ng-app="profileApp" ng-cloak)
                                 div.user-image
                                     img.img-circle(ng-src="{{editingUser.imageUrl}}", style="width: 64px; height: 64px;")

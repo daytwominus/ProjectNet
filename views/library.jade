@@ -1,35 +1,42 @@
 extends layout/header
 block content
-    div.panel.panel-body(ng-app="libraryApp", ng-controller="libraryController", ng-cloak)
-        div(ng-repeat="n in libItems")
-            div.media-left.media-middle
-                div(ng-if="n.previewUrl")
-                    img.media-object(ng-src="{{n.previewUrl}}", style="width: 64px; height: 64px;")
-                div(ng-if="!n.previewUrl")
-                    li.glyphicon.glyphicon-book(style="font-size: 40px")
-            div.media-body
-                a(ng-href="{{n.fileUrl}}")
-                    h4.media-heading {{n.name}}
-                    | {{n.description}}
-
-        div
-            form.form-horizontal
-                fieldset
-                div.form-group
-                label.col-lg-2.control-label Description
-                div.col-lg-10
-                    input#description.form-control(type="text" placeholder="Description" ng-model="newLibItem.description")
-                label.col-lg-2.control-label Select File
-                div.col-lg-10
-                    input.file-uploader.form-control(name="libItem" type="file" nv-file-select uploader="uploader")
-                label.col-lg-2.control-label Select Preview
-                div.col-lg-10
-                    input.file-uploader.form-control(name="libItemPreview" type="file" nv-file-select uploader="uploaderForPreview")
-            div.form-group
-                div.col-lg-10.col-lg-offset-2
-                    button.btn.btn-primary(type="submit" ng-click='addLibItem()') Add
-
+    include users/profileInfo
+    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('library')")
+        if user
+            div.panel.panel-default()
+                div.jumbotron
+                    if user
+                        div(ng-if="user.imageUrl")
+                            include users/avatarImage
+                        p=params
+                        h2 #{user.displayName}
+        div(ng-show="permissions && permissions.canEditCourses")
+            button.btn.btn-primary(type="Submit" ng-click="addPost()" ) {{addButtonText}}
+            div
+                div(ng-show="isEditing")
+                    div
+                        form
+                            textarea(name="editor1")
+        div.panel.panel-body(ng-repeat="p in posts")
+            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+                i.mdi-image-edit
+            p(ng-bind-html="p.data | to_trusted")
+        div.modal.fade(id="complete-dialog" tabindex="-1")
+            div.modal-dialog
+                div.modal-content
+                    div.modal-header
+                        button.close(data-dismiss="modal" aria-hidden="true")
+                    div.modal-body
+                        form
+                            textarea(name="editor2")
+                    div.modal-footer
+                        button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Save
+                        button.btn.btn-primary(data-dismiss="modal") Cancel
+                        button.btn.btn-primary(data-dismiss="modal" ng-click='deletePost()') Delete
 block script
-    script(src="/js/libraryApp.js")
-    script(src="/js/angular-file-upload.min.js")
+    script(src="/ckeditor.js")
+    script CKEDITOR.replace('editor1', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
+    script CKEDITOR.replace('editor2', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
+    script(src="/js/postsApp.js")
     script(src="/js/controllers.js")
+                                  

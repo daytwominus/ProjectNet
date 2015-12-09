@@ -14,6 +14,7 @@ html(lang= "ru")
     body
         header
             hr
+            //include ../users/profileInfo
             div.container
                 div.row
                     div.col-xs-9
@@ -24,6 +25,13 @@ html(lang= "ru")
                                         a(href="/home")
                                             span
                                                 | Home
+                                        ul.dropdown-menu
+                                            li
+                                                a(href="/home")
+                                                    | Action
+                                            li
+                                                a(href="/home")
+                                                    | Action
                                     li
                                         a(href="/profile")
                                             span

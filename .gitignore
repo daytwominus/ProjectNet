@@ -1,3 +1,4 @@
 node_modules
 access.log
 .idea
+/public/ckeditor/samples

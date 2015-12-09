@@ -30,6 +30,16 @@ usersApp.controller('usersController', function ($scope, usersFactory, FileUploa
         url: 'rest/upload',
         autoUpload:true
     });
+    usersFactory.getProfile()
+        .success(function(response) {
+            $scope.uploadInProgress = false;
+            console.log('user retreived: ', response);
+            $scope.user = response;
+            console.log('user=', response);
+        })
+        .error(function(error){
+            console.log(error);
+        });
 
     // FILTERS
     uploader.filters.push({
@@ -160,5 +170,10 @@ usersApp.factory('usersFactory', function($http){
 
         return $http.delete('/rest/users/' + u._id, u);
     };
+
+    factory.getProfile = function() {
+        return $http.get('/rest/user/');
+    };
+
     return factory;
 });
