@@ -8,7 +8,8 @@ var PostSchema   = new Schema({
     categories: [String],
     userId: String,
     showOnMain : Boolean,
-    isDeleted: Boolean
+    isDeleted: Boolean,
+    sections: [Schema.Types.ObjectId]
 });
 
 var Post = mongoose.model('post', PostSchema);

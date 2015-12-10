@@ -1,7 +1,6 @@
 extends layout/header
 
 block content
-    //include users/profileInfo
     div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('home')")
         div(ng-show="permissions && permissions.canEditCourses")
             button.btn.btn-primary(type="Submit" ng-click="addPost()" ) {{addButtonText}}

@@ -5,8 +5,12 @@ var postsApp = angular.module('postsApp', []).filter('to_trusted', ['$sce', func
 }]);
 
 postsApp.controller('postsController', function ($scope, postsFactory) {
-    $scope.init = function(postType)
+    $scope.init = function(postType, showSections)
     {
+        if(showSections){
+            $scope.getSections();
+        }
+
         console.log('initializing postsController with type ', postType);
         $scope.postType = postType;
         $scope.getPosts();
@@ -56,16 +60,25 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
     $scope.editPost = function(p){
         console.log('editing post ' + JSON.stringify(p.data));
         $scope.isEditing = false;
+        $scope.sectionsForEditing = $scope.getSectionsForEditing(p);
 
         CKEDITOR.instances.editor2.setData(p.data);
         $scope.editingPost = p;
     };
     $scope.savePost = function(){
+        $scope.editingPost.sections = [];
+        var sections = $scope.sections;
+        for (var i = 0; i < sections.length; i++) {
+            if(sections[i].selected)
+                $scope.editingPost.sections.push(sections[i]["_id"]);
+        }
         postsFactory.savePost($scope.editingPost)
             .success(function(response) {
+                $scope.editingPost = {};
             })
             .error(function(error){
             });
+        $scope.editingPost = {};
     };
 
     $scope.deletePost = function(){
@@ -87,6 +100,49 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
         .error(function(error){
             console.log(error);
         });
+
+    $scope.getSections = function() {
+        postsFactory.getSections()
+            .success(function (response) {
+                console.log(response);
+                $scope.sections = response;
+            })
+            .error(function (error) {
+            });
+    }
+
+    var findSection = function(id){
+        var sections = $scope.sections;
+        console.log(sections);
+        for (var i = 0; i < sections.length; i++) {
+            if(sections[i]["id"] == id){
+                console.log(sections[i]["_id"]);
+                return  sections[i]["_id"];
+            }
+        }
+        return null;
+    }
+
+    $scope.getSectionsForEditing = function(p) {
+        if(!$scope || !$scope.sections)
+            return;
+        var final = [];
+        var sections = $scope.sections;
+        for (var i = 0; i < sections.length; i++) {
+            var s = sections[i];
+            final.push(s);
+            s.selected = false;
+        }
+
+        if(p.sections){
+            for (var i = 0; i < p.sections.length; i++) {
+                var s = findSection(p.sections[i]);
+                s.selected = true;
+            }
+        }
+        console.log('!!', final);
+        return final;
+    }
 
     $scope.editingPost = {};
     $scope.isEditing = false;
@@ -136,6 +192,12 @@ postsApp.factory('postsFactory', function($http){
     factory.getPermissions = function(t) {
         return $http.get('/rest/permissions');
     };
+
+    factory.getSections = function() {
+        console.log('getting sections');
+        return $http.get('/rest/sections');
+    };
+
     return factory;
 })
 

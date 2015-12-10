@@ -1,6 +1,6 @@
 extends layout/header
 block content
-    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('library')")
+    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('library', true)")
         if user
             div.panel.panel-default()
                 div.jumbotron
@@ -17,7 +17,8 @@ block content
                         form
                             textarea(name="editor1")
         div.panel.panel-body(ng-repeat="p in posts")
-            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+            //button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
                 i.mdi-image-edit
             p(ng-bind-html="p.data | to_trusted")
         div.modal.fade(id="complete-dialog" tabindex="-1")
@@ -28,6 +29,9 @@ block content
                     div.modal-body
                         form
                             textarea(name="editor2")
+                            div(ng-repeat="s in sectionsForEditing")
+                                input(type="checkbox" ng-model="s.selected")
+                                | {{s.name}}
                     div.modal-footer
                         button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Save
                         button.btn.btn-primary(data-dismiss="modal") Cancel
