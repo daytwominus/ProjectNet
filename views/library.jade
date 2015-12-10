@@ -1,6 +1,5 @@
 extends layout/header
 block content
-    include users/profileInfo
     div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('library')")
         if user
             div.panel.panel-default()

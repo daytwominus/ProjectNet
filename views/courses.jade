@@ -1,15 +1,6 @@
 extends layout/header
 block content
-    include users/profileInfo
     div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('course')")
-        if user
-            div.panel.panel-default()
-                div.jumbotron
-                    if user
-                        div(ng-if="user.imageUrl")
-                            include users/avatarImage
-                        p=params
-                        h2 #{user.displayName}
         div(ng-show="permissions && permissions.canEditCourses")
             button.btn.btn-primary(type="Submit" ng-click="addPost()" ) {{addButtonText}}
             div

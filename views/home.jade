@@ -1,6 +1,7 @@
 extends layout/header
+
 block content
-    include users/profileInfo
+    //include users/profileInfo
     div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('home')")
         div(ng-show="permissions && permissions.canEditCourses")
             button.btn.btn-primary(type="Submit" ng-click="addPost()" ) {{addButtonText}}
@@ -25,10 +26,13 @@ block content
                         button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Save
                         button.btn.btn-primary(data-dismiss="modal") Cancel
                         button.btn.btn-primary(data-dismiss="modal" ng-click='deletePost()') Delete
+    //include users/profileInfo
 block script
     script(src="/ckeditor.js")
     script CKEDITOR.replace('editor1', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
     script CKEDITOR.replace('editor2', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
     script(src="/js/postsApp.js")
     script(src="/js/controllers.js")
+    script(src="/js/usersApp.js")
+    script(src="/js/angular-file-upload.min.js")
                      

@@ -1,16 +1,7 @@
 extends layout/header
 
 block content
-   include users/profileInfo
    div(ng-app="cpanelApp", ng-controller="cpanelController", ng-cloak)
-      //div.navbar.navbar-default
-      //   ul.nav.navbar-nav
-      //         li
-      //            a(href="/users")
-      //               | Users
-      //         li
-      //            a(href="/libsections")
-      //               | Lib Sections
       div.form-group(align="center" style="margin:50px")
          div.btn-group-vertical
             a.btn.btn-raised(href="/users") Users

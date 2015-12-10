@@ -14,8 +14,13 @@ html(lang= "ru")
     body
         header
             hr
-            //include ../users/profileInfo
             div.container
+                if(isLoggedIn)
+                    div.user-image
+                        img.img-circle(src="#{user.imageUrl}", style="width: 64px; height: 64px;")
+                        div(align="center")
+                            p.text-primary(align="center") #{user.displayName}
+                            a.text-muted(align="center" href="/login/logout") exit
                 div.row
                     div.col-xs-9
                         nav.navbar.navbar-default
