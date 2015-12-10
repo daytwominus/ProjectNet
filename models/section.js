@@ -47,10 +47,10 @@ module.exports = {
         })
     },
     getSections : function(params, callback){
-        console.log("trying to find sections: " + JSON.stringify(params));
+        //console.log("trying to find sections: " + JSON.stringify(params));
 
         Section.find(params).or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}}).sort('-_id').exec(function(err, x){
-            console.log("sections: " + JSON.stringify(x));
+            //console.log("sections: " + JSON.stringify(x));
             callback(err, x);
         });
     },

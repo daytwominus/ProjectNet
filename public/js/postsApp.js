@@ -104,7 +104,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
     $scope.getSections = function() {
         postsFactory.getSections()
             .success(function (response) {
-                console.log(response);
+                console.log('all sections: ', response);
                 $scope.sections = response;
             })
             .error(function (error) {
@@ -115,9 +115,10 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
         var sections = $scope.sections;
         console.log(sections);
         for (var i = 0; i < sections.length; i++) {
-            if(sections[i]["id"] == id){
-                console.log(sections[i]["_id"]);
-                return  sections[i]["_id"];
+            //console.log(sections[i]["_id"], id);
+            if(sections[i]["_id"] == id){
+                //console.log(sections[i]["_id"]);
+                return sections[i];
             }
         }
         return null;
@@ -138,6 +139,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
             for (var i = 0; i < p.sections.length; i++) {
                 var s = findSection(p.sections[i]);
                 s.selected = true;
+                console.log('>>', s);
             }
         }
         console.log('!!', final);

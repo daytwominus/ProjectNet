@@ -11,7 +11,9 @@ html(lang= "ru")
         link(href="/material/css/material.css" rel="stylesheet")
         link(href="/material/css/ripples.min.css" rel="stylesheet")
         script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js')
+
     body
+
         header
             hr
             div.container
@@ -30,13 +32,6 @@ html(lang= "ru")
                                         a(href="/home")
                                             span
                                                 | Home
-                                        ul.dropdown-menu
-                                            li
-                                                a(href="/home")
-                                                    | Action
-                                            li
-                                                a(href="/home")
-                                                    | Action
                                     li
                                         a(href="/profile")
                                             span
@@ -45,10 +40,16 @@ html(lang= "ru")
                                         a(href="/Library")
                                             span
                                                 | Library
+                                        ul.dropdown-menu
+                                            each val, index in sections
+                                                li
+                                                    a(href="/home")
+                                                        | #{val.name}
                                     li
                                         a(href="/Courses")
                                             span
                                                 | Courses
+
                                     li
                                         a(href="#Glossary")
                                             span
@@ -62,6 +63,7 @@ html(lang= "ru")
                         else
                             a.pull-right(href="/login")
                                 | login
+
         div.container
             div.row
                 div.col-md-12

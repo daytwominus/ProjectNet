@@ -16,13 +16,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.locals.pretty = true;
 
+app.use(function (req, res, next) {
+  var sections = require("./models/section");
+  sections.getSections({}, function(err, data){
+    //console.log(">>>> requesting sections: ", data);
+    app.locals.sections = data;
+  });
+  next();
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/public/ckeditor')));
 app.use(passport.initialize());
-//app.use(express.static(ckStaticsPath));
+
 
 // routing:
 var routes = require('./routes/index');
