@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 //var ckStaticsPath = require('node-ckeditor');
 var app = express();
+var helpers = require("./helpers/utils");
 
 require('./helpers/logging')(app);
 require('./models/db');
@@ -16,11 +17,33 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.locals.pretty = true;
 
+var posts = require("./models/post");
 app.use(function (req, res, next) {
   var sections = require("./models/section");
-  sections.getSections({}, function(err, data){
+  sections.getSections({}, function(err, sections){
+
+    var url = req.url.toLowerCase();
+    if(url == '/library'){
+      console.log('>>>>>>>>>>>>>>>>', req.url);
+      var ret = [];
+      helpers.asyncLoop(sections.length, function(loop){
+            var i = loop.iteration();
+            var s = sections[i];
+            posts.findPostsWithSection(s["_id"], function(err, data){
+              s = s.toObject({ getters: true, virtuals: false });
+              s['posts'] = data;
+              ret.push(s);
+              loop.next();
+            });
+          },
+          function(){
+            console.log("!!!!!!!>>", ret);
+            app.locals.sections = ret;
+          });
+    }
     //console.log(">>>> requesting sections: ", data);
-    app.locals.sections = data;
+
+
   });
   next();
 });

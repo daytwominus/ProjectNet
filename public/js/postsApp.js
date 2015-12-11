@@ -4,11 +4,12 @@ var postsApp = angular.module('postsApp', []).filter('to_trusted', ['$sce', func
     };
 }]);
 
-postsApp.controller('postsController', function ($scope, postsFactory) {
-    $scope.init = function(postType, showSections)
+postsApp.controller('postsController', function ($scope, $location, $anchorScroll, $rootScope, postsFactory) {
+    $scope.init = function(postType)
     {
-        if(showSections){
+        if(postType == 'library'){
             $scope.getSections();
+            $scope.showSections = true;
         }
 
         console.log('initializing postsController with type ', postType);
@@ -36,6 +37,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
             .error(function(error){
             });
     };
+
     function processAddPostButton() {
         $scope.isEditing = !$scope.isEditing;
         if ($scope.isEditing)
@@ -45,6 +47,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
             $scope.getPosts($scope.postType);
         }
     };
+
     $scope.addPost = function(){
         console.log("opening area for adding post of type ", $scope.postType);
         if($scope.isEditing)
@@ -57,6 +60,7 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
         else
             processAddPostButton();
     };
+
     $scope.editPost = function(p){
         console.log('editing post ' + JSON.stringify(p.data));
         $scope.isEditing = false;
@@ -92,15 +96,6 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
             });
     };
 
-    postsFactory.getProfile()
-        .success(function(response) {
-            $scope.user = response;
-                console.log('user=', response);
-        })
-        .error(function(error){
-            console.log(error);
-        });
-
     $scope.getSections = function() {
         postsFactory.getSections()
             .success(function (response) {
@@ -115,13 +110,17 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
         var sections = $scope.sections;
         console.log(sections);
         for (var i = 0; i < sections.length; i++) {
-            //console.log(sections[i]["_id"], id);
             if(sections[i]["_id"] == id){
-                //console.log(sections[i]["_id"]);
                 return sections[i];
             }
         }
         return null;
+    }
+
+    $scope.getSectionById = function(id) {
+        console.log('getSectionById ');
+
+        return findSection(id);
     }
 
     $scope.getSectionsForEditing = function(p) {
@@ -139,16 +138,35 @@ postsApp.controller('postsController', function ($scope, postsFactory) {
             for (var i = 0; i < p.sections.length; i++) {
                 var s = findSection(p.sections[i]);
                 s.selected = true;
-                console.log('>>', s);
             }
         }
-        console.log('!!', final);
         return final;
     }
+
+    postsFactory.getProfile()
+        .success(function(response) {
+            $scope.user = response;
+            console.log('user=', response);
+        })
+        .error(function(error){
+            console.log(error);
+        });
 
     $scope.editingPost = {};
     $scope.isEditing = false;
     $scope.addButtonText = "Add";
+
+    $scope.scrollTo = function(id) {
+        $location.hash(id);
+        $anchorScroll();
+    }
+
+    var url = $location.url().substring(1);
+    setTimeout(function(){
+        console.log('url=', url);
+        if(url && url != "")
+         $scope.scrollTo(url);
+    }, 800)
 });
 
 postsApp.factory('postsFactory', function($http){

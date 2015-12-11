@@ -43,7 +43,7 @@ html(lang= "ru")
                                         ul.dropdown-menu
                                             each val, index in sections
                                                 li
-                                                    a(href="/home")
+                                                    a(href="/library#" + val._id)
                                                         | #{val.name}
                                     li
                                         a(href="/Courses")

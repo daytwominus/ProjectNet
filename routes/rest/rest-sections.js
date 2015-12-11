@@ -1,15 +1,33 @@
 var sections = require("../../models/section");
+var posts = require("../../models/post");
+var helpers = require("../../helpers/utils");
+
+
 
 module.exports = function(router) {
     router.get('/sections', function (req, res, next) {
         var params = req.query;
         console.log('getting sections ', params);
-        sections.getSections(params, function(err, data){
-            console.log("requesting sections. params: ", params);
+        sections.getSections(params, function(err, sections){
+            var counter = 0;
+            var ret = [];
             if (err)
                 res.send(err);
             else {
-                res.json(data);
+                    helpers.asyncLoop(sections.length, function(loop){
+                        var i = loop.iteration();
+                        var s = sections[i];
+                        posts.findPostsWithSection(s["_id"], function(err, data){
+                            s = s.toObject({ getters: true, virtuals: false });
+                            s['posts'] = data;
+                            ret.push(s);
+                            loop.next();
+                        });
+                    },
+                    function(){
+                        //console.log("!!!!!!!>>", ret);
+                        res.json(ret);
+                    });
             }
         });
     });

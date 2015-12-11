@@ -1,6 +1,6 @@
 extends layout/header
 block content
-    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('library', true)")
+    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('library')")
         div(ng-show="permissions && permissions.canEditCourses")
             button.btn.btn-primary(type="Submit" ng-click="addPost()" ) {{addButtonText}}
             div
@@ -8,16 +8,42 @@ block content
                     div
                         form
                             textarea(name="editor1")
-        div.panel.panel-body(ng-repeat="p in posts")
+        div.panel.panel-body.bs-component(ng-repeat="s in sections")
+            a(id="{{s._id}}")
+            h3() {{s.name}}
+            div(ng-repeat="p in s.posts")
+                //button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+                button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+                    i.mdi-image-edit
+                p(ng-bind-html="p.data | to_trusted")
+        //each val, index in sections
+        //    div.panel.panel-body.bs-component
+        //        a(id="#{val._id}")
+        //        h3() "#{val.name}"
+        //        //div(ng-repeat="p in getSectionById({val._id}).posts")
+        //        //div(ng-repeat="p in #{val.posts}")
+        //        //div(ng-repeat="p in getSectionById('5669511a4c013228210093f4).posts")
+        //            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+        //            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+        //                i.mdi-image-edit
+        //            p(ng-bind-html="p.data | to_trusted")
+        h3 All items in library
+        div(ng-repeat="p in posts")
             //button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
             button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
                 i.mdi-image-edit
             p(ng-bind-html="p.data | to_trusted")
+        a(href="#5669511a4c013228210093f4") dfgsdgdsgs
         div.modal.fade(id="complete-dialog" tabindex="-1")
             div.modal-dialog
                 div.modal-content
                     div.modal-header
                         button.close(data-dismiss="modal" aria-hidden="true")
+                        div.checkbox
+                            label
+                                input(type="checkbox" ng-model="editingPost.showOnMain")
+                                span.checkbox-material
+                                | Show on main page
                     div.modal-body
                         form
                             textarea(name="editor2")

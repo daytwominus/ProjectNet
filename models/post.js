@@ -46,6 +46,14 @@ var savePostRoutine = function (p, callback){
 
 module.exports = {
     findPostsUniversal : findUniversal,
+    findPostsWithSection : function(sectId, callback) {
+        console.log("trying to find posts for section id=" + JSON.stringify(sectId));
+
+        Post.find({sections: sectId}).or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}}).sort('-_id').exec(function(err, x){
+            console.log("posts for section " + sectId + ': ' + JSON.stringify(x));
+            callback(err, x);
+        });
+    },
     savePost: savePostRoutine,
     deletePost: function (p, callback){
         console.log("deleting post: " + JSON.stringify(p));
