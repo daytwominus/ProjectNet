@@ -201,7 +201,7 @@ postsApp.factory('postsFactory', function($http){
 
     factory.getPosts = function(t) {
         var p = {};
-        if(t === "home")
+        if(t === "index")
             p = { params: {showOnMain:true} };
         else
             p = { params: {"categories":[t]} };
