@@ -29,12 +29,13 @@ passport.use(new LocalStrategy(
                 if (err) { return done(err); }
                 if (!user) {
                     console.log('user ' + username + ' not found');
-                    console.log('remembering user ' + username + ' as inactive');
+                    //console.log('remembering user ' + username + ' as inactive');
                     //users.addUser({isActive:0, displayName : username}, null);
 
                     return done(null, false, { message: 'Unknown user ' + username }); }
-                if (user.password != password) { return done(null, false, { message: 'Invalid password' }); }
-                return done(null, user);
+                if (user.password != password) {
+                    return done(null, false, { message: 'Invalid password' }); }
+                return done(err, user);
             })
         });
     }
@@ -48,7 +49,7 @@ module.exports = function (app){
     app.use(function(req, res, next){
         if (req.isAuthenticated()) {
 
-       //     console.log('isAuthenticated!', JSON.stringify(req.user));
+            console.log('isAuthenticated!', JSON.stringify(req.user));
             res.locals.user = req.user;
             res.locals.isLoggedIn = true;
             return next();

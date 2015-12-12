@@ -13,13 +13,17 @@ html(lang= "ru")
         script(src='/scripts/angular.min.js')
 
     body
-
         header
+            a(href="/")
+                img.header-image(src="images/h.jpg")
             hr
             div.container
                 if(isLoggedIn)
                     div.user-image
-                        img.img-circle(src="#{user.imageUrl}", style="width: 64px; height: 64px;")
+                        if(user.imageUrl)
+                            img.img-circle(src="#{user.imageUrl}", style="width: 64px; height: 64px;")
+                        else
+                            img.img-circle(src="images/default-user-icon-profile.png", style="width: 64px; height: 64px;")
                         div(align="center")
                             p.text-primary(align="center") #{user.displayName}
                             a.text-muted(align="center" href="/login/logout") exit
@@ -27,6 +31,7 @@ html(lang= "ru")
                     div.col-xs-9
                         nav.navbar.navbar-default
                             ul.nav.navbar-nav
+                                i.mdi-home
                                 if isLoggedIn
                                     li
                                         a(href="/home")
@@ -49,7 +54,6 @@ html(lang= "ru")
                                         a(href="/Courses")
                                             span
                                                 | Courses
-
                                     li
                                         a(href="#Glossary")
                                             span

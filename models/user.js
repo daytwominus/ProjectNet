@@ -18,7 +18,8 @@ var UserSchema   = new Schema({
     roles: [],
     isActive: Number,
     isDeleted: Number,
-    imageUrl: String
+    imageUrl: String,
+    password: String
 });
 
 var User = mongoose.model('User', UserSchema);

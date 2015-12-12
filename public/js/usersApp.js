@@ -140,6 +140,18 @@ usersApp.controller('usersController', function ($scope, usersFactory, FileUploa
             });
         $scope.getUsers();
     };
+
+    $scope.getPermissions = function(){
+        usersFactory.getPermissions()
+            .success(function(response) {
+                console.log('permissions: ', response);
+                $scope.permissions = response;
+            })
+            .error(function(error){
+            });
+    };
+
+    $scope.getPermissions();
 });
 
 usersApp.factory('usersFactory', function($http){
@@ -173,6 +185,10 @@ usersApp.factory('usersFactory', function($http){
 
     factory.getProfile = function() {
         return $http.get('/rest/user/');
+    };
+
+    factory.getPermissions = function(t) {
+        return $http.get('/rest/permissions');
     };
 
     return factory;

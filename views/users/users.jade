@@ -1,22 +1,23 @@
 extends ../layout/header
 block content
    div(ng-app="usersApp", ng-controller="usersController", ng-cloak)
-      div(ng-repeat="n in users")
-         div.media-body
-            div.panel.panel-default(style="padding: 10px;")
-               h4.media-heading {{n.displayName}}
-               | {{n.description}}
-               div
-                  img.img-circle(ng-src="{{n.imageUrl}}", style="width: 64px; height: 64px;")
-               div(align="right")
-                  button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editUser(n)')
-                     i.mdi-image-edit
-      div.form-group
-         div.col-lg-10.col-lg-offset-2
-            button.btn.btn-primary(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='addUser()') +New user
+       div(ng-show="permissions && permissions.canEditUsers")
+          div(ng-repeat="n in users")
+             div.media-body
+                div.panel.panel-default(style="padding: 10px;")
+                   h4.media-heading {{n.displayName}}
+                   | {{n.description}}
+                   div
+                      img.img-circle(ng-src="{{n.imageUrl}}", style="width: 64px; height: 64px;")
+                   div(align="right")
+                      button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editUser(n)')
+                         i.mdi-image-edit
+          div.form-group
+             div.col-lg-10.col-lg-offset-2
+                button.btn.btn-primary(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='addUser()') +New user
 
-        div.modal.fade(id="complete-dialog" tabindex="-1")
-           div.modal-dialog
+            div.modal.fade(id="complete-dialog" tabindex="-1")
+            div.modal-dialog
                div.modal-content
                    div.modal-header
                        img.img-circle(ng-src="{{editingUser.imageUrl}}", style="align: center; width: 64px; height: 64px;")

@@ -6,10 +6,13 @@ block content
                 div.form-group
                 label.col-lg-2.control-label Email
                 div.col-lg-10
-                    input.form-control(type="text" name="username" ng-model="editingUser.email" placeholder="Email address" required autofocus)
+                    input.form-control(type="text" name="email" ng-model="editingUser.email" placeholder="Email address" required autofocus)
                 label.col-lg-2.control-label Login Name
                 div.col-lg-10
-                  input.form-control(type="text" name="username" ng-model="editingUser.displayName" placeholder="Name" required autofocus)
+                  input.form-control(type="text" name="username" ng-model="editingUser.name" placeholder="Name" required autofocus)
+                label.col-lg-2.control-label Display Name
+                div.col-lg-10
+                    input.form-control(type="text" name="siplna,e" ng-model="editingUser.displayName" placeholder="Name" required autofocus)
                 label.col-lg-2.control-label Password
                 div.col-lg-10
                     input.form-control(type="password" name="password" ng-model="editingUser.password" placeholder="Password" required autofocus)

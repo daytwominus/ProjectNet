@@ -14,8 +14,13 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
 
         console.log('initializing postsController with type ', postType);
         $scope.postType = postType;
-        $scope.getPosts();
-        $scope.getPermissions();
+
+        postsFactory.getProfile()
+            .success(function(response) {
+                $scope.user = response;
+                $scope.getPosts();
+                $scope.getPermissions();
+            });
     };
 
     $scope.getPermissions = function(){
@@ -29,7 +34,7 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
     };
 
     $scope.getPosts = function(){
-        postsFactory.getPosts($scope.postType)
+        postsFactory.getPosts($scope.postType, $scope.user)
             .success(function(response) {
                 console.log(response);
                 $scope.posts = response;
@@ -199,13 +204,18 @@ postsApp.factory('postsFactory', function($http){
         return $http.delete('/rest/posts/' + p["_id"]);
     };
 
-    factory.getPosts = function(t) {
+    factory.getPosts = function(t, u) {
         var p = {};
         if(t === "index")
             p = { params: {showOnMain:true} };
         else
             p = { params: {"categories":[t]} };
 
+        if(t === "home" && u){
+            p['params']['userId'] = u['_id'];
+        }
+
+        console.log('requesting posts with params', p.params);
         return $http.get('/rest/posts', p);
     };
 
