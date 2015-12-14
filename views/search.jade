@@ -10,7 +10,8 @@ block content
                     p.text-info USER
                     a(href="/users/" + "#{v.data.name}") #{v.data.displayName} (#{v.data.name})
                 if(v.type == 'post')
-                    p.text-info POST
+                    a(href="/posts/" + "#{v.data._id}") POST(#{v.data.categories[0]})
+
                     p!=  v.data.data
 block script
     script(src="/ckeditor.js")

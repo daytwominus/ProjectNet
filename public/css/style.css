@@ -175,3 +175,13 @@ img.header-image{
   left: 0;
   right: 0;
 }
+
+a.permalink{
+}
+div.permalink{
+  float: right;
+  padding: 3px;
+}
+img.permalink{
+
+}

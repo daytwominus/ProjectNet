@@ -9,8 +9,7 @@ block content
                         form
                             textarea(name="editor1")
         div.panel.panel-body(ng-repeat="p in posts")
-            //button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
-            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
                 i.mdi-image-edit
             p(ng-bind-html="p.data | to_trusted")
         div.modal.fade(id="complete-dialog" tabindex="-1")

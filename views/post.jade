@@ -1,0 +1,14 @@
+extends layout/header
+block content
+    div(align="center")
+        small post
+        //a(href="#{username}")
+        //    h4.text-primary #{username}
+    div.list-group-separator
+    div
+       div.panel.panel-body
+          a(href="/posts/" + "#{post._id}") pemalink
+          p!=  post.data
+block script
+    script(src="/ckeditor.js")
+    script(src="/js/postsApp.js")

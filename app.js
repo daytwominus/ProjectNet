@@ -52,6 +52,7 @@ app.use('/', routes);
 app.use('/index', routes);
 app.use('/login', require('./routes/login'));
 app.use('/users', require('./routes/users'));
+app.use('/posts', require('./routes/posts'));
 app.use('/home', require('./routes/home'));
 app.use('/cpanel', require('./routes/cpanel'));
 app.use('/profile', require('./routes/profile'));

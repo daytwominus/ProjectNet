@@ -75,12 +75,15 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
         $scope.editingPost = p;
     };
     $scope.savePost = function(){
-        $scope.editingPost.sections = [];
-        var sections = $scope.sections;
-        for (var i = 0; i < sections.length; i++) {
-            if(sections[i].selected)
-                $scope.editingPost.sections.push(sections[i]["_id"]);
+        if($scope.sections){
+            $scope.editingPost.sections = [];
+            var sections = $scope.sections;
+            for (var i = 0; i < sections.length; i++) {
+                if(sections[i].selected)
+                    $scope.editingPost.sections.push(sections[i]["_id"]);
+            }
         }
+
         postsFactory.savePost($scope.editingPost)
             .success(function(response) {
                 $scope.editingPost = {};
