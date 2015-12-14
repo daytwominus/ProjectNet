@@ -4,6 +4,7 @@ var libItems = require("../models/libItem");
 
 router.get('/', function(req, res, next) {
     console.log("getting library page");
+    res.locals.title = "Library - Digital Urban Studies";
 
     res.render('library');
 

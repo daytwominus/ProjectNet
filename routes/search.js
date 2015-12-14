@@ -19,6 +19,7 @@ router.get('/:q', function(req, res, next) {
     console.log("getting search page", req.params['q']);
 
     searchHelper.getSearchResults(req.params['q'], function(err, data){
+        res.locals.title = req.params['q'] + " Search - Digital Urban Studies";
         res.locals.items = data;
 
         res.header("Cache-Control", "no-cache, no-store, must-revalidate");

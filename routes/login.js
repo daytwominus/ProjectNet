@@ -15,6 +15,7 @@ router.post('/',
     function(req, res) {
         console.log('login occured ', req.user);
         res.locals.user = req.user;
+        res.locals.title = "Login - Digital Urban Studies";
         res.redirect('/index');
     });
 
