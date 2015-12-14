@@ -22,9 +22,9 @@ router.get('/:q', function(req, res, next) {
         res.locals.title = req.params['q'] + " Search - Digital Urban Studies";
         res.locals.items = data;
 
-        res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-        res.header("Pragma", "no-cache");
-        res.header("Expires", 0);
+        //res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+        //res.header("Pragma", "no-cache");
+        //res.header("Expires", 0);
         res.render('search');
     });
 });

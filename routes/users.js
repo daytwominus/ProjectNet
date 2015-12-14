@@ -13,9 +13,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/:name', function(req, res, next) {
   console.log('getting page for user ', req.params['name']);
-  res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-  res.header("Pragma", "no-cache");
-  res.header("Expires", 0);
+  //res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+  //res.header("Pragma", "no-cache");
+  //res.header("Expires", 0);
   res.render('userpage');
 });
 
