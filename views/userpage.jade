@@ -1,6 +1,11 @@
 extends layout/header
 block content
-   div.panel.panel-body
+   div(align="center")
+      small posts by
+      a(href="#{username}")
+         h4.text-primary #{username}
+   div.list-group-separator
+   div
       each v, ind in posts
          div.panel.panel-body
             p!=  v.data

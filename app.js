@@ -27,10 +27,12 @@ app.use(function (req, res, next) {
   //console.log('url=', url);
   var prefix = '/users/';
   if(url.substring(0, prefix.length) === prefix && url != prefix){
-    console.log('getting user posts for ', url.substring(prefix.length));
-    posts.findPostsForUserName(url.substring(prefix.length), function(err, data){
+    var u = url.substring(prefix.length);
+    console.log('getting user posts for ', u);
+    posts.findPostsForUserName(u, function(err, data){
       console.log('posts for ' + url + 'received');
       app.locals.posts = data;
+      app.locals.username = u;
     });
   }
   next();
@@ -61,6 +63,7 @@ app.use('/courses', require('./routes/courses'));
 app.use('/users', require('./routes/users'));
 app.use('/signup', require('./routes/signup'));
 app.use('/sections', require('./routes/sections'));
+app.use('/search', require('./routes/search'));
 //app.use('/public', require('./routes/public'));
 
 // catch 404 and forward to error handler

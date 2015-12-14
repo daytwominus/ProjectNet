@@ -1,8 +1,18 @@
 var users = require("../../models/user");
 //var passport = require('passport');
+var permissions = require("../../helpers/user-permissions");
 
 module.exports = function(router){
     router.get('/users', function(req, res, next) {
+        if(!req.user) {
+            res.sendStatus(401);
+            return;
+        }
+        if(!permissions.getPermissions(req.user).isAdmin){
+            res.sendStatus(401);
+            return;
+        }
+
         users.findUsersUniversal({}, function(err, data){
             console.log("requesting users");
             if (err)

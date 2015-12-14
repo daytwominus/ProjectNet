@@ -48,6 +48,7 @@ module.exports = {
             return perm;
         perm.canEditCourses = canEditCourses(user);
         perm.canEditUsers = canEditCourses(user);
+        perm.isAdmin = isUserAdmin(user);
         return perm;
     }
 }

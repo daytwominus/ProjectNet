@@ -10,6 +10,7 @@ require('./rest/rest-posts')(router);
 require('./rest/rest-libitems')(router);
 require('./rest/rest-users')(router);
 require('./rest/rest-sections')(router);
+require('./rest/rest-search')(router);
 
 //var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 //var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);

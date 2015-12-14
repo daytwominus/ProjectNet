@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "angular-file-upload": "~2.1.4",
+    "async-waterfall": "^0.1.5",
     "binaryjs": "0.2.1",
     "body-parser": "~1.12.0",
     "bootstrap": "~3.3.5",
@@ -25,6 +26,7 @@
     "passport": "0.2.1",
     "passport-facebook": "~2.0.0",
     "passport-local": "~1.0.0",
+    "request": "^2.67.0",
     "s3-uploader": "^1.1.0",
     "serve-favicon": "~2.2.0"
   }

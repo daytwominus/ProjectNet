@@ -12,6 +12,7 @@ html(lang= "ru")
         link(href="/material/css/ripples.min.css" rel="stylesheet")
         script(src='/scripts/angular.min.js')
 
+
     body
         header
             a(href="/")
@@ -59,8 +60,9 @@ html(lang= "ru")
                                             span
                                                 | Glossary
                     div.col-xs-3.text-right.right-nav
+                        //form.pull-left(method="get" id='searchtextform')
                         form.pull-left
-                            input.form-control.col-lg-8(type="text" placeholder="Search")
+                            input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")
                         if isLoggedIn
                             a.pull-right(href="/login/logout")
                                 | Logout
@@ -74,3 +76,4 @@ html(lang= "ru")
                     block content
 
         include footer
+    script(src='/js/common.js')

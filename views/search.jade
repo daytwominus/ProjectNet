@@ -1,0 +1,17 @@
+extends layout/header
+block content
+    div(align="center")
+        small Search results
+    div.list-group-separator
+    div
+        each v, ind in items
+            div.panel.panel-body
+                if(v.type == 'user')
+                    p.text-info USER
+                    a(href="/users/" + "#{v.data.name}") #{v.data.displayName} (#{v.data.name})
+                if(v.type == 'post')
+                    p.text-info POST
+                    p!=  v.data.data
+block script
+    script(src="/ckeditor.js")
+    script(src="/js/postsApp.js")
