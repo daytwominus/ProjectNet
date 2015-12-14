@@ -48,7 +48,14 @@ module.exports = function(router){
         }
 
         users.addUser(u, function(err, data){
-            res.sendStatus(200);
+            if(err){
+                console.log('error while adding user:', err);
+                res.send(406);
+            }
+            else{
+                console.log('user added:', data);
+                res.sendStatus(200);
+            }
         });
     });
 

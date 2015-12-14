@@ -7,8 +7,10 @@ block content
                 div.panel.panel-default(style="padding: 10px;")
                    h4.media-heading {{n.displayName}}
                    | {{n.description}}
-                   div
+                   div(ng-if="n.imageUrl")
                       img.img-circle(ng-src="{{n.imageUrl}}", style="width: 64px; height: 64px;")
+                   div(ng-if="!n.imageUrl")
+                       img.img-circle(src="images/default-user-icon-profile.png", style="width: 64px; height: 64px;")
                    div(align="right")
                       button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editUser(n)')
                          i.mdi-image-edit
@@ -26,9 +28,12 @@ block content
                            form.form-horizontal
                                 fieldset
                                     div.form-group
+                                    label.col-lg-2.control-label Login
+                                    div.col-lg-10
+                                        input#userName.form-control(typ1e="text" placeholder="Display Name" ng-model="editingUser.name")
                                     label.col-lg-2.control-label Name
                                     div.col-lg-10
-                                        input#userName.form-control(typ1e="text" placeholder="Display Name" ng-model="editingUser.displayName")
+                                        input#displayName.form-control(typ1e="text" placeholder="Display Name" ng-model="editingUser.displayName")
                                     label.col-lg-2.control-label Password
                                     div.col-lg-10
                                         input#userPassword.form-control(type="password" placeholder="Password" ng-model="editingUser.password")

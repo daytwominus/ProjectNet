@@ -1,0 +1,10 @@
+extends layout/header
+block content
+   div.panel.panel-body
+      each v, ind in posts
+         div.panel.panel-body
+            p!=  v.data
+
+block script
+   script(src="/ckeditor.js")
+   script(src="/js/postsApp.js")

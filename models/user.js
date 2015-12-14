@@ -92,7 +92,8 @@ module.exports = {
     },
     addUser: function(params, done){
         console.log("creating user:" + JSON.stringify(params));
-        findUserUniversal({"displayName": params["displayName"], "id":params["id"]}, function(err, res){
+
+        findUserUniversal({"name": params["name"], "id":params["id"]}, function(err, res){
             if(err){}
             else {
                 if(res == null) {
@@ -107,8 +108,12 @@ module.exports = {
                         console.log("user saved: " + JSON.stringify(user));
                     });
                 }
-                else
+                else{
                     console.log("already exists");
+                    done({error:"user with name" + params["name"] + "already exists"}, null);
+                    return;
+                }
+
                 done(err, null);
             }
         });

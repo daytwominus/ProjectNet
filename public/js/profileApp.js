@@ -1,13 +1,14 @@
 var profileApp = angular.module('profileApp', ['angularFileUpload']);
 
 profileApp.controller('profileController', function ($scope, profileFactory, FileUploader) {
+    $scope.editingUser = {};
     $scope.updateUser = function(){
-        profileFactory.updateProfile($scope.user)
+        profileFactory.updateProfile($scope.editingUser)
             .success(function(response) {
                 $scope.updateSuccessFlag = true;
-                profileFactory.getProfile($scope.user)
+                profileFactory.getProfile($scope.editingUser)
                     .success(function(response) {
-                        $scope.user = response;
+                        $scope.editingUser = response;
                         console.log(response);
                     })
                     .error(function(error){
@@ -18,19 +19,6 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
                 $scope.updateErrorFlag = true;
             });
     };
-
-    $scope.editingUser = $scope.user;
-    $scope.uploadInProgress = false;
-    profileFactory.getProfile()
-        .success(function(response) {
-            $scope.uploadInProgress = false;
-            console.log('user retreived: ', response);
-            $scope.user = response;
-            console.log('user=', response);
-        })
-        .error(function(error){
-            console.log(error);
-        });
 
     var uploader = $scope.uploader = new FileUploader({
         url: 'rest/upload',
@@ -80,13 +68,23 @@ profileApp.controller('profileController', function ($scope, profileFactory, Fil
     uploader.onCompleteItem = function(fileItem, response, status, headers) {
         //console.info('onCompleteItem', fileItem, response, status, headers);
         console.log('uploaded url:', response);
-        $scope.user.imageUrl = response;
-        $scope.user.tempImageUrl = response;
+        $scope.editingUser.imageUrl = response;
+        console.log('now user:', $scope.editingUser);
     };
     uploader.onCompleteAll = function() {
         console.info('onCompleteAll');
         $scope.uploadInProgress = false;
     };
+
+    profileFactory.getProfile()
+        .success(function (response) {
+            $scope.editingUser = response;
+            console.log('editing user:', $scope.editingUser);
+        })
+        .error(function (error) {
+        });
+
+    $scope.uploadInProgress = false;
 
     console.info('uploader', uploader);
 });
@@ -98,9 +96,9 @@ profileApp.factory('profileFactory', function($http){
         return $http.get('/rest/user/');
     };
 
-    factory.updateProfile = function(user) {
-        console.log("submitting user update ", user);
-        return $http.post('/rest/users', user);
+    factory.updateProfile = function(u) {
+        console.log("submitting user update ", u);
+        return $http.put('/rest/users/' + u._id, u);
     };
 
     return factory;

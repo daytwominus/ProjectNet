@@ -1,5 +1,6 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
+var users = require('./user');
 
 var PostSchema   = new Schema({
     provider: String,
@@ -53,6 +54,23 @@ module.exports = {
             console.log("posts for section " + sectId + ': ' + JSON.stringify(x));
             callback(err, x);
         });
+    },
+    findPostsForUserName : function(username, callback) {
+        console.log("trying to find posts for user with name=" + JSON.stringify(username));
+        users.findUsersUniversal({"name":username}, function(err, data){
+            if(!data || data.length==0){
+                callback(err, []);
+                return;
+            }
+            var id = data[0]["_id"];
+            console.log('now getting posts with userId=', id);
+            Post.find({'userId': id}).or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}}).sort('-_id').exec(function(err, x){
+                console.log("posts for user " + username + ': ' + JSON.stringify(x));
+                callback(err, x);
+            });
+        });
+
+
     },
     savePost: savePostRoutine,
     deletePost: function (p, callback){

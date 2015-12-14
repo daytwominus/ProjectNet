@@ -1,7 +1,31 @@
 extends layout/header
 
 block content
-    include ./users/profileEditor.jade
+    if(user)
+        div.panel.panel-default(ng-app="profileApp" ng-cloak)
+            div.panel-body(ng-controller='profileController')
+                h2(ng-if="updateSuccessFlag") success
+                h2(ng-if="updateErrorFlag") error
+                form.form-horizontal
+                h3(align="center") {{editingUser.name}}
+                fieldset
+                    div.form-group
+                    label.col-lg-2.control-label Display Name
+                    div.col-lg-10
+                        input#userName.form-control(typ1e="text" placeholder="DisplayName" ng-model="editingUser.displayName")
+                    label.col-lg-2.control-label Password
+                    div.col-lg-10
+                        input#userPassword.form-control(type="password" placeholder="Password" ng-model="editingUser.password")
+                    label.col-lg-2.control-label Avatar
+                    div.col-lg-10
+                        input.form-control(name="avatar" type="file" nv-file-select uploader="uploader" ng-model="editingUser.imageUrl")
+                div(ng-if="editingUser.imageUrl")
+                    img.img-circle(ng-src="{{editingUser.imageUrl}}", style="width: 64px; height: 64px;")
+                div(ng-if="!editingUser.imageUrl")
+                    img.img-circle(src="images/default-user-icon-profile.png", style="width: 64px; height: 64px;")
+                div.form-group
+                    div.col-lg-10.col-lg-offset-2
+                        button.btn.btn-primary(ng-disabled="{{uploadInProgress}}" type="submit" ng-click='updateUser()') Submit
 
 block script
     script(src="/js/profileApp.js")

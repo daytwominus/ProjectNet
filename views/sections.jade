@@ -1,33 +1,34 @@
 extends layout/header
 block content
    div(ng-app="cpanelApp", ng-controller="cpanelController", ng-cloak)
-      div(ng-repeat="n in sections")
-         div.media-body
-             div.panel.panel-default(style="padding: 10px;")
-                 h4.media-heading {{n.name}}
-                 div(align="right")
-                     button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editSection(n)')
-                         i.mdi-image-edit
-      div.form-group
-         div.col-lg-10.col-lg-offset-2
-            button.btn.btn-primary(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='addSection()') +New section
+       div(ng-show="permissions && permissions.canEditUsers")
+          div(ng-repeat="n in sections")
+             div.media-body
+                 div.panel.panel-default(style="padding: 10px;")
+                     h4.media-heading {{n.name}}
+                     div(align="right")
+                         button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editSection(n)')
+                             i.mdi-image-edit
+          div.form-group
+             div.col-lg-10.col-lg-offset-2
+                button.btn.btn-primary(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='addSection()') +New section
 
-      div.modal.fade(id="complete-dialog" tabindex="-1")
-         div.modal-dialog
-            div.modal-content
-               div.modal-header
-               div.modal-body
-                  form
-                     form.form-horizontal
-                        fieldset
-                           div.form-group
-                           label.col-lg-2.control-label Name
-                           div.col-lg-10
-                              input#sectName.form-control(typ1e="text" placeholder="Name" ng-model="editingSection.name")
-               div.modal-footer
-                  button.btn.btn-primary(data-dismiss="modal" ng-click='saveOrUpdateSection()') Save
-                  button.btn.btn-primary(data-dismiss="modal") Cancel
-                  button.btn.btn-primary(data-dismiss="modal" ng-click='deleteSection()') Delete
+          div.modal.fade(id="complete-dialog" tabindex="-1")
+             div.modal-dialog
+                div.modal-content
+                   div.modal-header
+                   div.modal-body
+                      form
+                         form.form-horizontal
+                            fieldset
+                               div.form-group
+                               label.col-lg-2.control-label Name
+                               div.col-lg-10
+                                  input#sectName.form-control(typ1e="text" placeholder="Name" ng-model="editingSection.name")
+                   div.modal-footer
+                      button.btn.btn-primary(data-dismiss="modal" ng-click='saveOrUpdateSection()') Save
+                      button.btn.btn-primary(data-dismiss="modal") Cancel
+                      button.btn.btn-primary(data-dismiss="modal" ng-click='deleteSection()') Delete
 block script
     script(src="/js/cpanelApp.js")
     script(src="/js/controllers.js")

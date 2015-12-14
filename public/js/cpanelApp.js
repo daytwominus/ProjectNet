@@ -57,6 +57,14 @@ cpanelApp.controller('cpanelController', function ($scope, cpanelFactory) {
         }
     };
 
+    cpanelFactory.getPermissions()
+        .success(function(response) {
+            console.log('permissions: ', response);
+            $scope.permissions = response;
+        })
+        .error(function(error){
+        });
+
     $scope.editingSection = {};
     $scope.getSections();
 });
@@ -80,5 +88,9 @@ cpanelApp.factory('cpanelFactory', function($http){
 
         return $http.delete('/rest/sections/' + u._id, u);
     };
+    factory.getPermissions = function(t) {
+        return $http.get('/rest/permissions');
+    };
+
     return factory;
 });

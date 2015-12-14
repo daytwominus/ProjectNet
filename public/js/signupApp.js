@@ -9,12 +9,15 @@ signupApp.controller('signupController', function ($scope, signupFactory, $locat
     $scope.saveUser = function(){
         signupFactory.createUser($scope.editingUser)
             .success(function(response) {
-
+                alert('User has been registered but should be approved by administrator');
+                $location.path("/");
                 $scope.editingUser = {};
             })
             .error(function(error){
+                alert('User with the name specified already exists');
+                return;
             });
-        alert('User has been registered but should be approved by administrator');
+
     };
 
     $scope.editingUser = {};
