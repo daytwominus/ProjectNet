@@ -2,7 +2,7 @@ var passwordHash = require('password-hash');
 
 module.exports = {
     hashPwd:function(plain){
-        var hashedPassword = passwordHash.generate('password123');
+        var hashedPassword = passwordHash.generate(plain);
 
         console.log(hashedPassword);
 

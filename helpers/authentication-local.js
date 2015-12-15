@@ -32,10 +32,10 @@ passport.use(new LocalStrategy(
                 }
                 if (!user) {
                     console.log('user ' + username + ' not found');
-
                     return done(null, false, { message: 'Unknown user ' + username });
                 }
                 if (!pwd.verify(user.password, password)){
+                    console.log('password doesnt match');
                     return done(null, false, { message: 'Invalid password' }); }
                 return done(err, user);
             })
