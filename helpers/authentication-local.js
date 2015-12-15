@@ -35,7 +35,8 @@ passport.use(new LocalStrategy(
 
                     return done(null, false, { message: 'Unknown user ' + username });
                 }
-                if (!pwd.verify(user.password, password)) {
+                //if (!pwd.verify(user.password, password))
+                {
                     return done(null, false, { message: 'Invalid password' }); }
                 return done(err, user);
             })
