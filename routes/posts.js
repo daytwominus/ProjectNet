@@ -12,10 +12,7 @@ router.get('/:id', function(req, res, next) {
         else
             res.locals.post = {"data":"not found"};
 
-        //res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-        //res.header("Pragma", "no-cache");
-        //res.header("Expires", 0);
-        //res.render('post');
+        res.render('post');
     });
 
 });
