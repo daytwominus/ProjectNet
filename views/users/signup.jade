@@ -17,6 +17,12 @@ block content
                 div.col-lg-10
                     input.form-control(type="password" name="password" ng-model="editingUser.password" placeholder="Password" required autofocus)
                 button.btn.btn-primary.btn-raised(ng-click='saveUser()' data-toggle="modal" type="submit") Sign up
+
+                div(align="center" ng-if="message")
+                    span.label.label-danger
+                        | {{message}}
+                //div.alert.alert-dismissible.alert-danger
+                //    | hello
 block script
     script(src="/js/signupApp.js")
     script(src="/js/controllers.js")

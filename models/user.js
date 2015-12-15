@@ -105,6 +105,7 @@ module.exports = {
                         user[key] = params[key];
                     }
 
+                    user["password"] = pwd.hashPwd(user["password"]);
                     user.save(function (err) {
                         if (err)
                             console.log('error saving user');
