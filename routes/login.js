@@ -6,8 +6,9 @@ var users = require("../models/user");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    res.locals.title = "Login";
     console.log("login request");
-    res.render('login', { title: 'Express' });
+    res.render('login');
 });
 
 router.post('/',
@@ -23,7 +24,7 @@ router.post('/',
 
 router.get('/logout', function(req, res){
     req.logout();
-    res.redirect('/home');
+    res.redirect('/');
 });
 
 //facebook login
