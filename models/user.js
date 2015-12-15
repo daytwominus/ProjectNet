@@ -1,4 +1,5 @@
 var mongoose     = require('mongoose');
+var pwd     = require('../helpers/password');
 var Schema       = mongoose.Schema;
 String.prototype.toObjectId = function() {
     var ObjectId = (require('mongoose').Types.ObjectId);
@@ -57,6 +58,8 @@ var updateUserRoutine = function(u, cb){
     console.log("updating user ", u, 'id=' + u['_id']);
     var id = u['_id'];
     delete u["_id"];
+
+    u["password"] = pwd.hashPwd(u["password"]);
 
     User.findByIdAndUpdate(id, { $set: u}, function (err, tank) {
         console.log(err, tank);

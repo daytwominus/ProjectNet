@@ -6,6 +6,7 @@ var flash = require('connect-flash')
 var session = require('express-session');
 
 var users = require("../models/user");
+var pwd   = require('./password');
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -25,15 +26,16 @@ passport.use(new LocalStrategy(
             // indicate failure and set a flash message.  Otherwise, return the
             // authenticated `user`.
             users.findUserByLoginOrEmail(username, function(err, user) {
-                console.log('user : ' + JSON.stringify(user));
-                if (err) { return done(err); }
+                console.log('authentication: user found: ' + JSON.stringify(user));
+                if (err) {
+                    return done(err);
+                }
                 if (!user) {
                     console.log('user ' + username + ' not found');
-                    //console.log('remembering user ' + username + ' as inactive');
-                    //users.addUser({isActive:0, displayName : username}, null);
 
-                    return done(null, false, { message: 'Unknown user ' + username }); }
-                if (user.password != password) {
+                    return done(null, false, { message: 'Unknown user ' + username });
+                }
+                if (!pwd.verify(user.password, password)) {
                     return done(null, false, { message: 'Invalid password' }); }
                 return done(err, user);
             })
