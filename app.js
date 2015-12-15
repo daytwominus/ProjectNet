@@ -17,24 +17,12 @@ app.set('view engine', 'jade');
 app.locals.pretty = true;
 
 var sections = require("./models/section");
-var posts = require("./models/post");
 app.use(function (req, res, next) {
   sections.getSections({}, function(err, sections){
     app.locals.sections = sections;
   });
 
-  var url = req.url.toLowerCase();
-  //console.log('url=', url);
-  var prefix = '/users/';
-  if(url.substring(0, prefix.length) === prefix && url != prefix){
-    var u = url.substring(prefix.length);
-    console.log('getting user posts for ', u);
-    posts.findPostsForUserName(u, function(err, data){
-      console.log('posts for ' + url + 'received');
-      app.locals.posts = data;
-      app.locals.username = u;
-    });
-  }
+  //var url = req.url.toLowerCase();
   next();
 });
 

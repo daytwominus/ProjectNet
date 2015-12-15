@@ -2,10 +2,12 @@ extends layout/header
 block content
     div(align="center")
         small post
+    div.permalink
+        a.parmalink(href="/posts/" + "#{post._id}") permalink
+            img.permalink(src="/images/permalink-icon.png")
     div.list-group-separator
     div
        div.panel.panel-body
-          a(href="/posts/" + "#{post._id}") pemalink
           p!=  post.data
 block script
     script(src="/ckeditor.js")

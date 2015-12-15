@@ -7,6 +7,9 @@ block content
    div.list-group-separator
    div
       each v, ind in posts
+         div.permalink
+            a.parmalink(href="/posts/" + "#{v._id}") permalink
+               img.permalink(src="/images/permalink-icon.png")
          div.panel.panel-body
             p!=  v.data
 
