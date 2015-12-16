@@ -16,7 +16,7 @@ router.post('/',
         failureRedirect: '/login',
         failureFlash: 'Invalid username or password.' }),
     function(req, res) {
-        console.log('login occured: ', req.user);
+        console.log('login occured: ', JSON.stringify(req.user));
         res.locals.user = req.user;
         res.locals.title = "Login - Digital Urban Studies";
         res.redirect('/index');

@@ -24,12 +24,10 @@ html(lang= "ru")
                         if(user.imageUrl)
                             img.img-circle(src="#{user.imageUrl}", style="width: 64px; height: 64px;")
                         else
-                            img.img-circle(src="images/default-user-icon-profile.png", style="width: 64px; height: 64px;")
+                            img.img-circle(src="/images/default-user-icon-profile.png", style="width: 64px; height: 64px;")
                         div(align="center")
                             p.text-primary(align="center") #{user.displayName}
                             a.text-muted(align="center" href="/login/logout") exit
-
-
                 div.row
                     div.col-xs-9
                         nav.navbar.navbar-default
@@ -65,8 +63,11 @@ html(lang= "ru")
                                         li
                                             a(href="#")
                                                 span
-                                                    | Menu+
+                                                    | menu+
                                             ul.dropdown-menu
+                                                li
+                                                    a(href="/posts")
+                                                        | All content
                                                 li
                                                     a(href="/users")
                                                         | Users Management

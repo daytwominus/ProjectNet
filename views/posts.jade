@@ -1,0 +1,34 @@
+extends layout/header
+block content
+    i.mdi.mdi-home
+    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('allforadmin')")
+        if(isLoggedIn)
+            div.panel.panel-body(ng-repeat="p in posts")
+                div.permalink
+                    a.parmalink(href="/posts/" + "{{p._id}}") permalink
+                        img.permalink(src="/images/permalink-icon.png")
+                button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+                    i.mdi-image-edit
+                p(ng-bind-html="p.data | to_trusted")
+            div.modal.fade(id="complete-dialog" tabindex="-1")
+                div.modal-dialog
+                    div.modal-content
+                        div.modal-header
+                            button.close(data-dismiss="modal" aria-hidden="true")
+                        div.modal-body
+                            form
+                                textarea(name="editor2")
+                        div.modal-footer
+                            button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Save
+                            button.btn.btn-primary(data-dismiss="modal") Cancel
+                            button.btn.btn-primary(ng-if="editingPost.isDeleted" data-dismiss="modal" ng-click='restorePost()') Restore
+                            button.btn.btn-primary(ng-if="!editingPost.isDeleted" data-dismiss="modal" ng-click='deletePost()') Delete
+block script
+    script(src="/ckeditor.js")
+    if(isLoggedIn)
+        script CKEDITOR.replace('editor2', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
+    script(src="/js/postsApp.js")
+    script(src="/js/controllers.js")
+    script(src="/js/usersApp.js")
+    script(src="/js/angular-file-upload.min.js")
+                     

@@ -74,7 +74,8 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
         CKEDITOR.instances.editor2.setData(p.data);
         $scope.editingPost = p;
     };
-    $scope.savePost = function(){
+
+    $scope.savePost = function(cb){
         if($scope.sections){
             $scope.editingPost.sections = [];
             var sections = $scope.sections;
@@ -90,6 +91,8 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
             })
             .error(function(error){
             });
+        if(cb)
+            cb();
         $scope.editingPost = {};
     };
 
@@ -102,6 +105,13 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
             })
             .error(function(error){
             });
+    };
+
+    $scope.restorePost = function(){
+        $scope.editingPost.idDeleted = false;
+        $scope.savePost(function(){
+            $scope.getPosts($scope.postType);
+        });
     };
 
     $scope.getSections = function() {
@@ -211,8 +221,13 @@ postsApp.factory('postsFactory', function($http){
         var p = {};
         if(t === "index")
             p = { params: {showOnMain:true} };
-        else
-            p = { params: {"categories":[t]} };
+        else{
+            if(t == 'allforadmin'){
+                p = { params: {getAll:true} };
+            }
+            else
+                p = { params: {"categories":[t]} };
+        }
 
         if(t === "home" && u){
             p['params']['userId'] = u['_id'];

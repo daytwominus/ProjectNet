@@ -24,6 +24,14 @@ var findUniversal = function(params, callback) {
     });
 };
 
+var getAllPosts = function(callback) {
+    console.log('getting all logs');
+    Post.find({}).sort('-_id').exec(function(err, x){
+        console.log("all posts: " + JSON.stringify(x));
+        callback(err, x);
+    });
+};
+
 var savePostRoutine = function (p, callback){
     console.log("saving post: " + JSON.stringify(p));
 
@@ -47,6 +55,7 @@ var savePostRoutine = function (p, callback){
 
 module.exports = {
     findPostsUniversal : findUniversal,
+    getAll:getAllPosts,
     findPostsWithSection : function(sectId, callback) {
         console.log("trying to find posts for section id=" + JSON.stringify(sectId));
 

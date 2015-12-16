@@ -22,7 +22,7 @@ block content
                 div(ng-if="editingUser.imageUrl")
                     img.img-circle(ng-src="{{editingUser.imageUrl}}", style="width: 64px; height: 64px;")
                 div(ng-if="!editingUser.imageUrl")
-                    img.img-circle(src="images/default-user-icon-profile.png", style="width: 64px; height: 64px;")
+                    img.img-circle(src="/images/default-user-icon-profile.png", style="width: 64px; height: 64px;")
                 div.form-group
                     div.col-lg-10.col-lg-offset-2
                         button.btn.btn-primary(ng-disabled="{{uploadInProgress}}" type="submit" ng-click='updateUser()') Submit
