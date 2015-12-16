@@ -28,6 +28,8 @@ html(lang= "ru")
                         div(align="center")
                             p.text-primary(align="center") #{user.displayName}
                             a.text-muted(align="center" href="/login/logout") exit
+
+
                 div.row
                     div.col-xs-9
                         nav.navbar.navbar-default
@@ -59,6 +61,18 @@ html(lang= "ru")
                                         a(href="/Glossary")
                                             span
                                                 | Glossary
+                                    if(user.isAdmin)
+                                        li
+                                            a(href="#")
+                                                span
+                                                    | Menu+
+                                            ul.dropdown-menu
+                                                li
+                                                    a(href="/users")
+                                                        | Users Management
+                                                li
+                                                    a(href="/sections")
+                                                        | Library Sections
                     div.col-xs-3.text-right.right-nav
                         //form.pull-left(method="get" id='searchtextform')
                         form.pull-left
@@ -69,7 +83,6 @@ html(lang= "ru")
                         else
                             a.pull-right(href="/login")
                                 | login
-
         div.container
             div.row
                 div.col-md-12
