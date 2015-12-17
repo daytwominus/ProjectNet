@@ -22,9 +22,9 @@ html(lang= "ru")
                 if(isLoggedIn)
                     div.user-image
                         if(user.imageUrl)
-                            img.img-circle(src="#{user.imageUrl}", style="width: 64px; height: 64px;")
+                            img.img-circle(src="#{user.imageUrl}" href="/profile", style="width: 64px; height: 64px;")
                         else
-                            img.img-circle(src="/images/default-user-icon-profile.png", style="width: 64px; height: 64px;")
+                            img.img-circle(src="/images/default-user-icon-profile.png" href="/profile", style="width: 64px; height: 64px;")
                         div(align="center")
                             p.text-primary(align="center") #{user.displayName}
                             a.text-muted(align="center" href="/login/logout") exit
