@@ -67,7 +67,7 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
     };
 
     $scope.editPost = function(p){
-        console.log('editing post ' + JSON.stringify(p.data));
+        console.log('editing post ' + JSON.stringify(p));
         $scope.isEditing = false;
         $scope.sectionsForEditing = $scope.getSectionsForEditing(p);
 
@@ -75,7 +75,7 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
         $scope.editingPost = p;
     };
 
-    $scope.savePost = function(cb){
+    $scope.savePost = function(){
         if($scope.sections){
             $scope.editingPost.sections = [];
             var sections = $scope.sections;
@@ -91,8 +91,6 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
             })
             .error(function(error){
             });
-        if(cb)
-            cb();
         $scope.editingPost = {};
     };
 
@@ -108,7 +106,7 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
     };
 
     $scope.restorePost = function(){
-        $scope.editingPost.idDeleted = false;
+        $scope.editingPost.isDeleted = false;
         $scope.savePost(function(){
             $scope.getPosts($scope.postType);
         });

@@ -2,8 +2,6 @@ var sections = require("../../models/section");
 var posts = require("../../models/post");
 var helpers = require("../../helpers/utils");
 
-
-
 module.exports = function(router) {
     router.get('/sections', function (req, res, next) {
         var params = req.query;

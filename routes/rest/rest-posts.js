@@ -3,6 +3,7 @@ var posts = require("../../models/post");
 module.exports = function(router){
     router.get('/posts', function(req, res, next) {
         console.log('current user ', JSON.stringify(req.user));
+
         var params = req.query;
 
         console.log("requesting posts. params: ", params);

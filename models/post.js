@@ -1,6 +1,7 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 var users = require('./user');
+var helpers = require("../helpers/utils");
 
 var PostSchema   = new Schema({
     provider: String,
@@ -18,25 +19,43 @@ var Post = mongoose.model('post', PostSchema);
 var findUniversal = function(params, callback) {
     console.log("trying to find posts: " + JSON.stringify(params));
 
-    Post.find(params).or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}}).sort('-_id').exec(function(err, x){
+    Post.find(params)
+        .or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}})
+        .sort({_id: -1}).exec(function(err, x){
         console.log("posts: " + JSON.stringify(x));
         callback(err, x);
     });
 };
 
 var getAllPosts = function(callback) {
-    console.log('getting all logs');
-    Post.find({}).sort('-_id').exec(function(err, x){
-        console.log("all posts: " + JSON.stringify(x));
-        callback(err, x);
-    });
+    console.log('getting all posts');
+    Post.find({})
+        .sort({isDeleted: 1, _id: -1}).exec(function(err, x){
+            var ret = [];
+            helpers.asyncLoop(x.length, function(loop){
+                    var i = loop.iteration();
+                    var p = x[i];
+                    users.findUserById(p["userId"], function(err, data){
+                        p = p.toObject({ getters: true, virtuals: false });
+                        p['user'] = data;
+                        ret.push(p);
+                        loop.next();
+                    });
+                },
+                function(){
+                    //console.log("!!!!!!!>>", ret);
+                    console.log("all posts: " + JSON.stringify(ret));
+                    callback(err, ret);
+                });
+
+        });
 };
 
 var savePostRoutine = function (p, callback){
     console.log("saving post: " + JSON.stringify(p));
 
     if(p["_id"]){
-        console.log('post with id ' + p._id + " exists; updating.")
+        console.log('id is not null (' + p._id + "); updating.")
         Post.findOneAndUpdate({"_id": p._id.toObjectId()}, p).exec();
     }
     else{
