@@ -39,9 +39,9 @@ var getAllPosts = function(callback) {
                         if(data){
                             p = p.toObject({ getters: true, virtuals: false });
                             p['user'] = data;
-                            ret.push(p);
                         }
 
+                        ret.push(p);
                         loop.next();
                     });
                 },

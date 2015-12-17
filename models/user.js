@@ -89,7 +89,7 @@ module.exports = {
     findUserById: function(id, done){
         console.log("userById " + id);
         if(!id){
-            done(err, null);
+            done({info:'not found'}, null);
             return;
         }
         User.collection.findOne({_id: id.toObjectId()}, function(err, data){
