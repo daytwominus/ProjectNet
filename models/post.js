@@ -36,9 +36,12 @@ var getAllPosts = function(callback) {
                     var i = loop.iteration();
                     var p = x[i];
                     users.findUserById(p["userId"], function(err, data){
-                        p = p.toObject({ getters: true, virtuals: false });
-                        p['user'] = data;
-                        ret.push(p);
+                        if(data){
+                            p = p.toObject({ getters: true, virtuals: false });
+                            p['user'] = data;
+                            ret.push(p);
+                        }
+
                         loop.next();
                     });
                 },
