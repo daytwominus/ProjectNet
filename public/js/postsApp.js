@@ -227,6 +227,9 @@ postsApp.factory('postsFactory', function($http){
             if(t == 'allforadmin'){
                 p = { params: {getAll:true} };
             }
+            else if(t === 'home'){
+                p = { params: {} };
+            }
             else
                 p = { params: {"categories":[t]} };
         }

@@ -50,7 +50,6 @@ var getAllPosts = function(callback) {
                     console.log("all posts: " + JSON.stringify(ret));
                     callback(err, ret);
                 });
-
         });
 };
 
