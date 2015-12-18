@@ -1,7 +1,15 @@
+@font-face {
+  font-family:"HelveticaNeue-Light";
+  src:url(../fonts/HelveticaNeue-Light.otf) format("opentype");
+  src:url(../fonts/HelveticaNeue-Light.woff) format("woff");
+
+}
+
 header {
   padding-top: 110px;
   background: #242424;
   //background-image: url("../images/h.jpg");
+
   background-position : center;
   background-repeat: no-repeat;
   z-index: 2;
@@ -62,26 +70,30 @@ header .navbar-default.navbar .dropdown-menu li > a {
   color: #fff;
   font-weight: normal;
   font-size: 18px;
-  font-family:'Lantinghei SC','Microsoft Yahei';
+  //font-family:'Lantinghei SC','Microsoft Yahei';
+  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
 }
 header .navbar.navbar .dropdown-menu li > a:hover,
 header .navbar-default.navbar .dropdown-menu li > a:hover,
 header .navbar.navbar .dropdown-menu li > a:focus,
 header .navbar-default.navbar .dropdown-menu li > a:focus {
   background: #2f3538;
-  font-weight: bold;
+  font-weight: normal;
   color: #fff;
   font-size: 18px;
   border-radius: 5px;
 }
 header .navbar .navbar-nav > li > a {
   padding: 20px 0;
-  font-size: 18px;
-  font-family:'Lantinghei SC','Microsoft Yahei';
+  font-size: 21px;
+  font-weight: normal;
+  text-transform: uppercase;
+  //font-family:'Lantinghei SC','Microsoft Yahei';
+  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
 }
 header .navbar .navbar-nav > li > a > span {
   position: relative;
-  font-weight: bold;
+  font-weight: normal;
 }
 header .navbar .navbar-nav li:hover span:after,
 header .navbar .navbar-nav a:hover span:after,
@@ -96,6 +108,20 @@ header .navbar .navbar-nav a.active span:after {
 .navbar.navbar .dropdown-menu, .navbar-default.navbar .dropdown-menu {
   border-radius: 5px;
 }
+
+div.row.header-row{
+ // width: 1500px;
+}
+
+a.login-logout{
+  position:absolute;
+  top: 110px;
+  right: 40px;
+  margin-left:30px;
+  padding-bottom:-10px;
+  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+}
+
 .right-nav {
 
 }
@@ -157,10 +183,19 @@ div.navbar.navbar-fixed-bottom{
 
 }
 
-div.user-image{
+div.user-image-area{
   position:absolute;
-  top: 10px;
-  right: 20px;
+  top: 20px;
+  right: 30px;
+  margin:10px;
+}
+
+img.img-circle.main-user-avatar{
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img.header-image{
@@ -170,7 +205,7 @@ img.header-image{
   max-width: 1000px;
   min-width: 600px;
   overflow: hidden;
-  background: #fff;
+  background-color: #242424;
   margin: -7px auto;
   left: 0;
   right: 0;
@@ -209,4 +244,15 @@ a.label.label-info.post-user-label{
   top:2px;
   top: -18px;
   left: 1px;
+}
+
+span.header-user-name{
+  position:absolute;
+  top: 121px;
+  right: 20px;
+  margin-left:30px;
+  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+  font-size: 21px;
+  text-transform: uppercase;
+  color: #fff;
 }

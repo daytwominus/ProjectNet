@@ -16,26 +16,27 @@ html(lang= "ru")
     body
         header
             a(href="/")
-                img.header-image(src="/images/h.jpg")
+                img.header-image(src="/images/h.png")
             hr
             div.container
                 if(isLoggedIn)
-                    div.user-image
+                    div.user-image-area
                         if(user.imageUrl)
-                            img.img-circle(src="#{user.imageUrl}" href="/profile", style="width: 64px; height: 64px;")
+                            img.img-circle.main-user-avatar(src="#{user.imageUrl}" href="/profile")
                         else
-                            img.img-circle(src="/images/default-user-icon-profile.png" href="/profile", style="width: 64px; height: 64px;")
+                            img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
+                        //div(align="center")
+                        //    p.text-primary(align="center" style="margin:5px;") #{user.displayName}
                         div(align="center")
-                            p.text-primary(align="center") #{user.displayName}
-                            a.text-muted(align="center" href="/login/logout") exit
-                div.row
+                            a.text-primary(align="center" href="/login/logout" style="margin:15px;") log out
+                div.row.header-row
                     div.col-xs-9
                         nav.navbar.navbar-default
                             ul.nav.navbar-nav
                                 i.mdi-home
                                 if isLoggedIn
                                     li
-                                        a(href="/home")
+                                        a(href="/home" style="left:-42px;")
                                             span
                                                 | Home
                                     li
@@ -61,7 +62,7 @@ html(lang= "ru")
                                                 | Glossary
                                     if(user.isAdmin)
                                         li
-                                            a(href="#")
+                                            a(href="#" style="left:50px;")
                                                 span
                                                     | menu+
                                             ul.dropdown-menu
@@ -75,14 +76,18 @@ html(lang= "ru")
                                                     a(href="/sections")
                                                         | Library Sections
                     div.col-xs-3.text-right.right-nav
-                        //form.pull-left(method="get" id='searchtextform')
-                        form.pull-left
+                        form.pull-right
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")
+
+                    if isLoggedIn
+                        span.header-user-name
+                            p(align="center" style="margin:5px;") #{user.displayName}
+                    span
                         if isLoggedIn
-                            a.pull-right(href="/login/logout")
-                                | Logout
+                            //a.pull-right.login-logout(href="/login/logout")
+                            //    | Logout
                         else
-                            a.pull-right(href="/login")
+                            a.pull-right.login-logout(href="/login")
                                 | login
         div.container
             div.row
