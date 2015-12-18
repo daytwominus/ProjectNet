@@ -23,6 +23,11 @@ block content
                     div.modal-content
                         div.modal-header
                             button.close(data-dismiss="modal" aria-hidden="true")
+                            div.checkbox
+                            label
+                                input(type="checkbox" ng-model="editingPost.showOnMain")
+                                span.checkbox-material
+                                | Show on main page
                         div.modal-body
                             form
                                 textarea(name="editor2")

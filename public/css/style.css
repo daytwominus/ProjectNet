@@ -138,30 +138,31 @@ a.pull-right{
 }
 
 footer {
-  background-color: #606468;
+  background-color: #242424;
+  color: #fff;
   height: 20px;
+  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
 }
 
 p.footerLeft{
+
+  color: #fff;
   margin-top: -15px;
   position: absolute;
   left: 10px;
   font-size: 16px;
-  color: #000;
 }
 p.footerRight{
   margin-top: -15px;
   position: absolute;
   right: 10px;
   font-size: 16px;
-  color: #000;
 }
 a.footerCenter{
   margin-top: -15px;
   position: absolute;
   left: 50%;
   font-size: 16px;
-  color: #000;
 }
 
 div.navbar.navbar-fixed-bottom:hover
@@ -172,11 +173,11 @@ div.navbar.navbar-fixed-bottom:hover
 div.navbar.navbar-fixed-bottom{
   position: fixed;
   bottom: -40px;
-  background-color: #606468;
+  background-color: #242424;
 }
 footer hr {
   margin-top: 4px;
-  border-top: 0px dashed #fff;
+  border-top: 0px dashed #242424;
 }
 
 div.navbar.navbar-fixed-bottom{
@@ -255,4 +256,13 @@ span.header-user-name{
   font-size: 21px;
   text-transform: uppercase;
   color: #fff;
+}
+
+button.btn.btn-primary.ng-binding{
+  background-color: #242424;
+}
+
+.btn-primary:not(.btn-link):not(.btn-flat) {
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.84);
 }

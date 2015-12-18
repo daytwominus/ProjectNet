@@ -20,10 +20,10 @@ var sections = require("./models/section");
 app.use(function (req, res, next) {
   sections.getSections({}, function(err, sections){
     app.locals.sections = sections;
+    next();
   });
-
   //var url = req.url.toLowerCase();
-  next();
+
 });
 
 
