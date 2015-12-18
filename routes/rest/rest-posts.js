@@ -31,6 +31,10 @@ module.exports = function(router){
     router.post('/posts', function(req, res, next) {
         console.log('current user ', JSON.stringify(req.user));
         var p = req.body;
+        if(!p.user){
+            console.log('setting user id to post, uid=', req.user._id);
+            p.userId = req.user._id;
+        }
         console.log("submitting post", p);
 
         posts.savePost(p, function(err, data){

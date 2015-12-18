@@ -48,13 +48,17 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
         if ($scope.isEditing)
             $scope.addButtonText = "Submit";
         else{
+            $scope.editingPost = {};
+            CKEDITOR.instances.editor1.setData({});
             $scope.addButtonText = "Add";
             $scope.getPosts($scope.postType);
         }
     };
 
     $scope.addPost = function(){
-        console.log("opening area for adding post of type ", $scope.postType);
+        console.log("processing post of type ", $scope.postType);
+
+        $scope.editingPost = {};
         if($scope.isEditing)
             postsFactory.submitPost($scope.postType, $scope.user)
                 .success(function(response) {
@@ -199,7 +203,7 @@ postsApp.factory('postsFactory', function($http){
         tosend.data = data;
         tosend.categories = [t];
         if(u)
-        tosend.userId = u._id;
+            tosend.userId = u._id;
         return $http.post('/rest/posts', tosend);
     };
 
