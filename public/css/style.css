@@ -311,6 +311,6 @@ span.header-user-name.is-stuck{
   top:0px;
 }
 
-.is-stuck .logout-text{
-
+.is-stuck .login-text{
+  top:10px;
 }
