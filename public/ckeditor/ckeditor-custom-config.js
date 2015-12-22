@@ -34,6 +34,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.uploadUrl = '/rest/uploadForEditor';
     //config.filebrowserUploadUrl = '/rest/uploadForEditor';dev
     config.filebrowserUploadUrl = '/rest/uploadAndReturnHtml';
+    config.baseFloatZIndex = 9000;
 };
 
 CKEDITOR.on( 'dialogDefinition', function( ev ) {

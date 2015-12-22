@@ -12,9 +12,11 @@ html(lang= "ru")
         link(href="/material/css/ripples.min.css" rel="stylesheet")
         link(rel="shortcut icon" href="/images/ico.png")
         script(src='/scripts/angular.min.js')
+        script(src='/scripts/jquery-1.10.2.min.js')
+        script(src='/scripts/jquery.headtacular.min.js')
         title #{title}
     body
-        header
+        header.header
             a(href="/")
                 img.header-image(src="/images/h.png")
             hr
@@ -25,10 +27,8 @@ html(lang= "ru")
                             img.img-circle.main-user-avatar(src="#{user.imageUrl}" href="/profile")
                         else
                             img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
-                        //div(align="center")
-                        //    p.text-primary(align="center" style="margin:5px;") #{user.displayName}
                         div(align="center")
-                            a.text-primary(align="center" href="/login/logout" style="margin:15px;") log out
+                            a.text-primary.logout-text(align="center" href="/login/logout" style="margin:15px;") log out
                 div.row.header-row
                     div.col-xs-9
                         nav.navbar.navbar-default

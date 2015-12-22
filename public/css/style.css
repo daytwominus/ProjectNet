@@ -5,20 +5,20 @@
 
 }
 
-header {
-  padding-top: 110px;
-  background: #242424;
-  //background-image: url("../images/h.jpg");
+/*header {*/
+  /*padding-top: 110px;*/
+  /*background: #242424;*/
 
-  background-position : center;
-  background-repeat: no-repeat;
-  z-index: 2;
-}
+  /*background-position : center;*/
+  /*background-repeat: no-repeat;*/
+  /*z-index: 2;*/
+/*}*/
 
 header hr {
   margin: 0;
   border-top: 0px dashed #fff;
 }
+
 header .navbar.navbar {
   margin: 0;
   background: transparent;
@@ -265,4 +265,52 @@ button.btn.btn-primary.ng-binding{
 .btn-primary:not(.btn-link):not(.btn-flat) {
   background-color: #242424;
   color: rgba(255, 255, 255, 0.84);
+}
+/*Header scroll*/
+header.header {
+  padding-top: 110px;
+  background: #242424;
+//background-image: url("../images/h.jpg");
+
+  background-position : center;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
+header.header.is-stuck {
+  position: fixed;
+  padding: 0px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}
+
+img.header-image.is-stuck{
+  visibility: collapse;
+}
+
+img.img-circle.main-user-avatar.is-stuck{
+  visibility: hidden;
+}
+
+span.header-user-name.is-stuck{
+  visibility: hidden;
+}
+
+/*div.user-image-area.is-stuck{*/
+  /*visibility: collapse;*/
+  /*/!*padding-top: 10px;*!/*/
+/*}*/
+
+.is-stuck .main-user-avatar{
+  visibility: hidden;
+}
+
+.is-stuck .user-image-area{
+  top:0px;
+}
+
+.is-stuck .logout-text{
+
 }
