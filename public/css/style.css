@@ -262,10 +262,28 @@ button.btn.btn-primary.ng-binding{
   background-color: #242424;
 }
 
+button.btn.btn-primary.ng-binding:hover{
+  background-color: #800000;
+}
+
 .btn-primary:not(.btn-link):not(.btn-flat) {
   background-color: #242424;
   color: rgba(255, 255, 255, 0.84);
 }
+
+.btn-primary:not(.btn-link):not(.btn-flat):hover {
+  background-color: #800000;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+a{
+  color: #800000;;
+}
+
+.text-primary {
+  color: #800000;
+}
+
 /*Header scroll*/
 header.header {
   padding-top: 110px;
