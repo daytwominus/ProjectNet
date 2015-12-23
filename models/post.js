@@ -11,7 +11,8 @@ var PostSchema   = new Schema({
     userId: String,
     showOnMain : Boolean,
     isDeleted: Boolean,
-    sections: [Schema.Types.ObjectId]
+    sections: [Schema.Types.ObjectId],
+    description: String
 });
 
 var Post = mongoose.model('post', PostSchema);

@@ -12,24 +12,7 @@ block content
                 a.post-user-label.label.label-info(ng-if="p.user" href="/users/" + "{{p.user.name}}") by {{p.user.name}}
                 span.post-label.label.label-default(ng-if="p.isDeleted") deleted
                 p(ng-bind-html="p.data | to_trusted")
-            div.modal.fade(id="complete-dialog" tabindex="-1")
-                div.modal-dialog
-                    div.modal-content
-                        div.modal-header
-                            button.close(data-dismiss="modal" aria-hidden="true")
-                            div.checkbox
-                                label
-                                    input(type="checkbox" ng-model="editingPost.showOnMain")
-                                    span.checkbox-material
-                                    | Show on main page
-                        div.modal-body
-                            form
-                                textarea(name="editor2")
-                        div.modal-footer
-                            button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Save
-                            button.btn.btn-primary(data-dismiss="modal") Cancel
-                            button.btn.btn-primary(ng-if="editingPost.isDeleted" data-dismiss="modal" ng-click='restorePost()') Restore
-                            button.btn.btn-primary(ng-if="!editingPost.isDeleted" data-dismiss="modal" ng-click='deletePost()') Delete
+            include common/post-edit-dialog
 block script
     script(src="/ckeditor.js")
     if(isLoggedIn)

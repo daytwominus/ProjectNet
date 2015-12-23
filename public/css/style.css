@@ -116,8 +116,9 @@ header .navbar .navbar-nav a.active span:after {
   border-radius: 5px;
 }
 
-div.row.header-row{
- // width: 1500px;
+div.col-md-12{
+  max-width: 880px;
+  margin-left: 150px;
 }
 
 a.login-logout{
@@ -210,7 +211,7 @@ img.header-image{
   position: absolute;
   top: 15px;
   z-index: 0;
-  max-width: 900px;
+  max-width: 800px;
   min-width: 600px;
   overflow: hidden;
   background-color: #242424;
