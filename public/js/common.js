@@ -11,9 +11,9 @@ $.getScript("/scripts/jquery.headtacular.min.js", function(){
         //$('.header').headtacular({ scrollPoint: 132, showScrollPoint: true  });
         var sp = 70;
         $('.header').headtacular({ scrollPoint: sp});
-        $('img.header-image').headtacular({ scrollPoint: sp});
+        //$('img.header-image').headtacular({ scrollPoint: sp});
         //$('img.img-circle.main-user-avatar').headtacular({ scrollPoint: sp});
-        $('span.header-user-name').headtacular({ scrollPoint: sp});
+        //$('span.header-user-name').headtacular({ scrollPoint: sp});
         //$('div.user-image-area').headtacular({ scrollPoint: sp});
     });
 

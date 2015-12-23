@@ -278,39 +278,40 @@ header.header {
 }
 
 header.header.is-stuck {
+  //padding-top: -80px;
   position: fixed;
-  padding: 0px;
+  padding:0;
   top: 0;
   left: 0;
   width: 100%;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
 }
 
-img.header-image.is-stuck{
+.is-stuck .header-image{
   visibility: collapse;
 }
 
-img.img-circle.main-user-avatar.is-stuck{
-  visibility: hidden;
+.is-stuck .header-user-name{
+  visibility: collapse;
 }
 
-span.header-user-name.is-stuck{
-  visibility: hidden;
+.is-stuck img.img-circle.main-user-avatar{
+  visibility: collapse;
+  width: 0;
+  height: 0;
+
 }
 
-/*div.user-image-area.is-stuck{*/
-  /*visibility: collapse;*/
-  /*/!*padding-top: 10px;*!/*/
-/*}*/
-
-.is-stuck .main-user-avatar{
-  visibility: hidden;
-}
 
 .is-stuck .user-image-area{
   top:0px;
+  padding-top: 20px;
 }
 
 .is-stuck .login-text{
   top:10px;
 }
+
+/*.is-stuck .logout-text{*/
+  /*padding-top:40px;*/
+/*}*/
