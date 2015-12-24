@@ -20,8 +20,14 @@ html(lang= "ru")
         title #{title}
     body
         header.header
-            a(href="/")
-                img.header-image(src="/images/h.png")
+            //a(href="/")
+            //    img.header-image(src="/images/h.png")
+            div.header-logo-common
+                a(href="/")
+                    img.header-logo(src="/images/dus.jpg")
+                p(align="center")
+                    a(href="/")
+                        img.header-logo-descr(src="/images/dus-descr.jpg")
             hr
             div.container
                 if(isLoggedIn)

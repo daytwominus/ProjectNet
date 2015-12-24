@@ -220,6 +220,36 @@ img.header-image{
   right: 0;
 }
 
+.header-logo-common{
+  position: absolute;
+  top: 18px;
+  left:4%;
+  z-index: 0;
+  width: 190px;
+  overflow: hidden;
+  background-color: #242424;
+}
+
+img.header-logo{
+  /*position: absolute;*/
+  /*top: 40px;*/
+  /*left:5%;*/
+  z-index: 0;
+  width: 190px;
+  overflow: hidden;
+  background-color: #242424;
+}
+
+img.header-logo-descr{
+  /*//position: absolute;*/
+  /*top: 140px;*/
+  /*left:5%;*/
+  z-index: 0;
+  width: 176px;
+  overflow: hidden;
+  background-color: #242424;
+}
+
 a.permalink{
 }
 div.permalink{
@@ -340,6 +370,21 @@ header.header.is-stuck {
 
 .is-stuck .login-text{
   top:10px;
+}
+
+.is-stuck .header-logo-common {
+  top:10px;
+  height: 40px;
+}
+
+.is-stuck .header-logo-descr{
+  visibility: collapse;
+  width: 0;
+  height: 0;
+}
+
+.is-stuck .header-logo{
+  width: 80px;
 }
 
 /*.is-stuck .logout-text{*/

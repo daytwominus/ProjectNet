@@ -7,6 +7,9 @@ var postsApp = angular.module('postsApp', []).filter('to_trusted', ['$sce', func
 postsApp.controller('postsController', function ($scope, $location, $anchorScroll, $rootScope, postsFactory) {
     $scope.init = function(postType)
     {
+        //console.log('>>>', $app);
+        //lconsole.log('>>>', $scope.post);
+        console.log('>>>', $scope.editingPost);
         if(postType == 'library'){
             $scope.getSections();
             $scope.showSections = true;
