@@ -70,7 +70,7 @@ app.use(function (req, res, next) {
   if(!doOnce(url, function(){
         posts.findPostsUniversal({showInImportant:true}, function(err, p){
           for(var i = 0; i < p.length; ++i){
-            p[i]['data'] = '';
+            //p[i]['data'] = '';
           }
           app.locals.importantPosts = p;
           next();

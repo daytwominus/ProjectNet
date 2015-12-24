@@ -1,4 +1,8 @@
 div.breadcrumb.sidebar
-   p.sidebar-header.lead Important
+   p.sidebar-header.lead(align='center') Important
    each val, index in importantPosts
-      a(href="/posts/" + val._id) #{val.description}
+      div(style="margin:10px")
+         img.tooltip(title="#{val.data}".substr(1, 10) src='/icons/ic_subject_black_24dp_1x.png')
+         div(style="margin-left:30px")
+            a(href="/posts/" + val._id)
+               span(style="margin-left:3px") #{val.description}
