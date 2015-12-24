@@ -1,6 +1,13 @@
 .sidebar{
-    width: 250px;
+    width: 300px;
     position: absolute;
     right: 50px;
-    top:230px;
+    top:190px;
+}
+
+p.sidebar-header{
+    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    font-size: 21px;
+    text-transform: uppercase;
+    color: #800000;
 }

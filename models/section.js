@@ -56,6 +56,7 @@ module.exports = {
     },
     saveSection: saveRoutine,
     deleteSection: function (p, callback){
+
         console.log("deleting section: " + JSON.stringify(p));
         p.isDeleted = 1;
         saveRoutine(p, callback);

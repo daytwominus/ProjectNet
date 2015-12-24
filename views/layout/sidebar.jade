@@ -1,3 +1,4 @@
-div.panel.panel-default.sidebar
-   div.panel-heading Important
-   div.panel-body | body
+div.breadcrumb.sidebar
+   p.sidebar-header.lead Important
+   each val, index in importantPosts
+      a(href="/posts/" + val._id) #{val.description}

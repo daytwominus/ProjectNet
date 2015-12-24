@@ -30,26 +30,7 @@ block content
                 button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
                     i.mdi-image-edit
                 p(ng-bind-html="p.data | to_trusted")
-        div.modal.fade(id="complete-dialog" tabindex="-1")
-            div.modal-dialog
-                div.modal-content
-                    div.modal-header
-                        button.close(data-dismiss="modal" aria-hidden="true")
-                        div.checkbox
-                            label
-                                input(type="checkbox" ng-model="editingPost.showOnMain")
-                                span.checkbox-material
-                                | Show on main page
-                    div.modal-body
-                        form
-                            textarea(name="editor2")
-                            div(ng-repeat="s in sectionsForEditing")
-                                input(type="checkbox" ng-model="s.selected")
-                                | {{s.name}}
-                    div.modal-footer
-                        button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Save
-                        button.btn.btn-primary(data-dismiss="modal") Cancel
-                        button.btn.btn-primary(data-dismiss="modal" ng-click='deletePost()') Delete
+        include common/post-edit-dialog
 block script
     script(src="/ckeditor.js")
     script CKEDITOR.replace('editor1', {customConfig: 'ckeditor/ckeditor-custom-config.js'});

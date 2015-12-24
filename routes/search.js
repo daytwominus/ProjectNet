@@ -5,7 +5,6 @@ var http = require("http");
 var request = require('request');
 var searchHelper = require('../helpers/search');
 
-
 router.get('/', function(req, res, next) {
     console.log("getting search page");
     res.header("Cache-Control", "no-cache, no-store, must-revalidate");

@@ -10,6 +10,7 @@ var PostSchema   = new Schema({
     categories: [String],
     userId: String,
     showOnMain : Boolean,
+    showInImportant : Boolean,
     isDeleted: Boolean,
     sections: [Schema.Types.ObjectId],
     description: String
