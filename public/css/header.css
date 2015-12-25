@@ -7,10 +7,29 @@
     background: #242424;
 }
 
-.row.menu-row{
-    height: 100%;
+
+.header-logo-block:hover {
+    background-color: #808080;
+}
+.header-logo-block:hover .header-logo-descr {
+    padding-bottom: 14px;
+    background-color: #808080;
+}
+.header-logo-block:hover .header-logo {
+    background-color: #808080;
 }
 
+/*.header-logo-block{*/
+    /*background-color: #808080;*/
+/*}*/
+/*.header-logo:hover{*/
+    /*background-color: #808080;*/
+/*}*/
+
+/*.header-logo-descr:hover{*/
+    /*background-color: #808080;*/
+    /*z-index: 0;*/
+/*}*/
 .header-container{
      height: 100%;
     padding-left:0;
