@@ -22,6 +22,10 @@ div.modal.fade(id="complete-dialog" tabindex="-1")
          div.modal-body
             form
                textarea(name="editor2")
+               div(ng-repeat="s in sectionsForEditing")
+                  div
+                     input(type="checkbox" ng-model="s.selected")
+                     | {{s.name}}
          div.modal-footer
             button.btn.btn-primary(data-dismiss="modal" ng-click='savePost()') Save
             button.btn.btn-primary(data-dismiss="modal") Cancel

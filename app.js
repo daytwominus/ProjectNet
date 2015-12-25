@@ -46,23 +46,36 @@ var doOnce = function(url, f){
   }
   return false;
 }
-
+// SECTIONS RETREIVING
 var sections = require("./models/section");
 function stringStartsWith (string, prefix) {
   return string.slice(0, prefix.length) == prefix;
+}
+var getSectionsForCategory = function(sections, cat){
+  var ret = [];
+  for(var i = 0; i < sections.length; ++i){
+    console.log(cat, sections[i].name);
+    if(sections[i].category && sections[i].category.toLowerCase() === cat.toLowerCase())
+      ret.push(sections[i]);
+  }
+  return ret;
 }
 
 app.use(function (req, res, next) {
   var url = req.url.toLowerCase();
   if(!doOnce(url, function(){
         sections.getSections({}, function(err, sections){
-          app.locals.sections = sections;
+          app.locals.sectionsLibrary = getSectionsForCategory(sections, 'library');
+          app.locals.sectionsCourse = getSectionsForCategory(sections, 'course');
+          app.locals.sectionsGlossary = getSectionsForCategory(sections, 'glossary');
           next();
         });
       })){
     next();
   }
 });
+
+////////////////////////
 
 var posts = require("./models/post");
 app.use(function (req, res, next) {

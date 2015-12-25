@@ -7,13 +7,11 @@ var postsApp = angular.module('postsApp', []).filter('to_trusted', ['$sce', func
 postsApp.controller('postsController', function ($scope, $location, $anchorScroll, $rootScope, postsFactory) {
     $scope.init = function(postType)
     {
-        //console.log('>>>', $app);
-        //lconsole.log('>>>', $scope.post);
-        console.log('>>>', $scope.editingPost);
-        if(postType == 'library'){
-            $scope.getSections();
-            $scope.showSections = true;
-        }
+        postType = postType.trim();
+        //console.log('>>>', $scope.editingPost);
+        $scope.postType = postType;
+        $scope.getSections();
+        $scope.showSections = true;
 
         console.log('initializing postsController with type ', postType);
         $scope.postType = postType;
@@ -120,7 +118,7 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
     };
 
     $scope.getSections = function() {
-        postsFactory.getSections()
+        postsFactory.getSections($scope.postType)
             .success(function (response) {
                 console.log('all sections: ', response);
                 $scope.sections = response;
@@ -131,7 +129,7 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
 
     var findSection = function(id){
         var sections = $scope.sections;
-        console.log(sections);
+        console.log('!!!!', sections, id);
         for (var i = 0; i < sections.length; i++) {
             if(sections[i]["_id"] == id){
                 return sections[i];
@@ -160,7 +158,8 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
         if(p.sections){
             for (var i = 0; i < p.sections.length; i++) {
                 var s = findSection(p.sections[i]);
-                s.selected = true;
+                if(s)
+                    s.selected = true;
             }
         }
         return final;
@@ -249,9 +248,9 @@ postsApp.factory('postsFactory', function($http){
         return $http.get('/rest/permissions');
     };
 
-    factory.getSections = function() {
-        console.log('getting sections');
-        return $http.get('/rest/sections');
+    factory.getSections = function(category) {
+        console.log('getting sections for ', category);
+        return $http.get('/rest/sections' + '?category=' + category);
     };
 
     return factory;

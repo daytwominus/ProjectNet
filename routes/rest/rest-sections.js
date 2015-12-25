@@ -4,9 +4,11 @@ var helpers = require("../../helpers/utils");
 
 module.exports = function(router) {
     router.get('/sections', function (req, res, next) {
+
         var params = req.query;
-        console.log('getting sections ', params);
+        console.log('getting sections ', params, 'category=', req.query.category);
         sections.getSections(params, function(err, sections){
+            console.log('sections: ', JSON.stringify(sections));
             var counter = 0;
             var ret = [];
             if (err)
@@ -15,6 +17,12 @@ module.exports = function(router) {
                     helpers.asyncLoop(sections.length, function(loop){
                         var i = loop.iteration();
                         var s = sections[i];
+                        //console.log('>>>>', s.category !== req.query.category);
+                        //if(s.category !== req.query.category){
+                        //    loop.next();
+                        //    return;
+                        //}
+
                         posts.findPostsWithSection(s["_id"], function(err, data){
                             s = s.toObject({ getters: true, virtuals: false });
                             s['posts'] = data;

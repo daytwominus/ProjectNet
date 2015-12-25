@@ -63,16 +63,32 @@ html(lang= "ru")
                                         a.menu-link(href="/Library")
                                             | Library
                                         ul.dropdown-menu
-                                            each val, index in sections
+                                            each val, index in sectionsLibrary
                                                 li
                                                     a(href="/library#" + val._id)
                                                         | #{val.name}
                                     li.menu-link-li
                                         a.menu-link(href="/Courses")
                                             | Courses
+                                        ul.dropdown-menu
+                                            li
+                                                a(href="/courses")
+                                                    | All
+                                            each val, index in sectionsCourse
+                                                li
+                                                    a(href="/courses#" + val._id)
+                                                        | #{val.name}
                                     li.menu-link-li
                                         a.menu-link(href="/Glossary")
                                             | Glossary
+                                        ul.dropdown-menu
+                                            li
+                                                a(href="/glossary")
+                                                    | All
+                                            each val, index in sectionsGlossary
+                                                li
+                                                    a(href="/glossary#" + val._id)
+                                                        | #{val.name}
                                     if(user.isAdmin)
                                         li.menu-link-li
                                             a.menu-link(href="#" style="left:0px;")
@@ -86,7 +102,7 @@ html(lang= "ru")
                                                         | Users Management
                                                 li
                                                     a(href="/sections")
-                                                        | Library Sections
+                                                        | Sections
                     div.col-xs-3.text-right.right-nav
                         form.pull-left.menu-link-li.search-form(style="padding-bottom:16px;")
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")

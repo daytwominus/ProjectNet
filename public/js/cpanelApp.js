@@ -4,10 +4,20 @@ var cpanelApp = angular.module('cpanelApp', []).filter('to_trusted', ['$sce', fu
     };
 }]);
 
+var getSectionsForCategory = function(sections, cat){
+    var ret = [];
+    for(var i = 0; i < sections.length; ++i){
+        console.log(cat, sections[i].name);
+        if(sections[i].category && sections[i].category.toLowerCase() === cat.toLowerCase())
+            ret.push(sections[i]);
+    }
+    return ret;
+}
+
 cpanelApp.controller('cpanelController', function ($scope, cpanelFactory) {
-    $scope.addSection = function(){
+    $scope.addSection = function(c){
         console.log("opening area for adding section");
-        $scope.editingSection = {};
+        $scope.editingSection = {category:c};
         $scope.isEditing = false;
         $scope.dialogLabel = "NEW SECTION";
     };
@@ -25,6 +35,18 @@ cpanelApp.controller('cpanelController', function ($scope, cpanelFactory) {
                 console.log(response);
                 $scope.sections = response;
                 $scope.newSection = {};
+
+                var catsWithSects = [];
+                var categories = ['course', 'library', 'glossary'];
+                for(var i = 0; i < categories.length; ++i){
+                    var catWithSect = {
+                        category : categories[i],
+                        sections: getSectionsForCategory($scope.sections, categories[i])
+                    };
+
+                    catsWithSects.push(catWithSect);
+                }
+                $scope.catsWithSects = catsWithSects;
             })
             .error(function (error) {
             });
