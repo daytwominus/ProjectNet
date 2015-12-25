@@ -25,13 +25,14 @@ html(lang= "ru")
             //a(href="/")
             //    img.header-image(src="/images/h.png")
             div.header-logo-common
-                a(href="/")
-                    img.header-logo(src="/images/dus.jpg")
-                p(align="center")
+                p(align="center" style="margin:0;")
+                    a(href="/")
+                        img.header-logo(src="/images/dus-small.png")
+                p(align="center" style="margin:0;")
                     a(href="/")
                         img.header-logo-descr(src="/images/dus-descr.jpg")
             hr
-            div.container
+            div.container.header-container
                 if(isLoggedIn)
                     div.user-image-area
                         if(user.imageUrl)
@@ -81,7 +82,7 @@ html(lang= "ru")
                                                     a(href="/sections")
                                                         | Library Sections
                     div.col-xs-3.text-right.right-nav
-                        form.pull-right
+                        form.pull-right.menu-link-li(style="padding-bottom:16px;")
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")
 
                     if isLoggedIn
