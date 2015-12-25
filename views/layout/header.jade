@@ -8,6 +8,7 @@ html(lang= "ru")
         link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
         link(href="/material/css/roboto.min.css" rel="stylesheet")
         link(href="/css/style.css" rel="stylesheet")
+        //link(rel='stylesheet' media='screen and (min-width: 101px) and (max-width: 900px)' href='css/style-medium.css' )
         link(href="/css/sidebar.css" rel="stylesheet")
         link(href="/material/css/material.css" rel="stylesheet")
         link(href="/material/css/ripples.min.css" rel="stylesheet")
@@ -19,6 +20,8 @@ html(lang= "ru")
         script(src='/scripts/jquery.headtacular.min.js')
         script(src='/scripts/jquery.tooltipster.min.js')
         title #{title}
+
+    meta(name="viewport" content="width=device-width")
     body
 
         header.header
@@ -82,7 +85,7 @@ html(lang= "ru")
                                                     a(href="/sections")
                                                         | Library Sections
                     div.col-xs-3.text-right.right-nav
-                        form.pull-right.menu-link-li(style="padding-bottom:16px;")
+                        form.pull-left.menu-link-li.search-form(style="padding-bottom:16px;")
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")
 
                     if isLoggedIn
