@@ -8,6 +8,14 @@
 /*z-index: 2;*/
 /*}*/
 
+.header{
+    position: relative;
+    z-index: 99999;
+    /*transition: all 800ms;*/
+    padding-top: 100px;
+    background: #242424;
+}
+
 header hr {
     margin: 0;
     border-top: 0px dashed #fff;
@@ -18,21 +26,64 @@ header .navbar.navbar {
     background: transparent;
     z-index: 1;
 }
-header .navbar .navbar-nav {
+
+.navbar-nav{
+/*header .navbar .navbar-nav {*/
     float: none;
     width: 100%;
     display: table;
     padding-left: 70px;
+    height: 100%;
+}
+.navbar.navbar-default{
+    height: 100%;
 }
 
-header .navbar .navbar-nav>li {
+header .navbar .navbar-nav > li {
     width: 20%;
-    height: 60px;
+
     display: table-cell;
     float: none;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: bottom;
 }
+
+
+header .navbar .navbar-nav > li > a {
+//padding-top: 120px;
+    font-size: 21px;
+    font-weight: normal;
+    text-transform: uppercase;
+//font-family:'Lantinghei SC','Microsoft Yahei';
+    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    //height: 100%;
+
+}
+
+header .navbar .navbar-nav > li > a:hover {
+    background-color: #808080;
+    text-decoration: none;
+    //padding-top: 100px;
+}
+
+li:hover{
+    background-color: #808080;
+}
+
+.menu-link{
+    height: 100%;
+    text-align: center;
+    vertical-align: bottom;
+    display:inline-block;
+}
+
+.menu-link-li{
+    //height: 158px;
+    //position: absolute;
+    //top:0;
+//vertical-align: bottom;
+}
+
 header .navbar .navbar-nav>li:hover .dropdown-menu {
     display: block;
 }
@@ -60,13 +111,11 @@ header .dropdown-menu:before {
     margin-left: -7px;
 }
 
-
 header .navbar.navbar .dropdown-menu li > a,
 header .navbar-default.navbar .dropdown-menu li > a {
     color: #fff;
     font-weight: normal;
     font-size: 18px;
-//font-family:'Lantinghei SC','Microsoft Yahei';
     font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
 }
 header .navbar.navbar .dropdown-menu li > a:hover,
@@ -80,23 +129,14 @@ header .navbar-default.navbar .dropdown-menu li > a:focus {
     border-radius: 5px;
 }
 
-header .navbar .navbar-nav > li > a {
-    padding: 20px 0;
-    font-size: 21px;
-    font-weight: normal;
-    text-transform: uppercase;
-//font-family:'Lantinghei SC','Microsoft Yahei';
-    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
-}
 
-header .navbar .navbar-nav > li > a:hover {
-    background-color: #808080;
-}
+/*header .navbar .navbar-nav > li > a > span {*/
+    /*position: relative;*/
+    /*color: #aa00ff;*/
+    /*background-color: #f06292;*/
+    /*font-weight: normal;*/
+/*}*/
 
-header .navbar .navbar-nav > li > a > span {
-    position: relative;
-    font-weight: normal;
-}
 header .navbar .navbar-nav li:hover span:after,
 header .navbar .navbar-nav a:hover span:after,
 header .navbar .navbar-nav a.active span:after {
@@ -110,8 +150,6 @@ header .navbar .navbar-nav a.active span:after {
 .navbar.navbar .dropdown-menu, .navbar-default.navbar .dropdown-menu {
     border-radius: 5px;
 }
-
-
 
 img.header-image{
     position: absolute;
@@ -154,4 +192,63 @@ img.header-logo-descr{
     width: 176px;
     overflow: hidden;
     background-color: #242424;
+}
+
+div.container.main-content{
+    position:absolute;
+    top:180px;
+    left:20%;
+}
+
+/*============== Header scroll ================*/
+.header.is-stuck {
+    position: fixed;
+    padding:0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}
+
+.is-stuck .header-image{
+    visibility: collapse;
+}
+
+.is-stuck .header-user-name{
+    visibility: collapse;
+}
+
+.is-stuck img.img-circle.main-user-avatar{
+    visibility: collapse;
+    width: 0;
+    height: 0;
+
+}
+
+.is-stuck .user-image-area{
+    top:0px;
+    padding-top: 20px;
+}
+
+.is-stuck .login-text{
+    top:10px;
+}
+
+.is-stuck .header-logo-common {
+    top:10px;
+    height: 40px;
+}
+
+.is-stuck .header-logo-descr{
+    visibility: collapse;
+    width: 0;
+    height: 0;
+}
+
+.is-stuck .header-logo{
+    width: 80px;
+}
+
+.is-stuck .navbar-nav{
+
 }

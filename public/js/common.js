@@ -10,7 +10,7 @@ $(document).ready(function(){
     });
 
     $.getScript("/scripts/jquery.headtacular.min.js", function(){
-        var sp = 110;
+        var sp = 100;
         $('.header').headtacular({ scrollPoint: sp});
         //$('.header').headtacular({ scrollPoint: sp, showScrollPoint: true});
     });

@@ -20,6 +20,7 @@ html(lang= "ru")
         script(src='/scripts/jquery.tooltipster.min.js')
         title #{title}
     body
+
         header.header
             //a(href="/")
             //    img.header-image(src="/images/h.png")
@@ -39,42 +40,36 @@ html(lang= "ru")
                             img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
                         div(align="center")
                             a.text-primary.logout-text(align="center" href="/login/logout" style="margin:15px;") log out
-                div.row
+                div.row.menu-row
                     div.col-xs-9
                         nav.navbar.navbar-default
                             ul.nav.navbar-nav
                                 i.mdi-home
                                 if isLoggedIn
-                                    li
-                                        a(href="/home" style="left:0px;")
-                                            span
-                                                | Home
-                                    li
-                                        a(href="/profile" style="left:-12px;")
-                                            span
-                                                | Profile
-                                    li
-                                        a(href="/Library")
-                                            span
-                                                | Library
+                                    li.menu-link-li(style="")
+                                        a.menu-link(href="/home" style="left:0px;")
+                                            | Home
+                                    li.menu-link-li
+                                        a.menu-link(href="/profile" style="left:0px;")
+                                            | Profile
+                                    li.menu-link-li
+                                        a.menu-link(href="/Library")
+                                            | Library
                                         ul.dropdown-menu
                                             each val, index in sections
                                                 li
                                                     a(href="/library#" + val._id)
                                                         | #{val.name}
-                                    li
-                                        a(href="/Courses")
-                                            span
-                                                | Courses
-                                    li
-                                        a(href="/Glossary")
-                                            span
-                                                | Glossary
+                                    li.menu-link-li
+                                        a.menu-link(href="/Courses")
+                                            | Courses
+                                    li.menu-link-li
+                                        a.menu-link(href="/Glossary")
+                                            | Glossary
                                     if(user.isAdmin)
-                                        li
-                                            a(href="#" style="left:50px;")
-                                                span
-                                                    | menu+
+                                        li.menu-link-li
+                                            a.menu-link(href="#" style="left:0px;")
+                                                | menu+
                                             ul.dropdown-menu
                                                 li
                                                     a(href="/posts")
@@ -100,7 +95,7 @@ html(lang= "ru")
                             a.pull-right.login-logout.login-text(href="/login")
                                 | login
         include sidebar
-        div.container
+        div.container.main-content(style="")
             div.row
                 div.col-md-12
                     block content
