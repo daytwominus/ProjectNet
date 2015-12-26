@@ -8,11 +8,9 @@ block content
                     div
                         form
                             textarea(name="editor1")
-        div.panel.panel-body(ng-repeat="p in posts")
-            //button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
-            button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
-                i.mdi-image-edit
-            p(ng-bind-html="p.data | to_trusted")
+        include common/posts-and-sections
+        h3(ng-if="posts.length > 0") Listing all items in glosasry
+        include common/all-posts
         include common/post-edit-dialog
 block script
     script(src="/ckeditor.js")

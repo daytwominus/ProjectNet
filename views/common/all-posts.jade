@@ -1,0 +1,9 @@
+a(id="all")
+div(ng-repeat="p in posts")
+   div.breadcrumb
+      div.permalink
+         a.parmalink(href="/posts/" + "{{p._id}}") permalink
+            img.permalink(src="/images/permalink-icon.png")
+      button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+         i.mdi-image-edit
+      p(ng-bind-html="p.data | to_trusted")
