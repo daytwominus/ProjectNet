@@ -106,10 +106,10 @@ module.exports = {
     },
     savePost: savePostRoutine,
     deletePost: function (p, callback){
-        console.log("deleting post: " + JSON.stringify(p));
-        p.isDeleted = 1;
-        savePostRoutine(p);
-        //Post.findOneAndRemove({"_id": p._id.toObjectId()}).exec();
+        console.log("deleting post forever: " + JSON.stringify(p));
+        //p.isDeleted = 1;
+        //savePostRoutine(p);
+        Post.findOneAndRemove({"_id": p._id.toObjectId()}).exec();
         callback();
     }
 }

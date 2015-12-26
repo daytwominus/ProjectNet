@@ -87,13 +87,13 @@ var updateUserRoutine = function(u, cb){
 module.exports = {
     findUsersUniversal : findUsersUniversal,
     findUserById: function(id, done){
-        console.log("userById " + id);
+        //console.log("userById " + id);
         if(!id){
             done({info:'not found'}, null);
             return;
         }
         User.collection.findOne({_id: id.toObjectId()}, function(err, data){
-            console.log("user: " + JSON.stringify(data));
+            //console.log("user: " + JSON.stringify(data));
             done(err, data);
         });
     },

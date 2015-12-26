@@ -31,3 +31,4 @@ div.modal.fade(id="complete-dialog" tabindex="-1")
             button.btn.btn-primary(data-dismiss="modal") Cancel
             button.btn.btn-primary(ng-if="editingPost.isDeleted" data-dismiss="modal" ng-click='restorePost()') Restore
             button.btn.btn-primary(ng-if="!editingPost.isDeleted" data-dismiss="modal" ng-click='deletePost()') Delete
+            button.btn.btn-primary(ng-if="editingPost.isDeleted" data-dismiss="modal" ng-click='deletePostForever()') Delete Forever

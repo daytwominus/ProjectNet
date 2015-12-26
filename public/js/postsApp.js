@@ -110,6 +110,17 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
             });
     };
 
+    $scope.deletePostForever = function(){
+        $scope.isEditing = false;
+        postsFactory.deletePostForever($scope.editingPost)
+            .success(function(response) {
+                console.log("post deleted forever");
+                $scope.getPosts($scope.postType);
+            })
+            .error(function(error){
+            });
+    };
+
     $scope.restorePost = function(){
         $scope.editingPost.isDeleted = false;
         $scope.savePost(function(){
@@ -217,7 +228,16 @@ postsApp.factory('postsFactory', function($http){
     };
 
     factory.deletePost = function(p) {
-        console.log("deleting post: ", p);
+        var updated = {
+            _id: p._id,
+            isDeleted: true
+        }
+        console.log("deleting post: ", updated);
+        return $http.post('/rest/posts', updated);
+    };
+
+    factory.deletePostForever = function(p) {
+        console.log("deleting post forever: ", p);
         return $http.delete('/rest/posts/' + p["_id"]);
     };
 
