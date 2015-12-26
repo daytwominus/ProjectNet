@@ -3,7 +3,18 @@ block content
     i.mdi.mdi-home
     div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('allforadmin')")
         if(isLoggedIn)
-            include common/all-posts
+            div.panel.panel-body(ng-repeat="p in posts")
+                div.right-top-corner
+                    div.text-muted.date-created
+                        | {{p.creationDate}}
+                    div.permalink
+                        a(href="/posts/" + "{{p._id}}") permalink
+                            img(src="/images/permalink-icon.png")
+                button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
+                    i.mdi-image-edit
+                a.post-user-label.label.label-info(ng-if="p.user" href="/users/" + "{{p.user.name}}") by {{p.user.name}}
+                span.post-label.label.label-default(ng-if="p.isDeleted") deleted
+                p(ng-bind-html="p.data | to_trusted")
             include common/post-edit-dialog
 block script
     script(src="/ckeditor.js")
