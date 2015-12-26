@@ -115,6 +115,15 @@ div.admin-menu{
   right: 200px;
 }
 
+  .category-label{
+  position:relative;
+  float: top;
+  padding: 1px;
+  top:2px;
+  top: -18px;
+  left: 25px;
+}
+
 span.label.label-default.post-label{
   position:relative;
   float: top;
