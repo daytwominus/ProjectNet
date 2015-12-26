@@ -92,16 +92,21 @@ img.img-circle.main-user-avatar{
   margin-right: auto;
 }
 
-
-a.permalink{
-}
-div.permalink{
+.right-top-corner{
+ position: relative;
   float: right;
-  padding: 3px;
+  top:-10px;
+  right:-20px;
+}
+.permalink{
+  //padding: 3px;
 }
 
-img.permalink{
-
+div.date-created{
+  padding-right: 30px;
+  padding-bottom: 8px;
+  font-size: 10px;
+  float: right;
 }
 
 div.admin-menu{

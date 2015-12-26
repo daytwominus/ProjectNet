@@ -13,10 +13,19 @@ var PostSchema   = new Schema({
     showInImportant : Boolean,
     isDeleted: Boolean,
     sections: [Schema.Types.ObjectId],
-    description: String
+    description: String,
+    creationDate: String
 });
 
 var Post = mongoose.model('post', PostSchema);
+
+var addCreationDate = function(x){
+    for(var i = 0; i < x.length; ++i){
+        var date = x[i]._id.getTimestamp();
+
+        x[i].creationDate = date.getFullYear()+'/' + (date.getMonth()+1) + '/'+date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
+    }
+}
 
 var findUniversal = function(params, callback) {
     console.log("trying to find posts: " + JSON.stringify(params));
@@ -24,6 +33,7 @@ var findUniversal = function(params, callback) {
     Post.find(params)
         .or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}})
         .sort({_id: -1}).exec(function(err, x){
+            addCreationDate(x);
         console.log("posts: " + JSON.stringify(x));
         callback(err, x);
     });
@@ -49,6 +59,7 @@ var getAllPosts = function(callback) {
                 },
                 function(){
                     //console.log("!!!!!!!>>", ret);
+                    addCreationDate(ret);
                     console.log("all posts: " + JSON.stringify(ret));
                     callback(err, ret);
                 });

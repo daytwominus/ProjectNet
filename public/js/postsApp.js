@@ -108,6 +108,7 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
             })
             .error(function(error){
             });
+        $scope.getPosts($scope.postType);
     };
 
     $scope.deletePostForever = function(){
@@ -119,6 +120,7 @@ postsApp.controller('postsController', function ($scope, $location, $anchorScrol
             })
             .error(function(error){
             });
+        $scope.getPosts($scope.postType);
     };
 
     $scope.restorePost = function(){

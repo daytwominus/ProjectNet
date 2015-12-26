@@ -3,15 +3,7 @@ block content
     i.mdi.mdi-home
     div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('allforadmin')")
         if(isLoggedIn)
-            div.panel.panel-body(ng-repeat="p in posts")
-                div.permalink
-                    a.parmalink(href="/posts/" + "{{p._id}}") permalink
-                        img.permalink(src="/images/permalink-icon.png")
-                button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
-                    i.mdi-image-edit
-                a.post-user-label.label.label-info(ng-if="p.user" href="/users/" + "{{p.user.name}}") by {{p.user.name}}
-                span.post-label.label.label-default(ng-if="p.isDeleted") deleted
-                p(ng-bind-html="p.data | to_trusted")
+            include common/all-posts
             include common/post-edit-dialog
 block script
     script(src="/ckeditor.js")
