@@ -8,7 +8,6 @@
     background: #242424;
 }
 
-
 .header-logo-block:hover {
     background-color: #808080;
 }
@@ -20,17 +19,6 @@
     background-color: #808080;
 }
 
-/*.header-logo-block{*/
-    /*background-color: #808080;*/
-/*}*/
-/*.header-logo:hover{*/
-    /*background-color: #808080;*/
-/*}*/
-
-/*.header-logo-descr:hover{*/
-    /*background-color: #808080;*/
-    /*z-index: 0;*/
-/*}*/
 .header-container{
      height: 100%;
     padding-left:0;
@@ -209,6 +197,14 @@ div.container.main-content{
     position:absolute;
     top:180px;
     left:20%;
+}
+
+div.language-selector{
+    position:absolute;
+    right:180px;
+    top:110px;
+    color: #aa00ff;
+    z-index: 99999;
 }
 
 /*============== Header scroll ================*/

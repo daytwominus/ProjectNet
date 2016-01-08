@@ -1,7 +1,8 @@
 doctype html
-html(lang= "ru")
+html(lang= "en")
     head
-        meta(charset="utf-8")
+        meta(charset="UTF-8")
+        //mea(http-equiv="content-type", content="charset=UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1")
 
@@ -24,10 +25,14 @@ html(lang= "ru")
 
     meta(name="viewport" content="width=device-width")
     body
-
         header.header
             //a(href="/")
             //    img.header-image(src="/images/h.png")
+            //div.language-selector
+                div.form-group
+                    div.btn-group-vertical
+                        a.btn.btn-raised(href="/en") EN
+                        a.btn.btn-raised(id="russian-lang") RU
             div.header-logo-common
                 div(align="center" style="margin:0;")
                     div.header-logo-block(style="display: inline-block;")
@@ -55,39 +60,39 @@ html(lang= "ru")
                                 if isLoggedIn
                                     li.menu-link-li(style="")
                                         a.menu-link(href="/home" style="left:0px;")
-                                            | Home
+                                            | #{translate("home")}
                                     li.menu-link-li
                                         a.menu-link(href="/profile" style="left:0px;")
-                                            | Profile
+                                            | #{translate("profile")}
                                     li.menu-link-li
                                         a.menu-link(href="/Library")
-                                            | Library
+                                            | #{translate("library")}
                                         ul.dropdown-menu
                                             li
                                                 a(href="/library#all")
-                                                    | All
+                                                    | #{translate("all")}
                                             each val, index in sectionsLibrary
                                                 li
                                                     a(href="/library#" + val._id)
                                                         | #{val.name}
                                     li.menu-link-li
                                         a.menu-link(href="/Courses")
-                                            | Courses
+                                            | #{translate("courses")}
                                         ul.dropdown-menu
                                             li
                                                 a(href="/courses#all")
-                                                    | All
+                                                    | #{translate("all")}
                                             each val, index in sectionsCourse
                                                 li
                                                     a(href="/courses#" + val._id)
                                                         | #{val.name}
                                     li.menu-link-li
                                         a.menu-link(href="/Glossary")
-                                            | Glossary
+                                            | #{translate("glossary")}
                                         ul.dropdown-menu
                                             li
                                                 a(href="/glossary#all")
-                                                    | All
+                                                    | #{translate("all")}
                                             each val, index in sectionsGlossary
                                                 li
                                                     a(href="/glossary#" + val._id)
@@ -95,17 +100,17 @@ html(lang= "ru")
                                     if(user.isAdmin)
                                         li.menu-link-li
                                             a.menu-link(href="#" style="left:0px;")
-                                                | menu+
+                                                | #{translate("menu+")}
                                             ul.dropdown-menu
                                                 li
                                                     a(href="/posts")
-                                                        | All content
+                                                        | #{translate("all content")}
                                                 li
                                                     a(href="/users")
-                                                        | Users Management
+                                                        | #{translate("users management")}
                                                 li
                                                     a(href="/sections")
-                                                        | Sections
+                                                        | #{translate("sections")}
                     div.col-xs-3.text-right.right-nav
                         form.pull-left.menu-link-li.search-form(style="padding-bottom:16px;")
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")

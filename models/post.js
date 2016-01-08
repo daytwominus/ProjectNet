@@ -34,8 +34,8 @@ var findUniversal = function(params, callback) {
         .or({isDeleted : {$exists: false}}, {isDeleted : {$exists: true, $eq:true}})
         .sort({_id: -1}).exec(function(err, x){
             addCreationDate(x);
-        console.log("posts: " + JSON.stringify(x));
-        callback(err, x);
+            console.log("posts: " + JSON.stringify(x));
+            callback(err, x);
     });
 };
 

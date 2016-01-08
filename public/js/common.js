@@ -27,25 +27,11 @@ $(document).ready(function(){
         });
     });
 
-    //function adjustStyle(width) {
-    //    width = parseInt(width);
-    //    if (width > 1600) {
-    //        console.log(1600);
-    //        $("#size-stylesheet").attr("href", "css/style.css");
-    //        $("#size-stylesheet").attr("href", "css/header.css");
-    //    } else if (width > 900) {
-    //        console.log(900);
-    //        $("#size-stylesheet").attr("href", "css/style-medium.css");
-    //        $("#size-stylesheet").attr("href", "css/header.css");
-    //    }
-    //}
-    //
-    //$(function() {
-    //    adjustStyle($(this).width());
-    //    $(window).resize(function() {
-    //        adjustStyle($(this).width());
-    //    });
-    //});
+    $('#russian-lang').click(function(event){
+        //alert('!');
+        //alert($sectionsLibrary);
+        //alert(sectionsLibrary);
+    });
 
 });
 

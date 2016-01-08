@@ -9,6 +9,7 @@ require('./helpers/logging')(app);
 require('./models/db');
 require('./helpers/authentication-local')(app);
 require('./helpers/authentication-fb');
+require('./helpers/translations')(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,6 +47,7 @@ var doOnce = function(url, f){
   }
   return false;
 }
+
 // SECTIONS RETREIVING
 var sections = require("./models/section");
 function stringStartsWith (string, prefix) {
@@ -82,9 +84,9 @@ app.use(function (req, res, next) {
   var url = req.url.toLowerCase();
   if(!doOnce(url, function(){
         posts.findPostsUniversal({showInImportant:true}, function(err, p){
-          for(var i = 0; i < p.length; ++i){
-            //p[i]['data'] = '';
-          }
+          //for(var i = 0; i < p.length; ++i){
+          //  //p[i]['data'] = '';
+          //}
           app.locals.importantPosts = p;
           next();
         });
