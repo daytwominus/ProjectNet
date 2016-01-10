@@ -27,11 +27,18 @@ $(document).ready(function(){
         });
     });
 
-    $('#russian-lang').click(function(event){
-        //alert('!');
-        //alert($sectionsLibrary);
-        //alert(sectionsLibrary);
+    $('#lang-switch').click(function(event){
+        console.log('locale: ', JSON.stringify(trans));
+        $.ajax({
+            type: "GET",
+            url: "/rest/lang",
+            success: function(data){
+                window.location.href = '/home';
+            }
+        });
     });
 
+    //var l = '<%= Session["lang"] ?? "" %>';
+    //console.log('>>>', localize);
 });
 

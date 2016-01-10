@@ -21,6 +21,8 @@ html(lang= "en")
         script(src='/scripts/jquery-1.10.2.min.js')
         script(src='/scripts/jquery.headtacular.min.js')
         script(src='/scripts/jquery.tooltipster.min.js')
+        script var langIndex = 0;
+
         title #{title}
 
     meta(name="viewport" content="width=device-width")
@@ -28,11 +30,9 @@ html(lang= "en")
         header.header
             //a(href="/")
             //    img.header-image(src="/images/h.png")
-            //div.language-selector
+            div.language-selector
                 div.form-group
-                    div.btn-group-vertical
-                        a.btn.btn-raised(href="/en") EN
-                        a.btn.btn-raised(id="russian-lang") RU
+                    a.text-primary(id="lang-switch" href="#") RU
             div.header-logo-common
                 div(align="center" style="margin:0;")
                     div.header-logo-block(style="display: inline-block;")
@@ -51,7 +51,7 @@ html(lang= "en")
                         else
                             img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
                         div(align="center")
-                            a.text-primary.logout-text(align="center" href="/login/logout" style="margin:15px;") log out
+                            a.text-primary.logout-text(align="center" href="/login/logout" style="margin:15px;") #{trans['logout']}
                 div.row.menu-row
                     div.col-xs-9
                         nav.navbar.navbar-default
@@ -60,39 +60,39 @@ html(lang= "en")
                                 if isLoggedIn
                                     li.menu-link-li(style="")
                                         a.menu-link(href="/home" style="left:0px;")
-                                            | #{translate("home")}
+                                            | #{trans['home']}
                                     li.menu-link-li
                                         a.menu-link(href="/profile" style="left:0px;")
-                                            | #{translate("profile")}
+                                            | #{trans['profile']}
                                     li.menu-link-li
                                         a.menu-link(href="/Library")
-                                            | #{translate("library")}
+                                            | #{trans['library']}
                                         ul.dropdown-menu
                                             li
                                                 a(href="/library#all")
-                                                    | #{translate("all")}
+                                                    | #{trans['all']}
                                             each val, index in sectionsLibrary
                                                 li
                                                     a(href="/library#" + val._id)
                                                         | #{val.name}
                                     li.menu-link-li
                                         a.menu-link(href="/Courses")
-                                            | #{translate("courses")}
+                                            | #{trans['courses']}
                                         ul.dropdown-menu
                                             li
                                                 a(href="/courses#all")
-                                                    | #{translate("all")}
+                                                    | #{trans['all']}
                                             each val, index in sectionsCourse
                                                 li
                                                     a(href="/courses#" + val._id)
                                                         | #{val.name}
                                     li.menu-link-li
                                         a.menu-link(href="/Glossary")
-                                            | #{translate("glossary")}
+                                            | #{trans['glossary']}
                                         ul.dropdown-menu
                                             li
                                                 a(href="/glossary#all")
-                                                    | #{translate("all")}
+                                                    | #{trans['all']}
                                             each val, index in sectionsGlossary
                                                 li
                                                     a(href="/glossary#" + val._id)
@@ -100,17 +100,17 @@ html(lang= "en")
                                     if(user.isAdmin)
                                         li.menu-link-li
                                             a.menu-link(href="#" style="left:0px;")
-                                                | #{translate("menu+")}
+                                                | #{trans['menuplus']}
                                             ul.dropdown-menu
                                                 li
                                                     a(href="/posts")
-                                                        | #{translate("all content")}
+                                                        | #{trans['allcontent']}
                                                 li
                                                     a(href="/users")
-                                                        | #{translate("users management")}
+                                                        | #{trans['usersmanagement']}
                                                 li
                                                     a(href="/sections")
-                                                        | #{translate("sections")}
+                                                        | #{trans['sections']}
                     div.col-xs-3.text-right.right-nav
                         form.pull-left.menu-link-li.search-form(style="padding-bottom:16px;")
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")
@@ -124,7 +124,9 @@ html(lang= "en")
                             //    | Logout
                         else
                             a.pull-right.login-logout.login-text(href="/login")
-                                | login
+                                //| login
+                                | #{trans['login']}
+
         include sidebar
         div.container.main-content(style="")
             div.row
@@ -132,5 +134,7 @@ html(lang= "en")
                     block content
 
         include footer
+    script var trans = !{JSON.stringify(trans)};
+    script var trans = !{JSON.stringify(trans)};
     script(src='/js/common.js')
     script(src='/js/sidebar.js')

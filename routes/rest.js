@@ -11,9 +11,8 @@ require('./rest/rest-libitems')(router);
 require('./rest/rest-users')(router);
 require('./rest/rest-sections')(router);
 require('./rest/rest-search')(router);
+require('./rest/rest-lang')(router);
 
-//var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
-//var cpUpload = upload.fields([{ name: 'file', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]);
 
 var bucketSecret = process.env.S3_BUCKET_SECRET;
 var bucketAccessKey = process.env.S3_ACCESS_KEY;

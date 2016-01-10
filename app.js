@@ -53,6 +53,7 @@ var sections = require("./models/section");
 function stringStartsWith (string, prefix) {
   return string.slice(0, prefix.length) == prefix;
 }
+
 var getSectionsForCategory = function(sections, cat){
   var ret = [];
   for(var i = 0; i < sections.length; ++i){
@@ -108,24 +109,6 @@ app.use(passport.initialize());
 for(var i =0; i < routesArray.length; ++i){
   app.use(routesArray[i].key, require(routesArray[i].value));
 }
-//var routes = require('./routes/index');
-//app.use('/', routes);
-//app.use('/index', routes);
-//app.use('/login', require('./routes/login'));
-//app.use('/users', require('./routes/users'));
-//app.use('/posts', require('./routes/posts'));
-//app.use('/home', require('./routes/home'));
-//app.use('/cpanel', require('./routes/cpanel'));
-//app.use('/profile', require('./routes/profile'));
-//app.use('/rest', require('./routes/rest'));
-//app.use('/library', require('./routes/library'));
-//app.use('/glossary', require('./routes/glossary'));
-//app.use('/courses', require('./routes/courses'));
-//app.use('/users', require('./routes/users'));
-//app.use('/signup', require('./routes/signup'));
-//app.use('/sections', require('./routes/sections'));
-//app.use('/search', require('./routes/search'));
-//app.use('/public', require('./routes/public'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
