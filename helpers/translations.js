@@ -46,7 +46,7 @@ module.exports = function (app){
     });
 
     var trans = [
-        {   lang:"en",
+        {   lang:"EN",
             login:"login",
             logout:"log out",
             home:"home",
@@ -61,7 +61,7 @@ module.exports = function (app){
             sections:"sections"
         },
         {
-            lang:"ru",
+            lang:"RU",
             login:"войти",
             logout:"выйти",
             home:"дом",

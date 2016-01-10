@@ -21,7 +21,7 @@ html(lang= "en")
         script(src='/scripts/jquery-1.10.2.min.js')
         script(src='/scripts/jquery.headtacular.min.js')
         script(src='/scripts/jquery.tooltipster.min.js')
-        script var langIndex = 0;
+        script var lang = 'EN';
 
         title #{title}
 
@@ -32,7 +32,7 @@ html(lang= "en")
             //    img.header-image(src="/images/h.png")
             div.language-selector
                 div.form-group
-                    a.text-primary(id="lang-switch" href="#") RU
+                    a.text-primary(id="lang-switch" href="#") #{trans['lang']}
             div.header-logo-common
                 div(align="center" style="margin:0;")
                     div.header-logo-block(style="display: inline-block;")
