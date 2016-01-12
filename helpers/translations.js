@@ -58,7 +58,9 @@ module.exports = function (app){
             menuplus:"menu+",
             allcontent:"all content",
             usersmanagement: "users management",
-            sections:"sections"
+            sections:"sections",
+            add:"ADD",
+            newuser:"+New user"
         },
         {
             lang:"RU",
@@ -73,7 +75,9 @@ module.exports = function (app){
             menuplus:"меню",
             allcontent:"всё содержимое",
             usersmanagement: "управление пользователями",
-            sections:"секции"
+            sections:"секции",
+            add:"ДОБАВИТЬ",
+            newuser:"+Добавить пользователя"
         }];
 
     var lang = "en";
