@@ -28,12 +28,10 @@ html(lang= "en")
     meta(name="viewport" content="width=device-width")
     body
         header.header
-            //a(href="/")
-            //    img.header-image(src="/images/h.png")
             div.language-selector
                 div.form-group
                     a.text-primary(id="lang-switch" href="#") #{trans['lang']}
-            div.header-logo-common
+            //div.header-logo-common(href="/")
                 div(align="center" style="margin:0;")
                     div.header-logo-block(style="display: inline-block;")
                         p(align="center" style="margin:0;")
@@ -42,6 +40,11 @@ html(lang= "en")
                         p(align="center" style="margin:0;")
                             a(href="/")
                                 img.header-logo-descr(src="/images/dus-descr.jpg")
+            a.header-logo-common(href="/")
+                p(align="center" style="margin:0;")
+                    img.header-logo(src="/images/dus-small.png")
+                p(align="center" style="margin:0;")
+                    img.header-logo-descr(src="/images/dus-descr.jpg")
             hr
             div.container.header-container
                 if(isLoggedIn)
