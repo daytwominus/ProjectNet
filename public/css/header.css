@@ -252,8 +252,7 @@ div.language-selector{
 }
 
 .is-stuck .header-logo-common {
-    top:10px;
-    height: 40px;
+    height: 100%;
 }
 
 .is-stuck .header-logo-descr{
@@ -265,7 +264,6 @@ div.language-selector{
 
 .is-stuck .header-logo{
     width: 80px;
-    padding-top: 0;
 }
 
 .is-stuck .dropdown-menu{
