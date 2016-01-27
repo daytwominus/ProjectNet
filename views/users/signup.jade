@@ -1,7 +1,7 @@
 extends ../layout/header
 block content
     div.panel-body(ng-app="signupApp", ng-controller="signupController", ng-cloak)
-        form.form-signin(method="post")
+        form(method="post" autocomplete="off")
             fieldset
                 div.form-group
                 label.col-lg-2.control-label Email
@@ -12,10 +12,10 @@ block content
                   input.form-control(type="text" name="username" ng-model="editingUser.name" placeholder="Name" required autofocus)
                 label.col-lg-2.control-label Display Name
                 div.col-lg-10
-                    input.form-control(type="text" name="displayName" ng-model="editingUser.displayName" placeholder="Name" required autofocus)
+                    input.form-control(type="text" autocomplete="off" name="displayNameSignup" ng-model="editingUser.displayName" placeholder="Name" required autofocus)
                 label.col-lg-2.control-label Password
                 div.col-lg-10
-                    input.form-control(type="password" name="password" ng-model="editingUser.password" placeholder="Password" required autofocus)
+                    input.form-control(type="password" autocomplete="off" name="passwordSignup" ng-model="editingUser.password" placeholder="Password" required autofocus)
                 button.btn.btn-primary.btn-raised(ng-click='saveUser()' data-toggle="modal" type="submit") Sign up
 
                 div(align="center" ng-if="message")
