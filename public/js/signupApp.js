@@ -12,7 +12,10 @@ validateEmail = function(e)
 
 validate = function(scope){
     if(!/^\w+$/.test(scope.editingUser.name)){
-        scope.message = 'Use only letters or numbers in user name';
+        if(trans['lang'] === 'EN')
+            scope.message = 'Use only letters or numbers in user name';
+        else
+            scope.message = 'Используйте только букви или цифры в имени';
         return false;
     }
 
@@ -24,8 +27,6 @@ validate = function(scope){
     return true;
 }
 
-
-
 signupApp.controller('signupController', function ($scope, signupFactory, $location) {
     $scope.saveUser = function(){
         if(!validate($scope))
@@ -33,12 +34,18 @@ signupApp.controller('signupController', function ($scope, signupFactory, $locat
 
         signupFactory.createUser($scope.editingUser)
             .success(function(response) {
-                alert('User has been registered but should be approved by administrator');
+                if(trans['lang'] === 'EN')
+                    alert('User has been registered but should be approved by administrator');
+                else
+                    alert('Заявка зарегистрирована и будет рассмотрена администратором');
                 $location.path("/");
                 $scope.editingUser = {};
             })
             .error(function(error){
-                alert('User with the name specified already exists');
+                if(trans['lang'] === 'EN')
+                    alert('User with the login specified already exists');
+                else
+                    alert('Пользователь с указанным логином уже существует');
                 return;
             });
 

@@ -5,13 +5,13 @@ block content
         form.form-signin(action="/login", method="post")
             fieldset
                 div.form-group
-                label.col-lg-2.control-label Login
+                label.col-lg-2.control-label #{trans['loginname']}
                 div.col-lg-10
                     input.form-control(type="text" name="username" id="inputEmail" placeholder="Name" required autofocus)
-                label.col-lg-2.control-label Password
+                label.col-lg-2.control-label #{trans['password']}
                 div.col-lg-10
                     input.form-control(type="password" name="password" id="inputPassword" placeholder="Password" required)
-                button.btn.btn-primary.btn-raised(type="submit" name="Login") Sign in
+                button.btn.btn-primary.btn-raised(type="submit" name="Login") #{trans['login']}
         div.form-group(align="center")
-            a.btn.btn.btn-link(href="signup") Or signup
+            a.btn.btn.btn-link(href="signup") #{trans['signup']}
 script(src='/js/loginApp.js')

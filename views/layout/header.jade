@@ -114,6 +114,40 @@ html(lang= "en")
                                                 li
                                                     a(href="/sections")
                                                         | #{trans['sections']}
+                                else
+                                    li.menu-link-li
+                                        a.menu-link(href="/Library")
+                                            | #{trans['library']}
+                                        ul.dropdown-menu
+                                            li
+                                                a(href="/library#all")
+                                                    | #{trans['all']}
+                                            each val, index in sectionsLibrary
+                                                li
+                                                    a(href="/library#" + val._id)
+                                                        | #{val.name}
+                                    li.menu-link-li
+                                        a.menu-link(href="/Courses")
+                                            | #{trans['courses']}
+                                        ul.dropdown-menu
+                                            li
+                                                a(href="/courses#all")
+                                                    | #{trans['all']}
+                                            each val, index in sectionsCourse
+                                                li
+                                                    a(href="/courses#" + val._id)
+                                                        | #{val.name}
+                                    li.menu-link-li
+                                        a.menu-link(href="/Glossary")
+                                            | #{trans['glossary']}
+                                        ul.dropdown-menu
+                                            li
+                                                a(href="/glossary#all")
+                                                    | #{trans['all']}
+                                            each val, index in sectionsGlossary
+                                                li
+                                                    a(href="/glossary#" + val._id)
+                                                        | #{val.name}
                     div.col-xs-3.text-right.right-nav
                         form.pull-left.menu-link-li.search-form(style="padding-bottom:16px;")
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")
@@ -129,6 +163,8 @@ html(lang= "en")
                             a.pull-right.login-logout.login-text(href="/login")
                                 //| login
                                 | #{trans['login']}
+                            a.pull-right.login-logout.login-text(href="/signup" style="margin-right:60px;")
+                                | #{trans['signup']}
 
         include sidebar
         div.container.main-content(style="")
@@ -137,7 +173,6 @@ html(lang= "en")
                     block content
 
         include footer
-    script var trans = !{JSON.stringify(trans)};
     script var trans = !{JSON.stringify(trans)};
     script(src='/js/common.js')
     script(src='/js/sidebar.js')

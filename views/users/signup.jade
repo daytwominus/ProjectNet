@@ -7,16 +7,16 @@ block content
                 label.col-lg-2.control-label Email
                 div.col-lg-10
                     input.form-control(type="text" name="email" ng-model="editingUser.email" placeholder="Email address" required autofocus)
-                label.col-lg-2.control-label Login Name
+                label.col-lg-2.control-label #{trans['loginname']}
                 div.col-lg-10
                   input.form-control(type="text" name="username" ng-model="editingUser.name" placeholder="Name" required autofocus)
-                label.col-lg-2.control-label Display Name
+                label.col-lg-2.control-label #{trans['displayname']}
                 div.col-lg-10
                     input.form-control(type="text" autocomplete="off" name="displayNameSignup" ng-model="editingUser.displayName" placeholder="Name" required autofocus)
-                label.col-lg-2.control-label Password
+                label.col-lg-2.control-label #{trans['password']}
                 div.col-lg-10
                     input.form-control(type="password" autocomplete="off" name="passwordSignup" ng-model="editingUser.password" placeholder="Password" required autofocus)
-                button.btn.btn-primary.btn-raised(ng-click='saveUser()' data-toggle="modal" type="submit") Sign up
+                button.btn.btn-primary.btn-raised(ng-click='saveUser()' data-toggle="modal" type="submit") #{trans['signup']}
 
                 div(align="center" ng-if="message")
                     span.label.label-danger
@@ -24,5 +24,6 @@ block content
                 //div.alert.alert-dismissible.alert-danger
                 //    | hello
 block script
+    script var trans = !{JSON.stringify(trans)};
     script(src="/js/signupApp.js")
     script(src="/js/controllers.js")

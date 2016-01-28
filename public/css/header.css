@@ -250,6 +250,14 @@ div.language-selector{
 .is-stuck .login-text{
     top:10px;
 }
+a.login-logout{
+    position:absolute;
+    top: 110px;
+    right: 40px;
+    margin-left:30px;
+    padding-bottom:-10px;
+    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+}
 
 .is-stuck .header-logo-common {
     height: 100%;
