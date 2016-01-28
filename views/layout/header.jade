@@ -161,9 +161,9 @@ html(lang= "en")
                             //a.pull-right.login-logout(href="/login/logout")
                             //    | Logout
                         else
-                            a.pull-right.login-logout.header-text-small.login-text(href="/login")
+                            a.pull-right.login-logout.login-text(href="/login" style="color: #fff;")
                                 | #{trans['login']}
-                            a.pull-right.header-text-small.login-logout.login-text(href="/signup" style="margin-right:60px;")
+                            a.pull-right.login-logout.login-text(href="/signup" style="margin-right:60px;color: #fff;")
                                 | #{trans['signup']}
 
         include sidebar
