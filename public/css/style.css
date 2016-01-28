@@ -170,6 +170,10 @@ a{
   color: #800000;
 }
 
+.text-primary.header-text-small{
+  color: #fff;
+}
+
 .form-control:focus, .form-control.focus {
   background-image: linear-gradient(#800000, #800000), linear-gradient(#d2d2d2, #d2d2d2);
 }

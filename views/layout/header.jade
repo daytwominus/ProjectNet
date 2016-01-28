@@ -30,7 +30,7 @@ html(lang= "en")
         header.header
             div.language-selector
                 div.form-group
-                    a.text-primary(id="lang-switch" href="#") #{trans['lang']}
+                    a.header-text-small.text-primary(id="lang-switch" href="#") #{trans['lang']}
             //div.header-logo-common(href="/")
                 div(align="center" style="margin:0;")
                     div.header-logo-block(style="display: inline-block;")
@@ -54,7 +54,7 @@ html(lang= "en")
                         else
                             img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
                         div(align="center")
-                            a.text-primary.logout-text(align="center" href="/login/logout" style="margin:15px;") #{trans['logout']}
+                            a.text-primary.logout-text.header-text-small(align="center" href="/login/logout" style="margin:15px;") #{trans['logout']}
                 div.row.menu-row
                     div.col-xs-9
                         nav.navbar.navbar-default
@@ -160,10 +160,9 @@ html(lang= "en")
                             //a.pull-right.login-logout(href="/login/logout")
                             //    | Logout
                         else
-                            a.pull-right.login-logout.login-text(href="/login")
-                                //| login
+                            a.pull-right.login-logout.header-text-small.login-text(href="/login")
                                 | #{trans['login']}
-                            a.pull-right.login-logout.login-text(href="/signup" style="margin-right:60px;")
+                            a.pull-right.header-text-small.login-logout.login-text(href="/signup" style="margin-right:60px;")
                                 | #{trans['signup']}
 
         include sidebar
