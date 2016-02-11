@@ -26,7 +26,8 @@ footer {
   background-color: #242424;
   color: #fff;
   height: 20px;
-  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+  //font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 p.footerLeft{
@@ -70,7 +71,7 @@ div.navbar.navbar-fixed-bottom{
 
 div.user-image-area{
   position:absolute;
-  top: 20px;
+  top: 30px;
   right: 30px;
   margin:10px;
 }
@@ -138,7 +139,8 @@ span.header-user-name{
   top: 121px;
   right: 20px;
   margin-left:30px;
-  font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+  //font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 21px;
   text-transform: uppercase;
   color: #fff;

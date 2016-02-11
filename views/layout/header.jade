@@ -17,6 +17,7 @@ html(lang= "en")
         link(href="/css/header.css" rel="stylesheet")
         link(href="/css/dimensions.css" rel="stylesheet")
         link(rel="shortcut icon" href="/images/ico.png")
+        link(href='https://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css')
         script(src='/scripts/angular.min.js')
         script(src='/scripts/jquery-1.10.2.min.js')
         script(src='/scripts/jquery.headtacular.min.js')
@@ -57,6 +58,8 @@ html(lang= "en")
                                 img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
                         div(align="center")
                             a.text-primary.logout-text.header-text-small(align="center" href="/login/logout" style="margin:15px;") #{trans['logout']}
+                            p(style="padding-top:6px;")
+                                a.text-primary.logout-text.header-text-small(align="center" style="margin:5px;" href="/profile") #{user.displayName}
                 div.row.menu-row
                     div.col-xs-9
                         nav.navbar.navbar-default
@@ -119,7 +122,6 @@ html(lang= "en")
                                                 li
                                                     a(href="/sections")
                                                         | #{trans['sections']}
-
                                 else
                                     li.menu-link-li(style="")
                                         a.menu-link(href="/" style="left:0px;")
@@ -164,16 +166,14 @@ html(lang= "en")
                                         a.menu-link(href="/Multimedia")
                                             | #{trans['multimedia']}
                     div.col-xs-3.text-right.right-nav
-                        form.pull-left.menu-link-li.search-form(style="padding-bottom:16px;")
+                        form.pull-right.menu-link-li.search-form(style="padding-bottom:16px;")
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")
 
-                    if isLoggedIn
-                        span.header-user-name
-                            p(align="center" style="margin:5px;") #{user.displayName}
+                    //if isLoggedIn
+                    //    span.header-user-name
+                    //        p(align="center" style="margin:5px;") #{user.displayName}
                     span
                         if isLoggedIn
-                            //a.pull-right.login-logout(href="/login/logout")
-                            //    | Logout
                         else
                             a.pull-right.login-logout.login-text(href="/login" style="color: #fff;")
                                 | #{trans['login']}

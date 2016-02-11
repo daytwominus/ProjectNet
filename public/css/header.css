@@ -79,7 +79,8 @@ header .navbar .navbar-nav > li > a {
     font-size: 21px;
     font-weight: normal;
     text-transform: uppercase;
-    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    //font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 header .navbar .navbar-nav > li > a:hover {
@@ -134,7 +135,8 @@ header .navbar-default.navbar .dropdown-menu li > a {
     color: #fff;
     font-weight: normal;
     font-size: 18px;
-    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    //font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 header .navbar.navbar .dropdown-menu li > a:hover,
 header .navbar-default.navbar .dropdown-menu li > a:hover,
@@ -256,7 +258,8 @@ a.login-logout{
     right: 40px;
     margin-left:30px;
     padding-bottom:-10px;
-    font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    //font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .is-stuck .header-logo-common {
