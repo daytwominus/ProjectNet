@@ -281,3 +281,7 @@ a.login-logout{
 .is-stuck .dropdown-menu{
     top:60px;
 }
+
+.is-stuck .username{
+    visibility: collapse;
+}

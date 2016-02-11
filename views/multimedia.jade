@@ -1,0 +1,20 @@
+extends layout/header
+block content
+    div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('multimedia')")
+        div(ng-show="permissions && permissions.canEditCourses")
+            button.btn.btn-primary(type="Submit" ng-click="addPost()" ) {{addButtonText}}
+            div
+                div(ng-show="isEditing")
+                    div
+                        form
+                            textarea(name="editor1")
+        include common/posts-and-sections
+        h3(ng-if="posts.length > 0") Listing all multimedia
+        include common/all-posts
+        include common/post-edit-dialog
+block script
+    script(src="/ckeditor.js")
+    script CKEDITOR.replace('editor1', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
+    script CKEDITOR.replace('editor2', {customConfig: 'ckeditor/ckeditor-custom-config.js'});
+    script(src="/js/postsApp.js")
+    script(src="/js/controllers.js")

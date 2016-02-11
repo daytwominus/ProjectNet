@@ -22,6 +22,8 @@ var routesArray = [
   {key:'/login', value:'./routes/login'},
   {key:'/users', value:'./routes/users'},
   {key:'/posts', value:'./routes/posts'},
+  {key:'/multimedia', value:'./routes/multimedia'},
+  {key:'/students', value:'./routes/students'},
   {key:'/home', value:'./routes/home'},
   {key:'/cpanel', value:'./routes/cpanel'},
   {key:'/profile', value:'./routes/profile'},
