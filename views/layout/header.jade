@@ -50,9 +50,11 @@ html(lang= "en")
                 if(isLoggedIn)
                     div.user-image-area
                         if(user.imageUrl)
-                            img.img-circle.main-user-avatar(src="#{user.imageUrl}" href="/profile")
+                            a(href="/profile")
+                                img.img-circle.main-user-avatar(src="#{user.imageUrl}" )
                         else
-                            img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
+                            a(href="/profile")
+                                img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
                         div(align="center")
                             a.text-primary.logout-text.header-text-small(align="center" href="/login/logout" style="margin:15px;") #{trans['logout']}
                 div.row.menu-row
@@ -64,9 +66,6 @@ html(lang= "en")
                                     li.menu-link-li(style="")
                                         a.menu-link(href="/home" style="left:0px;")
                                             | #{trans['home']}
-                                    li.menu-link-li
-                                        a.menu-link(href="/profile" style="left:0px;")
-                                            | #{trans['profile']}
                                     li.menu-link-li
                                         a.menu-link(href="/Library")
                                             | #{trans['library']}
@@ -100,6 +99,12 @@ html(lang= "en")
                                                 li
                                                     a(href="/glossary#" + val._id)
                                                         | #{val.name}
+                                    li.menu-link-li
+                                        a.menu-link(href="/Students")
+                                            | #{trans['students']}
+                                    li.menu-link-li
+                                        a.menu-link(href="/Multimedia")
+                                            | #{trans['multimedia']}
                                     if(user.isAdmin)
                                         li.menu-link-li
                                             a.menu-link(href="#" style="left:0px;")
@@ -116,6 +121,9 @@ html(lang= "en")
                                                         | #{trans['sections']}
 
                                 else
+                                    li.menu-link-li(style="")
+                                        a.menu-link(href="/" style="left:0px;")
+                                            | #{trans['home']}
                                     li.menu-link-li
                                         a.menu-link(href="/Library")
                                             | #{trans['library']}
@@ -149,6 +157,12 @@ html(lang= "en")
                                                 li
                                                     a(href="/glossary#" + val._id)
                                                         | #{val.name}
+                                    li.menu-link-li
+                                        a.menu-link(href="/Students")
+                                            | #{trans['students']}
+                                    li.menu-link-li
+                                        a.menu-link(href="/Multimedia")
+                                            | #{trans['multimedia']}
                     div.col-xs-3.text-right.right-nav
                         form.pull-left.menu-link-li.search-form(style="padding-bottom:16px;")
                             input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")

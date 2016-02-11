@@ -23,7 +23,9 @@ module.exports = function (app){
             loginname: "Login",
             displayname: "Display Name",
             password:"Password",
-            search:"Search"
+            search:"Search",
+            students:"Students",
+            multimedia:"Multimedia"
         },
         {
             lang:"RU",
@@ -46,7 +48,9 @@ module.exports = function (app){
             loginname: "Логин",
             displayname: "Имя",
             password:"Пароль",
-            search:"Поиск"
+            search:"Поиск",
+            students:"Студенты",
+            multimedia:"Мультимедиа"
         }];
 
     var lang = "en";
