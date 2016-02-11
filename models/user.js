@@ -35,10 +35,6 @@ var findUserUniversal = function(params, callback){
         else {
             var u = res;
             if(u){
-                //console.log("..>>>", res);
-               // s.toObject({ getters: true, virtuals: false });
-                //u = res.toObject({ getters: true});
-                //console.log("..>>>2", u);
                 u.isAdmin = perm.getPermissions(u).isAdmin;
                 console.log("found user: " + JSON.stringify(u));
             }

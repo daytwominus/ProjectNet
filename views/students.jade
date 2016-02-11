@@ -1,3 +1,15 @@
-//
-   Created by serpan on 11/02/2016.
+extends layout/header
 
+block content
+
+    each val, index in allUsers
+        div.panel.panel-default
+            div.panel-body
+                if(val.imageUrl)
+                    img.img-circle(style="width: 64px; height: 64px;" src="#{val.imageUrl}" )
+                else
+                    img.img-circle(style="width: 64px; height: 64px;" src="/images/default-user-icon-profile.png")
+                a.text-primary(href="users/" + val._id style="padding-left:20px;") #{val.displayName}
+                div.breadcrumb(style="margin-top:25px;")
+                    p.text-muted #{val.displayName}
+                    p.text-muted #{val.email}

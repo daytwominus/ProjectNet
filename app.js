@@ -52,6 +52,7 @@ var doOnce = function(url, f){
 
 // SECTIONS RETREIVING
 var sections = require("./models/section");
+var users = require("./models/user");
 function stringStartsWith (string, prefix) {
   return string.slice(0, prefix.length) == prefix;
 }
@@ -73,7 +74,11 @@ app.use(function (req, res, next) {
           app.locals.sectionsLibrary = getSectionsForCategory(sections, 'library');
           app.locals.sectionsCourse = getSectionsForCategory(sections, 'course');
           app.locals.sectionsGlossary = getSectionsForCategory(sections, 'glossary');
-          next();
+
+          users.findUsersUniversal({}, function(err, u){
+              app.locals.allUsers = u;
+              next();
+            });
         });
       })){
     next();
