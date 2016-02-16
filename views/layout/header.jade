@@ -72,6 +72,17 @@ html(lang= "en")
                                     li.menu-link-li(style="")
                                         a.menu-link(href="/home" style="left:0px;")
                                             | #{trans['home']}
+                                        if(user.isAdmin)
+                                            ul.dropdown-menu
+                                                li
+                                                    a(href="/posts")
+                                                        | #{trans['allcontent']}
+                                                li
+                                                    a(href="/users")
+                                                        | #{trans['usersmanagement']}
+                                                li
+                                                    a(href="/sections")
+                                                        | #{trans['sections']}
                                     li.menu-link-li
                                         a.menu-link(href="/Library")
                                             | #{trans['library']}
@@ -111,20 +122,7 @@ html(lang= "en")
                                     li.menu-link-li
                                         a.menu-link(href="/Multimedia")
                                             | #{trans['multimedia']}
-                                    if(user.isAdmin)
-                                        li.menu-link-li
-                                            a.menu-link(href="#" style="left:0px;")
-                                                | #{trans['menuplus']}
-                                            ul.dropdown-menu
-                                                li
-                                                    a(href="/posts")
-                                                        | #{trans['allcontent']}
-                                                li
-                                                    a(href="/users")
-                                                        | #{trans['usersmanagement']}
-                                                li
-                                                    a(href="/sections")
-                                                        | #{trans['sections']}
+
                                 else
                                     li.menu-link-li(style="")
                                         a.menu-link(href="/" style="left:0px;")
