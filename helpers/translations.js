@@ -3,7 +3,7 @@ var Localize = require('localize');
 module.exports = function (app){
 
     var trans = [
-        {   lang:"EN",
+        {   lang:"РУ",
             login:"login",
             logout:"log out",
             home:"home",
@@ -29,7 +29,7 @@ module.exports = function (app){
             backtotop:"Back to Top"
         },
         {
-            lang:"RU",
+            lang:"EN",
             login:"войти",
             logout:"выйти",
             home:"дом",
