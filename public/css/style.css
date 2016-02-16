@@ -213,3 +213,8 @@ a, a:hover, a:focus {
 /*.is-stuck .logout-text{*/
   /*padding-top:40px;*/
 /*}*/
+
+
+.is-stuck .user-image-area{
+  top: 10px;
+}

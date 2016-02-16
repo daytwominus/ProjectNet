@@ -219,8 +219,8 @@ div.container.main-content{
 
 div.language-selector{
     position:absolute;
-    right:10px;
-    top:10px;
+    right:22px;
+    top:48px;
     color: #aa00ff;
     z-index: 99999;
 }
@@ -298,3 +298,7 @@ a.login-logout{
     visibility: collapse;
 }
 
+.is-stuck .language-selector{
+    top:19px;
+
+}
