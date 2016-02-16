@@ -1,9 +1,9 @@
-@font-face {
-  font-family:"HelveticaNeue-Light";
-  src:url(../fonts/HelveticaNeue-Light.otf) format("opentype");
-  src:url(../fonts/HelveticaNeue-Light.woff) format("woff");
+/*@font-face {*/
+  /*font-family:"HelveticaNeue-Light";*/
+  /*src:url(../fonts/HelveticaNeue-Light.otf) format("opentype");*/
+  /*src:url(../fonts/HelveticaNeue-Light.woff) format("woff");*/
 
-}
+/*}*/
 
 div.col-md-12{
   max-width: 880px;
@@ -71,7 +71,7 @@ div.navbar.navbar-fixed-bottom{
 
 div.user-image-area{
   position:absolute;
-  top: 30px;
+  top: 22px;
   right: 30px;
   margin:10px;
 }

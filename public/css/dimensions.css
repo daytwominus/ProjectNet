@@ -1,19 +1,14 @@
 
 /*===== RESOLUTIONS =====*/
 @media screen and (max-width: 1600px) {
-
-
-
-
     div.container.main-content{
         left:15%;
     }
 }
 
-
 @media screen and (max-width: 1450px) {
     .header-logo-common{
-        width: 15%;
+        width: 18%;
     }
 
     .row.menu-row {
@@ -49,6 +44,7 @@
         visibility: collapse;
     }
 }
+
 @media screen and (max-width: 818px) {
     .header-logo-common{
         visibility: collapse;
