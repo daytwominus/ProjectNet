@@ -5,6 +5,22 @@
 
 /*}*/
 
+.back-to-top {
+  position: fixed;
+  bottom: 2em;
+  right: 0px;
+  text-decoration: none;
+  color: #000000;
+  background-color: rgba(235, 235, 235, 0.80);
+  font-size: 12px;
+  padding: 1em;
+  display: none;
+}
+
+.back-to-top:hover {
+  background-color: rgba(135, 135, 135, 0.50);
+}
+
 div.col-md-12{
   max-width: 880px;
   /*margin-left: 100px;*/
@@ -90,6 +106,15 @@ img.img-circle.main-user-avatar{
   top:-10px;
   right:-20px;
 }
+
+.right-bottom-corner{
+  position: relative;
+  float: right;
+  bottom:2px;
+  right:5px;
+}
+
+
 .permalink{
   //padding: 3px;
 }

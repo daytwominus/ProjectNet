@@ -16,6 +16,7 @@ block content
                 span.post-label.label.label-default(ng-if="p.isDeleted") deleted
                 span.post-label.label.label-primary.category-label(ng-if="p.categories") {{p.categories[0]}}
                 p(ng-bind-html="p.data | to_trusted")
+
             include common/post-edit-dialog
 block script
     script(src="/ckeditor.js")

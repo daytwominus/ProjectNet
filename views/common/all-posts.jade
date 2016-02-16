@@ -3,9 +3,14 @@ div.panel.panel-body(ng-repeat="p in posts")
    div.right-top-corner
       div.text-muted.date-created
          | {{p.creationDate}}
-      div.permalink
-         a(href="/posts/" + "{{p._id}}") permalink
-            img(src="/images/permalink-icon.png")
+      //div.permalink
+      //   a(href="/posts/" + "{{p._id}}") permalink
+      //      img(src="/images/permalink-icon.png")
+
    button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
       i.mdi-image-edit
    p(ng-bind-html="p.data | to_trusted" style="margin:25px;")
+   div.right-bottom-corner
+      div.permalink
+         a(href="/posts/" + "{{p._id}}") permalink
+            img(src="/images/permalink-icon.png")

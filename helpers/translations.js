@@ -25,7 +25,8 @@ module.exports = function (app){
             password:"Password",
             search:"Search",
             students:"Students",
-            multimedia:"Multimedia"
+            multimedia:"Multimedia",
+            backtotop:"Back to Top"
         },
         {
             lang:"RU",
@@ -50,7 +51,8 @@ module.exports = function (app){
             password:"Пароль",
             search:"Поиск",
             students:"Студенты",
-            multimedia:"Мультимедиа"
+            multimedia:"Мультимедиа",
+            backtotop:"Вверх"
         }];
 
     var lang = "en";
