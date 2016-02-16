@@ -35,6 +35,9 @@ CKEDITOR.editorConfig = function( config ) {
     //config.filebrowserUploadUrl = '/rest/uploadForEditor';dev
     config.filebrowserUploadUrl = '/rest/uploadAndReturnHtml';
     config.baseFloatZIndex = 9000;
+    config.font_defaultLabel = 'Arial';
+    config.fontSize_defaultLabel = '16px';
+
 };
 //
 //CKEDITOR.addTemplates( 'default',
