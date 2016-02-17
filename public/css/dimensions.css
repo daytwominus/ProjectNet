@@ -4,17 +4,20 @@
     div.container.main-content{
         left:15%;
     }
+    .row.menu-row {
+        padding-left: 8%;
+    }
 }
 
-@media screen and (max-width: 1450px) {
+@media screen and (max-width: 1550px) {
     .header-logo-common{
         width: 18%;
     }
-
     .row.menu-row {
         padding-left: 11%;
     }
 }
+
 @media screen and (max-width: 1350px) {
     header .navbar .navbar-nav > li > a {
         font-size: 17px;
