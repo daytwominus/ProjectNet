@@ -110,7 +110,6 @@ li:hover{
 
 header .navbar .navbar-nav>li:hover .dropdown-menu {
     display: block;
-    margin-left: -15%;
 }
 
 header .dropdown-menu {
