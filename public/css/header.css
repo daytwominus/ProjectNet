@@ -218,7 +218,7 @@ div.container.main-content{
 
 div.language-selector{
     position:absolute;
-    right:22px;
+    right:16px;
     top:48px;
     color: #aa00ff;
     z-index: 99999;
