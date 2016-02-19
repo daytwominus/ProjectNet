@@ -177,7 +177,8 @@ button.btn.btn-primary.ng-binding{
 }
 
 button.btn.btn-primary.ng-binding:hover{
-  background-color: #800000;
+  background-color: #808080;
+  color: #000;
 }
 
 .btn-primary:not(.btn-link):not(.btn-flat) {
@@ -186,7 +187,7 @@ button.btn.btn-primary.ng-binding:hover{
 }
 
 .btn-primary:not(.btn-link):not(.btn-flat):hover {
-  background-color: #800000;
+  background-color: #808080;
   color: rgba(255, 255, 255, 0.84);
 }
 

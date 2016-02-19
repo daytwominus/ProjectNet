@@ -4,7 +4,7 @@ module.exports = function (app){
 
     var trans = [
         {   lang:"РУ",
-            login:"login",
+            login:"sign in",
             logout:"log out",
             home:"home",
             profile:"profile",
