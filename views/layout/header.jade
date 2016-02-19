@@ -9,6 +9,7 @@ html(lang= "en")
         link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
         link(href="/material/css/roboto.min.css" rel="stylesheet")
         link(href="/css/style.css" rel="stylesheet")
+        link(href="/css/style-header.css" rel="stylesheet")
         //link(rel='stylesheet' media='screen and (min-width: 101px) and (max-width: 900px)' href='css/style-medium.css' )
         link(href="/css/sidebar.css" rel="stylesheet")
         link(href="/material/css/material.css" rel="stylesheet")
@@ -32,15 +33,6 @@ html(lang= "en")
             div.language-selector
                 div.form-group
                     a.header-text-small.text-primary(id="lang-switch" href="#") #{trans['lang']}
-            //div.header-logo-common(href="/")
-                div(align="center" style="margin:0;")
-                    div.header-logo-block(style="display: inline-block;")
-                        p(align="center" style="margin:0;")
-                            a(href="/")
-                                img.header-logo(src="/images/dus-small.png")
-                        p(align="center" style="margin:0;")
-                            a(href="/")
-                                img.header-logo-descr(src="/images/dus-descr.jpg")
             a.back-to-top(href="#")
                 | #{trans['backtotop']}
             a.header-logo-common(href="/")

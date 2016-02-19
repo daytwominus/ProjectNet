@@ -1,0 +1,107 @@
+doctype html
+html(lang= "en")
+    head
+        meta(charset="UTF-8")
+        //mea(http-equiv="content-type", content="charset=UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+        link(href="/material/css/roboto.min.css" rel="stylesheet")
+        link(href="/css/style.css" rel="stylesheet")
+        link(href="/css/style-header.css" rel="stylesheet")
+        //link(rel='stylesheet' media='screen and (min-width: 101px) and (max-width: 900px)' href='css/style-medium.css' )
+        link(href="/css/sidebar.css" rel="stylesheet")
+        link(href="/material/css/material.css" rel="stylesheet")
+        link(href="/material/css/ripples.min.css" rel="stylesheet")
+        link(href="/css/tooltipster.css" rel="stylesheet")
+        link(href="/css/header.css" rel="stylesheet")
+        link(href="/css/dimensions.css" rel="stylesheet")
+        link(rel="shortcut icon" href="/images/ico.png")
+        link(href='https://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css')
+        script(src='/scripts/angular.min.js')
+        script(src='/scripts/jquery-1.10.2.min.js')
+        script(src='/scripts/jquery.headtacular.min.js')
+        script(src='/scripts/jquery.tooltipster.min.js')
+        script var lang = 'EN';
+
+        title #{title}
+
+    meta(name="viewport" content="width=device-width")
+    body
+        header.header(style="height:161px;")
+            div.language-selector
+                div.form-group
+                    a.header-text-small.text-primary(id="lang-switch" href="#") #{trans['lang']}
+            a.back-to-top(href="#")
+                | #{trans['backtotop']}
+            a.header-logo-common(href="/")
+                div.logo-div
+                    p(align="center" style="margin:0;")
+                        img.header-logo(src="/images/dus-small.png")
+                p(align="center" style="margin:0;")
+                    img.header-logo-descr(src="/images/dus-descr.jpg")
+            hr
+            div(id="cssmenu")
+                ul
+                    li
+                        a(href="/" style="left:0px;")
+                            | #{trans['home']}
+                    li.has-sub
+                        a(href="/Library")
+                            span
+                                | #{trans['library']}
+                        ul
+                            li
+                                a(href="/library#all")
+                                    span
+                                        | #{trans['all']}
+                            each val, index in sectionsLibrary
+                                li
+                                    span
+                                        a(href="/library#" + val._id)
+                                            | #{val.name}
+                    li.has-sub
+                        a(href="/Courses")
+                            span
+                                | #{trans['courses']}
+                        ul
+                            li
+                                a(href="/courses#all")
+                                    span
+                                        | #{trans['all']}
+                            each val, index in sectionsLibrary
+                                li
+                                    span
+                                        a(href="/courses#" + val._id)
+                                            | #{val.name}
+                    li.has-sub
+                        a(href="/Glossary")
+                            span
+                                | #{trans['glossary']}
+                        ul
+                            li
+                                a(href="/glossary#all")
+                                    span
+                                        | #{trans['all']}
+                            each val, index in sectionsLibrary
+                                li
+                                    span
+                                        a(href="/glossary#" + val._id)
+                                            | #{val.name}
+                    li
+                        a(href="/Students" style="left:0px;")
+                            | #{trans['students']}
+                    li
+                        a(href="/multimedia" style="left:0px;")
+                            | #{trans['multimedia']}
+        include sidebar
+        div.container.main-content(style="")
+            div.row
+                div.col-md-12
+                    block content
+
+        include footer
+    script var trans = !{JSON.stringify(trans)};
+    script(src='/js/common.js')
+    script(src='/js/sidebar.js')
