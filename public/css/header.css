@@ -3,6 +3,7 @@
     position: relative;
     z-index: 2;
     background: #242424;
+    background: url(/images/menu-bg.png) repeat;
 }
 
 .logo-div{

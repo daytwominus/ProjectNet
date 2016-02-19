@@ -1,7 +1,7 @@
 /* Menu CSS */#cssmenu,
 #cssmenu > ul {
-    background: url(/images/highlight-bg.png) repeat;
-    padding-bottom: 3px;
+    background: url(/images/hover.png) repeat;
+    padding-bottom: 0px;
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     text-transform: uppercase;
@@ -47,6 +47,7 @@
     display: block;
     color: white;
     font-weight: normal;
+
     font-size: 21px;
     text-decoration: none;
     text-transform: uppercase;
@@ -55,7 +56,7 @@
     line-height: 18px;
 }
 #cssmenu > ul > li:hover > a {
-    background: url(/images/highlight-bg.png) repeat;
+    background: url(/images/hover.png) repeat;
     text-shadow: 0 -1px 0 #97321f;
     text-shadow: 0 -1px 0 rgba(122, 42, 26, 0.64);
 }
@@ -65,6 +66,7 @@
 #cssmenu > ul > li.active > a,
 #cssmenu > ul > li > a:active {
     background: url(/images/hover.png) repeat;
+    //background: url(/images/hover.png) repeat;
 }
 /* Childs */
 #cssmenu > ul ul {
@@ -72,7 +74,7 @@
     visibility: hidden;
     position: absolute;
     top: 120px;
-    background: url(/images/menu-bg.png) repeat;
+    background: url(/images/hover.png) repeat;
     margin: 0;
     padding: 0;
     z-index: -1;
@@ -113,11 +115,13 @@
     -moz-transition: all 0.35s ease-in-out;
     -ms-transition: all 0.35s ease-in-out;
     transition: all 0.35s ease-in-out;
+    img
+    background: url(/images/hover.png) repeat;
 }
 #cssmenu > ul ul li a:hover {
-    border-left: 4px solid #d64e34;
+    //border-left: 4px solid #d64e34;
     background: url(/images/hover.png) repeat;
 }
 #cssmenu > ul ul li a:active {
-    background: url(images/menu-bg.png) repeat;
+    background: url(/images/menu-bg.png) repeat;
 }
