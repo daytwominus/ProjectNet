@@ -37,6 +37,7 @@ var routesArray = [
   {key:'/search', value:'./routes/search'},
 ];
 
+
 var doOnce = function(url, f){
   for(var i =0; i < routesArray.length; ++i){
     if( url == '/' ||
@@ -67,6 +68,9 @@ var getSectionsForCategory = function(sections, cat){
   return ret;
 }
 
+//var uploadcarekey = process.env.UPLOADCARE_PUBLIC_KEY;
+//console.log('UPLOADCARE_PUBLIC_KEY: ', uploadcarekey);
+
 app.use(function (req, res, next) {
   var url = req.url.toLowerCase();
   if(!doOnce(url, function(){
@@ -74,6 +78,7 @@ app.use(function (req, res, next) {
           app.locals.sectionsLibrary = getSectionsForCategory(sections, 'library');
           app.locals.sectionsCourse = getSectionsForCategory(sections, 'course');
           app.locals.sectionsGlossary = getSectionsForCategory(sections, 'glossary');
+          //app.locals.uploadcarekey = uploadcarekey;
 
           users.findUsersUniversal({}, function(err, u){
               app.locals.allUsers = u;

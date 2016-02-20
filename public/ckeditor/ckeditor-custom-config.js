@@ -20,7 +20,7 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'colors', groups: [ 'colors' ] }
     ];
 
-    config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach,filebrowser,popup,templates,lineheight';
+    config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach,filebrowser,popup,templates,lineheight,widgetbootstrap,widgettemplatemenu,uploadcare';
     config.uploadUrl = '/rest/uploadForEditor';
     //config.filebrowserUploadUrl = '/rest/uploadForEditor';dev
     config.filebrowserUploadUrl = '/rest/upload2';
@@ -31,8 +31,9 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.font_names = config.font_names +
         ';Helvetica/Arial, Helvetica, sans-serif;';
-    //config.line_height="1px;1.1px;1.2px;1.3px;1.4px;1.5px"
 
+    UPLOADCARE_PUBLIC_KEY = "261288daa9c826873147";
+    //console.log('>>>>>>', UPLOADCARE_PUBLIC_KEY);
 };
 
 CKEDITOR.on( 'dialogDefinition', function( ev ) {
