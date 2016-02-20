@@ -24,6 +24,9 @@
         width: 6%;
         right: 12%;
     }
+    .login-logout{
+        visibility: collapse;
+    }
 }
 
 
