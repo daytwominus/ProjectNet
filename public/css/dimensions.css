@@ -24,9 +24,7 @@
         width: 6%;
         right: 12%;
     }
-    .login-logout{
-        visibility: collapse;
-    }
+
 }
 
 
@@ -61,6 +59,9 @@
     }
 
     .language-selector{
+        visibility: collapse;
+    }
+    .login-logout{
         visibility: collapse;
     }
 }
