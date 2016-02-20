@@ -35,8 +35,11 @@ CKEDITOR.editorConfig = function( config ) {
     //config.filebrowserUploadUrl = '/rest/uploadForEditor';dev
     config.filebrowserUploadUrl = '/rest/upload2';
     config.baseFloatZIndex = 9000;
-    config.font_defaultLabel = 'Arial';
-    config.fontSize_defaultLabel = '16px';
+    config.font_defaultLabel = 'Helvetica';
+    config.fontSize_defaultLabel = '16';
+
+    config.font_names = config.font_names +
+        ';Helvetica/Arial, Helvetica, sans-serif;';
 
 };
 
