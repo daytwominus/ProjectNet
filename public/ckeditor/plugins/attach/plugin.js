@@ -132,7 +132,7 @@ CKEDITOR.dialog.add( 'abbrDialog', function( editor ) {
     onShow: function() {
       //Remove Focus & fix height
       var fileField = attachmentUploader.getFileField().css('outline', 0);
-      $('body').find('iframe.cke_dialog_ui_input_file').css('height', '36px');
+      $('body').find('iframe.cke_dialog_ui_input_file').css('height', '236px');
 
       if (attachmentUploader.uploadButton) {
         attachmentUploader.uploadButton.text('Upload attachment').parent('a').show();

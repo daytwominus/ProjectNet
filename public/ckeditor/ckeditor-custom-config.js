@@ -4,16 +4,6 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-    // Define changes to default configuration here. For example:
-    // config.language = 'fr';
-
-    // %REMOVE_START%
-    // The configuration options below are needed when running CKEditor from source files.
-    //config.plugins = 'a11yhelp,about,clipboard,dialog,filetools,image,image2,lineutils,link,magicline,notification,notificationaggregator,pastefromword,scayt,specialchar,table,tabletools,tweetabletext,uploadimage,uploadwidget,videodetector,widget,wsc,youtube';
-    //config.plugins = 'dialogui,dialog,about,basicstyles,clipboard,button,toolbar,enterkey,entities,floatingspace,wysiwygarea,indent,indentlist,fakeobjects,link,list,undo';
-    //config.skin = 'moono-dark';
-    // %REMOVE_END%
-
     config.toolbarGroups = [
         { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
         { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
@@ -30,16 +20,18 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'colors', groups: [ 'colors' ] }
     ];
 
-    config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach,filebrowser,popup,templates';
+    config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach,filebrowser,popup,templates,lineheight';
     config.uploadUrl = '/rest/uploadForEditor';
     //config.filebrowserUploadUrl = '/rest/uploadForEditor';dev
     config.filebrowserUploadUrl = '/rest/upload2';
+    //config.filebrowserUploadUrl = '/rest/uploadAndReturnHtml';
     config.baseFloatZIndex = 9000;
     config.font_defaultLabel = 'Helvetica';
     config.fontSize_defaultLabel = '16';
 
     config.font_names = config.font_names +
         ';Helvetica/Arial, Helvetica, sans-serif;';
+    //config.line_height="1px;1.1px;1.2px;1.3px;1.4px;1.5px"
 
 };
 

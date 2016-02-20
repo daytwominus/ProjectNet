@@ -31,7 +31,7 @@ var upload = multer({
     })
 });
 
-router.post('/uploadAndReturnHtml', upload.single('file'), function(req, res, next) {
+router.post('/uploadAndReturnHtml', upload.single('upload'), function(req, res, next) {
 
     console.log('uploading item: ');
     console.log('uploading item ', req.file.key);
@@ -61,7 +61,7 @@ router.post('/upload', upload.single('upload'), function(req, res, next) {
 router.post('/upload2', upload.single('upload'), function(req, res, next) {
     var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
     console.log('item uploaded ', path);
-    res.send('<a>' + path + '</a>');
+    res.send('<a style="padding: 20px"> href="' + path + '"></a>');
 });
 
 router.post('/uploadForEditor', upload.single('upload'), function(req, res, next) {
@@ -76,8 +76,6 @@ router.post('/uploadForEditor', upload.single('upload'), function(req, res, next
         url : path
     });
 });
-
-
 
 router.get('/permissions', function(req, res, next) {
     console.log('getting permissions for user ', JSON.stringify(req.user));
