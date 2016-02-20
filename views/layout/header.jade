@@ -9,7 +9,7 @@ html(lang= "en")
         link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
         link(href="/material/css/roboto.min.css" rel="stylesheet")
         link(href="/css/style.css" rel="stylesheet")
-        link(href="/css/style-header.css" rel="stylesheet")
+        link(href="/css/menu.css" rel="stylesheet")
         //link(rel='stylesheet' media='screen and (min-width: 101px) and (max-width: 900px)' href='css/style-medium.css' )
         link(href="/css/sidebar.css" rel="stylesheet")
         link(href="/material/css/material.css" rel="stylesheet")
@@ -41,138 +41,155 @@ html(lang= "en")
                         img.header-logo(src="/images/dus-small.png")
                 p(align="center" style="margin:0;")
                     img.header-logo-descr(src="/images/dus-descr.jpg")
+            if(isLoggedIn)
+                div.user-image-area
+                    if(user.imageUrl)
+                        a(href="/profile")
+                            img.img-circle.main-user-avatar(src="#{user.imageUrl}" )
+                    else
+                        a(href="/profile")
+                            img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
+                    div(align="center")
+                        a.text-primary.logout-text.header-text-small(align="center" href="/login/logout" style="margin:15px;") #{trans['logout']}
+                        p(style="padding-top:6px;")
+                            a.text-primary.logout-text.header-text-small.username(align="center" style="margin:5px;text-transform: uppercase;" href="/profile") #{user.displayName}
+
             hr
-            div.container.header-container
-                if(isLoggedIn)
-                    div.user-image-area
-                        if(user.imageUrl)
-                            a(href="/profile")
-                                img.img-circle.main-user-avatar(src="#{user.imageUrl}" )
-                        else
-                            a(href="/profile")
-                                img.img-circle.main-user-avatar(src="/images/default-user-icon-profile.png" href="/profile")
-                        div(align="center")
-                            a.text-primary.logout-text.header-text-small(align="center" href="/login/logout" style="margin:15px;") #{trans['logout']}
-                            p(style="padding-top:6px;")
-                                a.text-primary.logout-text.header-text-small.username(align="center" style="margin:5px;text-transform: uppercase;" href="/profile") #{user.displayName}
-                div.row.menu-row
-                    div.col-xs-9
-                        nav.navbar.navbar-default
-                            ul.nav.navbar-nav
-                                i.mdi-home
-                                if isLoggedIn
-                                    li.menu-link-li(style="")
-                                        a.menu-link(href="/home" style="left:0px;")
-                                            | #{trans['home']}
-                                        if(user.isAdmin)
-                                            ul.dropdown-menu
-                                                li
-                                                    a(href="/posts")
-                                                        | #{trans['allcontent']}
-                                                li
-                                                    a(href="/users")
-                                                        | #{trans['usersmanagement']}
-                                                li
-                                                    a(href="/sections")
-                                                        | #{trans['sections']}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Library")
-                                            | #{trans['library']}
-                                        ul.dropdown-menu
-                                            li
-                                                a(href="/library#all")
-                                                    | #{trans['all']}
-                                            each val, index in sectionsLibrary
-                                                li
-                                                    a(href="/library#" + val._id)
-                                                        | #{val.name}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Courses")
-                                            | #{trans['courses']}
-                                        ul.dropdown-menu
-                                            li
-                                                a(href="/courses#all")
-                                                    | #{trans['all']}
-                                            each val, index in sectionsCourse
-                                                li
-                                                    a(href="/courses#" + val._id)
-                                                        | #{val.name}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Glossary")
-                                            | #{trans['glossary']}
-                                        ul.dropdown-menu
-                                            li
-                                                a(href="/glossary#all")
-                                                    | #{trans['all']}
-                                            each val, index in sectionsGlossary
-                                                li
-                                                    a(href="/glossary#" + val._id)
-                                                        | #{val.name}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Students")
-                                            | #{trans['students']}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Multimedia")
-                                            | #{trans['multimedia']}
-
-                                else
-                                    li.menu-link-li(style="")
-                                        a.menu-link(href="/" style="left:0px;")
-                                            | #{trans['home']}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Library")
-                                            | #{trans['library']}
-                                        ul.dropdown-menu
-                                            li
-                                                a(href="/library#all")
-                                                    | #{trans['all']}
-                                            each val, index in sectionsLibrary
-                                                li
-                                                    a(href="/library#" + val._id)
-                                                        | #{val.name}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Courses")
-                                            | #{trans['courses']}
-                                        ul.dropdown-menu
-                                            li
-                                                a(href="/courses#all")
-                                                    | #{trans['all']}
-                                            each val, index in sectionsCourse
-                                                li
-                                                    a(href="/courses#" + val._id)
-                                                        | #{val.name}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Glossary")
-                                            | #{trans['glossary']}
-                                        ul.dropdown-menu
-                                            li
-                                                a(href="/glossary#all")
-                                                    | #{trans['all']}
-                                            each val, index in sectionsGlossary
-                                                li
-                                                    a(href="/glossary#" + val._id)
-                                                        | #{val.name}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Students")
-                                            | #{trans['students']}
-                                    li.menu-link-li
-                                        a.menu-link(href="/Multimedia")
-                                            | #{trans['multimedia']}
-                    div.col-xs-3.text-right.right-nav
-                        form.pull-right.menu-link-li.search-form(style="padding-bottom:16px;margin-right:10px;")
-                            input.form-control.col-lg-8(type="text" placeholder="Search" id="searchtext")
-
-                    //if isLoggedIn
-                    //    span.header-user-name
-                    //        p(align="center" style="margin:5px;") #{user.displayName}
-                    span
+            div.menu-container
+                div(id="cssmenu")
+                    ul
                         if isLoggedIn
+                            if(user.isAdmin)
+                                li.has-sub
+                                    a(href="/" style="left:0px;")
+                                        | #{trans['home']}
+                                    ul
+                                        li
+                                            a(href="/posts")
+                                                span
+                                                    | #{trans['allcontent']}
+                                        li
+                                            a(href="/users")
+                                                span
+                                                    | #{trans['usersmanagement']}
+                                        li
+                                            a(href="/sections")
+                                                span
+                                                    | #{trans['sections']}
+                            else
+                                li
+                                    a(href="/" style="left:0px;")
+                                        | #{trans['home']}
+                            li.has-sub
+                                a(href="/Library")
+                                    span
+                                        | #{trans['library']}
+                                ul
+                                    li
+                                        a(href="/library#all")
+                                            span
+                                                | #{trans['all']}
+                                    each val, index in sectionsLibrary
+                                        li
+                                            span
+                                                a(href="/library#" + val._id)
+                                                    | #{val.name}
+                            li.has-sub
+                                a(href="/Courses")
+                                    span
+                                        | #{trans['courses']}
+                                ul
+                                    li
+                                        a(href="/courses#all")
+                                            span
+                                                | #{trans['all']}
+                                    each val, index in sectionsLibrary
+                                        li
+                                            span
+                                                a(href="/courses#" + val._id)
+                                                    | #{val.name}
+                            li.has-sub
+                                a(href="/Glossary")
+                                    span
+                                        | #{trans['glossary']}
+                                ul
+                                    li
+                                        a(href="/glossary#all")
+                                            span
+                                                | #{trans['all']}
+                                    each val, index in sectionsLibrary
+                                        li
+                                            span
+                                                a(href="/glossary#" + val._id)
+                                                    | #{val.name}
+                            li
+                                a(href="/Students" style="left:0px;")
+                                    | #{trans['students']}
+                            li
+                                a(href="/multimedia" style="left:0px;")
+                                    | #{trans['multimedia']}
                         else
-                            a.pull-right.login-logout.login-text(href="/login" style="color: #fff;")
-                                | #{trans['login']}
-                            a.pull-right.login-logout.login-text(href="/signup" style="margin-right:10px;color: #fff;position: absolute; right: 30px; top: 79px;")
-                                | #{trans['signup']}
-
+                            li
+                                a(href="/" style="left:0px;")
+                                    | #{trans['home']}
+                            li.has-sub
+                                a(href="/Library")
+                                    span
+                                        | #{trans['library']}
+                                ul
+                                    li
+                                        a(href="/library#all")
+                                            span
+                                                | #{trans['all']}
+                                    each val, index in sectionsLibrary
+                                        li
+                                            span
+                                                a(href="/library#" + val._id)
+                                                    | #{val.name}
+                            li.has-sub
+                                a(href="/Courses")
+                                    span
+                                        | #{trans['courses']}
+                                ul
+                                    li
+                                        a(href="/courses#all")
+                                            span
+                                                | #{trans['all']}
+                                    each val, index in sectionsLibrary
+                                        li
+                                            span
+                                                a(href="/courses#" + val._id)
+                                                    | #{val.name}
+                            li.has-sub
+                                a(href="/Glossary")
+                                    span
+                                        | #{trans['glossary']}
+                                ul
+                                    li
+                                        a(href="/glossary#all")
+                                            span
+                                                | #{trans['all']}
+                                    each val, index in sectionsLibrary
+                                        li
+                                            span
+                                                a(href="/glossary#" + val._id)
+                                                    | #{val.name}
+                            li
+                                a(href="/Students" style="left:0px;")
+                                    | #{trans['students']}
+                            li
+                                a(href="/multimedia" style="left:0px;")
+                                    | #{trans['multimedia']}
+                span
+                    if isLoggedIn
+                    else
+                        a.pull-right.login-logout.login-text(href="/login" style="color: #fff;")
+                            | #{trans['login']}
+                        a.pull-right.login-logout.login-text(href="/signup" style="margin-right:10px;color: #fff;position: absolute; right: 30px; top: 79px;")
+                            | #{trans['signup']}
+                div.search-container
+                    form.search-form
+                        input.form-control(type="text" placeholder="Search" id="searchtext")
         include sidebar
         div.container.main-content(style="")
             div.row

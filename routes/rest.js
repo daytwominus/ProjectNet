@@ -31,26 +31,7 @@ var upload = multer({
     })
 });
 
-router.post('/upload', upload.single('file'), function(req, res, next) {
-    var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
-    console.log('item uploaded ', path);
-    res.send(path);
-});
-
-router.post('/uploadForEditor', upload.single('upload'), function(req, res, next) {
-    console.log('uploading item: ');
-    console.log('uploading item ', req.file.key);
-    var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
-    console.log('item uploaded ', path);
-
-    res.send({
-        uploaded : 1,
-        fileName : req.file.key,
-        url : path
-    });
-});
-
-router.post('/uploadAndReturnHtml', upload.single('upload'), function(req, res, next) {
+router.post('/uploadAndReturnHtml', upload.single('file'), function(req, res, next) {
 
     console.log('uploading item: ');
     console.log('uploading item ', req.file.key);
@@ -70,6 +51,33 @@ router.post('/uploadAndReturnHtml', upload.single('upload'), function(req, res, 
 
     //res.send(html);
 });
+
+router.post('/upload', upload.single('upload'), function(req, res, next) {
+    var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
+    console.log('item uploaded ', path);
+    res.send(path);
+});
+
+router.post('/upload2', upload.single('upload'), function(req, res, next) {
+    var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
+    console.log('item uploaded ', path);
+    res.send('<a>' + path + '</a>');
+});
+
+router.post('/uploadForEditor', upload.single('upload'), function(req, res, next) {
+    console.log('uploading item: ');
+    console.log('uploading item ', req.file.key);
+    var path = 'https://s3.amazonaws.com/digitalurbanstudiesbucket/'+req.file.key;
+    console.log('item uploaded ', path);
+
+    res.send({
+        uploaded : 1,
+        fileName : req.file.key,
+        url : path
+    });
+});
+
+
 
 router.get('/permissions', function(req, res, next) {
     console.log('getting permissions for user ', JSON.stringify(req.user));

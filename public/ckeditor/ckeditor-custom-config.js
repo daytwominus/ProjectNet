@@ -33,37 +33,12 @@ CKEDITOR.editorConfig = function( config ) {
     config.extraPlugins = 'uploadimage,image2,uploadwidget,oembed,attach,filebrowser,popup,templates';
     config.uploadUrl = '/rest/uploadForEditor';
     //config.filebrowserUploadUrl = '/rest/uploadForEditor';dev
-    config.filebrowserUploadUrl = '/rest/uploadAndReturnHtml';
+    config.filebrowserUploadUrl = '/rest/upload2';
     config.baseFloatZIndex = 9000;
     config.font_defaultLabel = 'Arial';
     config.fontSize_defaultLabel = '16px';
 
 };
-//
-//CKEDITOR.addTemplates( 'default',
-//    {
-//        // The name of the subfolder that contains the preview images of the templates.
-//        imagesPath : CKEDITOR.getUrl( CKEDITOR.plugins.getPath( 'templates' ) + 'templates/images/' ),
-//
-//        // Template definitions.
-//        templates :
-//            [
-//                {
-//                    title: 'My Template 1',
-//                    image: 'template1.gif',
-//                    description: 'Description of My Template 1.',
-//                    html:
-//                    '<h2>Template 1</h2>' +
-//                    '<p><img src="/logo.png" style="float:left" />Type your text here.</p>'
-//                },
-//                {
-//                    title: 'My Template 2',
-//                    html:
-//                    '<h3>Template 2</h3>' +
-//                    '<p>Type your text here.</p>'
-//                }
-//            ]
-//    });
 
 CKEDITOR.on( 'dialogDefinition', function( ev ) {
     var dialogName = ev.data.name;
@@ -75,28 +50,6 @@ CKEDITOR.on( 'dialogDefinition', function( ev ) {
     }
 });
 
-//CKEDITOR.on('dialogDefinition', function(ev) {
-//    var dialogName = ev.data.name;
-//    var dialogDefinition = ev.data.definition;
-//    console.log("dialogName ", dialogName);
-//    if (dialogName == 'image2') {
-//        dialogDefinition.onLoad = function() {
-//            var dialog = CKEDITOR.dialog.getCurrent();
-//
-//            var uploadTab = dialogDefinition.getContents('Upload');
-//                        var uploadButton = uploadTab.get('uploadButton');
-//            console.log('uploadButton', uploadButton);
-//
-//            uploadButton['onClick'] = function(evt){
-//                console.log('HERE click');
-//                console.log('fire in the hole', evt);
-//            }
-//
-//            uploadButton['filebrowser']['onSelect'] = function(fileUrl, errorMessage) {
-//                console.log('working');
-//            }
-//        };
-//
-//    }
-//
-//});
+CKEDITOR.on( 'onAttachmentUpload', function( ev ) {
+    console.log("!!!!!!!!");
+});

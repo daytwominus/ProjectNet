@@ -18,12 +18,24 @@
     }
 }
 
+@media screen and (max-width: 1420px) {
+
+    .search-container{
+        width: 6%;
+        right: 12%;
+    }
+}
+
+
 @media screen and (max-width: 1350px) {
     header .navbar .navbar-nav > li > a {
         font-size: 17px;
     }
+    .search-container{
+        visibility: collapse;
+    }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1220px) {
     .header-logo-descr{
         visibility: collapse;
     }
@@ -39,6 +51,14 @@
 
     div.container.main-content{
         left:0%;
+    }
+
+    .user-image-area{
+        visibility: collapse;
+    }
+
+    .language-selector{
+        visibility: collapse;
     }
 }
 
