@@ -3,9 +3,7 @@ block content
     div(ng-app="postsApp", ng-controller="postsController", ng-cloak, ng-init="init('singlepost')")
         div(align="center")
             small post
-        div.permalink
-            a.parmalink(href="/posts/" + "#{post._id}") #{trans['permalink']}
-                img.permalink(src="/images/permalink-icon.png" )
+
         div.list-group-separator
 
         div
@@ -14,7 +12,12 @@ block content
                //    div
                //        button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(editingPost)' )
                //            i.mdi-image-edit
-               p!=  post.data
+               div.post-style
+                   p!=  post.data
+                   div.right-bottom-corner
+                        div.permalink
+                            a.parmalink(href="/posts/" + "#{post._id}") #{trans['permalink']}
+                                img.permalink(src="/images/permalink-icon.png" )
 
         include common/post-edit-dialog
 block script
