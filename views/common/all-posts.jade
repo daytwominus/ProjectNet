@@ -12,5 +12,5 @@ div.panel.panel-body(ng-repeat="p in posts")
    p.post-style(ng-bind-html="p.data | to_trusted")
    div.right-bottom-corner
       div.permalink
-         a(href="/posts/" + "{{p._id}}") permalink
+         a(href="/posts/" + "{{p._id}}") #{trans['permalink']}
             img(src="/images/permalink-icon.png")

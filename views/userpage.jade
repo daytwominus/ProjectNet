@@ -8,7 +8,7 @@ block content
    div
       each v, ind in posts
          div.permalink
-            a.parmalink(href="/posts/" + "#{v._id}") permalink
+            a.parmalink(href="/posts/" + "#{v._id}") #{trans['permalink']}
                img.permalink(src="/images/permalink-icon.png")
          div.panel.panel-body
             p!=  v.data

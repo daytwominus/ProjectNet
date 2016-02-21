@@ -3,7 +3,7 @@ var Localize = require('localize');
 module.exports = function (app){
 
     var trans = [
-        {   lang:"РУ",
+        {   lang:"RU",
             login:"sign in",
             logout:"log out",
             home:"home",
@@ -26,7 +26,8 @@ module.exports = function (app){
             search:"Search",
             students:"Students",
             multimedia:"Multimedia",
-            backtotop:"Back to Top"
+            backtotop:"Back to Top",
+            permalink:"permalink"
         },
         {
             lang:"EN",
@@ -52,7 +53,8 @@ module.exports = function (app){
             search:"Поиск",
             students:"Студенты",
             multimedia:"Мультимедиа",
-            backtotop:"Вверх"
+            backtotop:"Вверх",
+            permalink:"постоянная ссылка"
         }];
 
     var lang = "en";
