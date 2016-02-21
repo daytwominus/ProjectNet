@@ -201,7 +201,8 @@
 }
 
 .is-stuck .login-text{
-    top:10px;
+    margin-top: 0;
+    top:18px;
 }
 a.login-logout{
     position:absolute;
