@@ -53,6 +53,7 @@
     padding: 0;
     position: relative;
 }
+
 #cssmenu > ul li {
     margin: 0;
     padding: 0;
@@ -76,11 +77,12 @@
 
 
 }
+
+
 #cssmenu > ul > li:hover > a {
     background: url(/images/hover.png) repeat;
     text-shadow: 0 -1px 0 #97321f;
     text-shadow: 0 -1px 0 rgba(122, 42, 26, 0.64);
-//padding-top: 150px;
 }
 
 #cssmenu > ul > li > a > span {
@@ -97,7 +99,6 @@
     opacity: 0;
     visibility: hidden;
     position: absolute;
-    top: 120px;
     background: url(/images/menu-bg.png) repeat;
     margin: 0;
     padding: 0;
@@ -122,6 +123,7 @@
     height: 20px;
     background: transparent;
 }
+
 #cssmenu > ul ul li {
     list-style: none;
     padding: 0;
@@ -147,7 +149,15 @@
     font-family: 'Open Sans', sans-serif;
     text-transform:  none;
 
-    transition: all 1.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+}
+
+
+#cssmenu .sub-menu{
+    /*transition: all 0.5s ease 0s, visibility 0s linear 0.5s;*/
+    /*transform: translateZ(0);*/
+    /*transform: translateY(10%);*/
+    transition: all 0.35s ease-in-out;
 }
 
 #cssmenu > ul ul li a:hover {
