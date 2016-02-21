@@ -20,14 +20,11 @@
 }
 
 @media screen and (max-width: 1420px) {
-
     .search-container{
         width: 6%;
         right: 12%;
     }
-
 }
-
 
 @media screen and (max-width: 1350px) {
     header .navbar .navbar-nav > li > a {

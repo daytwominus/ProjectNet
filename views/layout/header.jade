@@ -187,16 +187,18 @@ html(lang= "en")
                     else
                         a.pull-right.login-logout.login-text(href="/login" style="color: #fff;")
                             | #{trans['login']}
-                        a.pull-right.login-logout.login-text(href="/signup" style="margin-right:10px;color: #fff;position: absolute; right: 30px; top: 79px;")
+                        a.pull-right.login-logout.login-text.signup(href="/signup" style="margin-right:10px;color: #fff;position: absolute; right: 30px; top: 79px;")
                             | #{trans['signup']}
                 div.search-container
                     form.search-form
                         input.form-control(type="text" placeholder="Search" id="searchtext")
-        include sidebar
-        div.container.main-content(style="")
-            div.row
-                div.col-md-12
-                    block content
+            include sidebar
+        //div.container.main-content(style="")
+        //    div.row
+        //        div.col-md-12
+        //            block content
+        div.post-container
+            block content
 
         include footer
     script var trans = !{JSON.stringify(trans)};

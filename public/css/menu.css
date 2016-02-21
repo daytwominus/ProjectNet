@@ -23,13 +23,12 @@
 .search-container{
     position: absolute;
     top: 108px;
-    right: 10%
+    right: 10%;
+    width: 8%;
 }
 .is-stuck  .search-container {
     top: 8px;
 }
-
-
 
 #cssmenu:before,
 #cssmenu:after,
@@ -138,20 +137,23 @@
     text-decoration: none;
 
     width: 170px;
-    border-left: 4px solid transparent;
+    border-left: 14px solid transparent;
     -webkit-transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
     -ms-transition: all 0.35s ease-in-out;
-    transition: all 0.35s ease-in-out;
-    background: url(/images/hover.png) repeat;
+
+    //background: url(/images/hover.png) repeat;
 
     font-family: 'Open Sans', sans-serif;
     text-transform:  none;
+
+    transition: all 1.35s ease-in-out;
 }
+
 #cssmenu > ul ul li a:hover {
-//border-left: 4px solid #d64e34;
     background: url(/images/hover.png) repeat;
 }
+
 #cssmenu > ul ul li a:active {
     background: url(/images/menu-bg.png) repeat;
 }
@@ -168,37 +170,37 @@
 }
 
 .is-stuck .menu-link-li{
-padding:0;
-top: 0;
-//box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+    padding:0;
+    top: 0;
+    //box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
 }
 
 .is-stuck .header-image{
-visibility: collapse;
+    visibility: collapse;
 }
 
 .is-stuck .header-user-name{
-visibility: collapse;
+    visibility: collapse;
 }
 
 .is-stuck img.img-circle.main-user-avatar{
-visibility: collapse;
-width: 0;
-height: 0;
+    visibility: collapse;
+    width: 0;
+    height: 0;
 
 }
 
 .is-stuck .login-text{
-top:10px;
+    top:10px;
 }
 a.login-logout{
-position:absolute;
-top: 110px;
-right: 40px;
-margin-left:30px;
-padding-bottom:-10px;
-//font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
-font-family: 'Open Sans', sans-serif;
+    position:absolute;
+    top: 110px;
+    right: 40px;
+    margin-left:30px;
+    padding-bottom:-10px;
+    //font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica",Arial,sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .is-stuck .header-logo-common {
@@ -208,14 +210,14 @@ font-family: 'Open Sans', sans-serif;
 
 
 .is-stuck .logo-div{
-height:150px;
+    height:150px;
 }
 
 .is-stuck .header-logo-descr{
-visibility: collapse;
+    visibility: collapse;
 
-width: 0;
-height: 0;
+    width: 0;
+    height: 0;
 }
 
 .is-stuck .header-logo{
@@ -225,14 +227,18 @@ height: 0;
 }
 
 .is-stuck .dropdown-menu{
-top:60px;
+    top:60px;
 }
 
 .is-stuck .username{
-visibility: collapse;
+    visibility: collapse;
 }
 
 .is-stuck .language-selector{
-top:19px;
+    top:19px;
 
+}
+
+.is-stuck .signup{
+    visibility: hidden;
 }

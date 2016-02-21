@@ -59,10 +59,25 @@ function asyncLoop(iterations, func, callback) {
     return loop;
 }
 
+
+
+
+function traverseJson(o,func) {
+    for (var i in o) {
+        func.apply(this,[i,o[i]]);
+        if (o[i] !== null && typeof(o[i])=="object") {
+            //going on step down in the object tree!!
+            traverseJson(o[i],func);
+        }
+    }
+}
+
+
 module.exports =
 {
     getUniqueNameForFile : getUniqueNameForFile,
     guid : guid,
     clone: clone,
-    asyncLoop : asyncLoop
+    asyncLoop : asyncLoop,
+    traverseJson : traverseJson
 }

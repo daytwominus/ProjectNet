@@ -1,8 +1,10 @@
+
 .sidebar{
     width: 15%;
     position: absolute;
     right: 50px;
-    top:190px;
+    top:235px;
+    z-index: 9999;
 }
 
 p.sidebar-header{
@@ -27,6 +29,7 @@ p.sidebar-header{
     background: #4c4c4c;
     color: #fff;
 }
+
 /* Use this next selector to style things like font-size and line-height: */
 .my-custom-theme .tooltipster-content {
     font-family: Arial, sans-serif;
@@ -39,4 +42,8 @@ p.sidebar-header{
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 200px;
+}
+
+.is-stuck .sidebar {
+    top:125px;
 }

@@ -9,7 +9,7 @@ div.panel.panel-body(ng-repeat="p in posts")
 
    button.btn.btn-fab.btn-raised.btn-primary.btn-fab-mini(ng-show="permissions && permissions.canEditCourses" data-toggle="modal" data-target="#complete-dialog" type="Submit" ng-click='editPost(p)' )
       i.mdi-image-edit
-   p(ng-bind-html="p.data | to_trusted" style="margin-left:25px;margin-right:25px;margin-top:35px;margin-bottom:35px;")
+   p.post-style(ng-bind-html="p.data | to_trusted")
    div.right-bottom-corner
       div.permalink
          a(href="/posts/" + "{{p._id}}") permalink

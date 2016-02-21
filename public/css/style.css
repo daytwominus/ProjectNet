@@ -211,10 +211,18 @@ a, a:hover, a:focus {
   background-image: linear-gradient(#800000, #800000), linear-gradient(#d2d2d2, #d2d2d2);
 }
 
+.post-container{
+  position:absolute;
+  top:180px;
+  left:20%;
+  min-width: 600px;
+  max-width: 800px;
+  width: 55%;
+}
 
-/*.is-stuck .logout-text{*/
-  /*padding-top:40px;*/
-/*}*/
+.post-style{
+  margin: 35px 25px;
+}
 
 
 .is-stuck .user-image-area{

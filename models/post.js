@@ -39,6 +39,10 @@ var findUniversal = function(params, callback) {
     });
 };
 
+function processJsonNode(key,value) {
+    console.log('>>>', key + " : "+value);
+}
+
 var getAllPosts = function(callback) {
     console.log('getting all posts');
     Post.find({})
@@ -61,6 +65,7 @@ var getAllPosts = function(callback) {
                     //console.log("!!!!!!!>>", ret);
                     addCreationDate(ret);
                     console.log("all posts: " + JSON.stringify(ret));
+
                     callback(err, ret);
                 });
         });
